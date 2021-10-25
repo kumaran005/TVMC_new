@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>University Form</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="/assets/dashboard/plugins/fontawesome-free/css/all.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- bootsrtap -->
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="/assets/dashboard/dist/css/alter.css">
+  <link rel="stylesheet" href="/assets/dashboard/dist/css/mbbs.css">
+  <!-- Google Font Source Sans Pro -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro300,400,400i,700" rel="stylesheet">
+  <style>
+ 
+#tablecerti th, #tablecerti td{
+  text-transform: unset;
+}
+
+
+#mdms_table td {
+    text-align: left;
+}
+#mdms_table th,#mdms_table td{
+    border: 2px solid!important;
+    font-size: 20px;
+}
+#mdms_table td{
+    border-top: none!important;
+}
+li{
+  font-size: 20px;
+}
+th,#report h5 {
+  font-weight: 600;
+}
+    @media print{
+
+body{
+ 
+  transform:scale(1.02)!important;
+  /* margin-top: 350px!important; */
+
+}
+#tablecerti th, #tablecerti td {
+  border: none!important;
+}
+#tablereport th,#tablereport td{
+  border: 1px solid #000!important;
+}
+    }
+    #tablecerti th, #tablecerti td, #tablecerti thead,#tablecerti tbody {
+  border: none!important;
+  font-size: 20px;
+}
+body,html,li,.margin,.text-left, #center{
+  font-family: 'Berlin Sans FB', sans-serif!important;
+                                                
+}   
+</style>
+</head>
+<body class="hold-transition sidebar-mini">
+    <div class="toolbar no-print">
+      <button class="btn btn-info" onclick="window.print()">
+        Print Certificate
+      </button>
+    <% if (course == 'MBBS'){ %>
+      <a href="/mbbs_board"><button class="btn btn-info">Back</button></a>
+      <%}%> <% if (course == 'MDMS'){ %>
+      <a href="/mdms_board"><button class="btn btn-info">Back</button></a>
+      <%}%> <% if (course == 'BSC'){ %>
+      <a href="/bsc_board"><button class="btn btn-info">Back</button></a>
+      <%}%> <% if (course == 'AISSC'){ %>
+      <a href="/aissc_board"><button class="btn btn-info">Back</button></a>
+      <%}%><% if (course == 'DIPLOMA IN NURSING'){ %>
+      <a href="/nursing_board"><button class="btn btn-info">Back</button></a>
+      <%}%>
+
+    </div>
+   
+<section id="report"class="text-dark black university"style=" color: #000;">
+  <div class="container text-dark">
+<div class="row mt-5">
+    <div class="col-md-2 ">
+      <img src="/assets/img/univ.jpg"alt="logo"class="img-fluid">
+    </div>
+        <div class="col-md-9 "id="head">
+            <p><b style="font-size: 20px;">Cost of application form: Rs. 100/-,</b></p>
+            <p class="ml-5"style="    text-indent: -2cm;
+    
+    padding-left: 71px;">(For application downloaded from the Web site, candidates are instructed to pay Rs.50/- in addition to the
+                prescribed fees for registration, otherwise it will be rejected.)</span> </p>
+        
+            <h2 class="text-center pl-5">THE TAMILNADU Dr. M.G.R. MEDICAL UNIVERSITY
+            </h2>
+            <p class="text-center pl-5">NO. 69, Anna Salai, Guindy, Chennai - 600 032.</p>
+
+            
+            <h2 class="text-center pl-4">APPLICATION FOR REGISTRATION FOR U.G. COURSES <br>MEDICAL
+<br>(D.M/M.Ch.Super Specialities, M.D/M.S)
+            </h2>
+            <p class="text-center pl-5">(Incomplete Applications will be rejected)</p>
+        </div>
+       
+
+</div>
+<section id="tablecerti">
+  <div class="row">
+      <div class="col-md-9">
+      <table class="table  text-left index">
+         
+          <tbody>
+            <tr>
+                <th></th>
+                <td style="position: relative;left: -23px">
+                  Name of the Course with Speciality 
+  
+                </td>
+               
+                     <%
+                if(userData1.length!=0){
+                var i=1;
+                userData1.forEach(function(classdata1){
+                %> 
+                <td id="capital">:&nbsp; &nbsp; <%=classdata1.course %></td>  
+                  <%  i++; }) %>
+              <% } else{ %>
+              
+              <% } %>                                                                                                             
+                
+              </tr>
+            <tr>
+              <th></th>
+              <td style="position: relative;left: -23px">
+                Year of Admission 
+
+              </td>
+             
+                   <%
+              if(userData.length!=0){
+              var i=1;
+              userData.forEach(function(classdata){
+              %> 
+              <td id="capital">:&nbsp; &nbsp; <%=classdata.academic_year %></td>  
+                <%  i++; }) %>
+            <% } else{ %>
+            
+            <% } %>                                                                                                             
+              
+            </tr>
+            <tr>
+              <td width="40">1.</td>
+              <td>Name of the applicant<br>
+               
+                (As entered in the Qualifying<br>
+                 Certificate)</td>
+              
+              
+                     <%
+              if(userData.length!=0){
+              var i=1;
+              userData.forEach(function(classdata){
+              %> 
+              <td id="capital">:&nbsp; &nbsp; <%=classdata.name %> </td>  
+                <%  i++; }) %>
+            <% } else{ %>
+            
+            <% } %>                                                                                                             
+              </tr>
+        
+                  <tr>
+                    <td>2.</td>
+                    <td>Sex</td>
+                    
+                    
+                           <%
+              if(userData.length!=0){
+              var i=1;
+              userData.forEach(function(classdata){
+              %> 
+              <td id="capital">:&nbsp; &nbsp; <%=classdata.gender %></td>  
+                <%  i++; }) %>
+            <% } else{ %>
+            
+            <% } %>                                                                                                             
+                    </tr>
+                  </tr>
+                  <tr>
+                    <td>3.</td>
+                    <td>Date of Birth and Age (Proof should be<br>
+                      attached)</td>
+                    
+                    
+                           <%
+              if(userData.length!=0){
+              var i=1;
+              userData.forEach(function(classdata){
+              %> 
+              <td id="capital">:&nbsp; &nbsp; <%=classdata.date_of_birth %></td>  
+                <%  i++; }) %>
+            <% } else{ %>
+            
+            <% } %>                                                                                                             
+                    </tr>
+                  
+                    
+                    <tr>
+                      <td>4.</td>
+                      <td>(a) Name of Father/ Guardian </td>
+                      
+                      
+                             <%
+              if(userData.length!=0){
+              var i=1;
+              userData.forEach(function(classdata){
+              %> 
+              <td id="capital">:&nbsp; &nbsp; <%=classdata.father_name %></td>  
+                <%  i++; }) %>
+            <% } else{ %>
+            
+            <% } %>                                                                                                             
+                      </tr>
+                      <tr>
+                        <td></td>
+                        <td>(b)Name of Mother  </td>
+                        
+                        
+                               <%
+              if(userData.length!=0){
+              var i=1;
+              userData.forEach(function(classdata){
+              %> 
+              <td id="capital">:&nbsp; &nbsp; <%=classdata.mother_name %></td>  
+                <%  i++; }) %>
+            <% } else{ %>
+            
+            <% } %>                                                                                                             
+                        </tr>
+                        <tr>
+                            <td>5.</td>
+                            <td>(a) Community </td>
+                            
+                            
+                                   <%
+                    if(userData.length!=0){
+                    var i=1;
+                    userData.forEach(function(classdata){
+                    %> 
+                    <td id="capital">:&nbsp; &nbsp; <%=classdata.community %></td>  
+                      <%  i++; }) %>
+                  <% } else{ %>
+                  
+                  <% } %>                                                                                                             
+                            </tr>
+                            <tr>
+                                <td>6.</td>
+                                <td>Date of Joining the course </td>
+                                
+                                
+                                       <%
+                        if(userData1.length!=0){
+                        var i=1;
+                        userData1.forEach(function(classdata1){
+                        %> 
+                        <td id="capital">:&nbsp; &nbsp; <%=classdata1.date_of_admission %></td>  
+                          <%  i++; }) %>
+                      <% } else{ %>
+                      
+                      <% } %>                                                                                                             
+                                </tr>
+                                <tr>
+                                    <td>7.</td>
+                                    <td>Name of the Institution </td>
+                                    
+                                    
+                                           <%
+                            if(userData1.length!=0){
+                            var i=1;
+                            userData1.forEach(function(classdata1){
+                            %> 
+                            <td id="capital">:&nbsp; &nbsp; Tirunelveli Medical College</td>  
+                              <%  i++; }) %>
+                          <% } else{ %>
+                          
+                          <% } %>                                                                                                             
+                                    </tr>
+                          <tr>
+                            <td class="pt-2">8.</td>
+                            <td class="py-3"> Present address    </td>
+                              
+                              
+                            <%
+     if(userData2.length!=0){
+     var i=1;
+     userData2.forEach(function(classdata2){
+     %> 
+     <td class="py-3 text-capitalize d-flex">:&nbsp; &nbsp; <p class="pl-3"><%=classdata2.ps_address %><br><%=classdata2.ps_district %>
+      <%=classdata2.ps_pincode %><br><%=classdata2.ps_state %></p>
+      </td>  
+       <%  i++; }) %>
+   <% } else{ %>
+   
+   <% } %>                                                                                                     
+                            </tr>
+                            <tr>
+                              <td class="py-3"></td>
+                              <td class="pt-2"> Permanent residential address   </td>
+                            
+                            
+                              <%
+                              if(userData2.length!=0){
+                              var i=1;
+                              userData2.forEach(function(classdata2){
+                              %> 
+                              <td class="pt-2 text-capitalize d-flex">:&nbsp; &nbsp; <p class="pl-3"><%=classdata2.ps_address %><br><%=classdata2.ps_district %>
+                                <%=classdata2.ps_pincode %><br><%=classdata2.ps_state %></p>
+                              </td>   
+                              <%  i++; }) %>
+                              <% } else{ %>
+                              
+                              <% } %>                                                                                                          
+                              </tr>
+                       
+                                <tr>
+                                  <td></td>
+                                  <td>Email Id    </td>
+                                  
+                                  
+                                        
+              <%
+                if(userData8.length!=0){
+                var i=1;
+                userData8.forEach(function(classdata8){
+                %>
+              <td id=""style="text-transform:lowercase">:&nbsp; &nbsp; <%=classdata8.email_id %></td>  
+                <%  i++; }) %>
+            <% } else{ %>
+            
+            <% } %>                                                                                                             
+                                  </tr>
+                                  <tr>
+                                    <td></td>
+                                    <td>Mobile     </td>
+                                    
+          <%
+                if(userData8.length!=0){
+                var i=1;
+                userData8.forEach(function(classdata8){
+                %>
+              <td id="capital">:&nbsp; &nbsp;<%=classdata8.mobile_phone %></td>  
+                <%  i++; }) %>
+            <% } else{ %>
+            
+            <% } %>             
+                                    </tr>
+                                    <tr>
+                                      <td></td>
+                                      <td>Landline    </td>
+                                      
+                  <%
+                if(userData8.length!=0){
+                var i=1;
+                userData8.forEach(function(classdata8){
+                %>
+              <td id="capital">:&nbsp; &nbsp;<%=classdata8.tel_phone %></td>  
+                <%  i++; }) %>
+            <% } else{ %>
+            
+            <% } %>             
+                                      </tr>
+                                  
+           
+                                           
+            
+            
+
+          </tbody>
+        </table>
+       
+        </div>
+
+       <div class="col-md-3 text-right">
+<%
+if(userData12.length!=0){
+var i=1;
+userData12.forEach(function(classdata12){
+%>
+<td><img src="data:image/png;base64,<%=classdata12.Filename %>" class="img-fluid"style="width: 300px"></td>
+<%  i++; }) %>
+<% } else{ %>
+
+<% } %>        
+       </div> 
+
+  </div>
+    
+</section>
+
+<table class="table-bordered mt-5"id="mdms_table"style="page-break-before: always;">
+    <thead>
+        <tr>
+        <th>Qualification of the Applicant</th>
+        <th>Month & Year of Passing the Examination with Register Number</th>
+        <th>Month & Year of Convocation in which the degree was obtained</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>(a) M.D/M.S (Specify the Speciality)
+                </td>
+                <%
+                if(userData33.length!=0){
+                var i=1;
+                userData33.forEach(function(classdata33){
+                %> 
+                <td><%=classdata33.mdms_passing_month %> <%=classdata33.mdms_passing_year %></td>
+               
+                 
+                <td></td>
+            </tr>
+            <tr>
+                <td>(b) P.G Diploma (Specify the Speciality)
+                    </td>
+                    <td><%=classdata33.pg_diplamo_passing_month %> <%=classdata33.pg_diplamo_passing_year %> </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>(C) M.B.B.S
+                        </td>
+                        <td><%=classdata33.mbbs_passing_month %> <%=classdata33.mbbs_passing_year %> </td>
+                        <td></td>
+                    </tr>
+                    <%  i++; }) %>
+                    <% } else{ %>
+                    
+                    <% } %>  
+    </tbody>
+</table>
+<section id="tablecerti">
+  <div class="row">
+      <div class="col-md-12">
+      <table class="table  text-left index">
+         
+          <tbody>
+          
+                 
+                 
+                  
+                   
+                                           
+                    <tr>
+                      <td>10.</td>
+                      <td style="width: 400px;">College or Institution from where the applicant qualified for M.D/M.S Degree / P.G
+                        Diploma/ M.B.B.S
+                      </td>
+                      
+                      
+                             <%
+              if(userData33.length!=0){
+              var i=1;
+              userData33.forEach(function(classdata33){
+              %> 
+              <td id="capital">:&nbsp; &nbsp;<%= classdata33.mdms_name %>/<%= classdata33.pg_diplamo_name %> /<%= classdata33.mbbs_name %></td>  
+                <%  i++; }) %>
+            <% } else{ %>
+            
+            <% } %>                                                                                                             
+                      </tr>
+                      <tr>
+                        <td>11.</td>
+                        <td>If the candidate had passed M.D/M.S/P.G. Diploma degree M.B.B.S Examination form
+                          a University other than this University/outside the State of Tamil Nadu furnish the 
+                          following particulars
+                        </td>
+                        
+                        
+                               <%
+              if(userData33.length!=0){
+              var i=1;
+              userData33.forEach(function(classdata33){
+              %> 
+              <td id="capital">:&nbsp; &nbsp; </td>  
+                <%  i++; }) %>
+            <% } else{ %>
+            
+            <% } %>                                                                                                             
+                        </tr>
+                        
+                  
+                          
+                        <tr>
+                          <td></td>
+                          <td >(a) The name of the University from where
+                            the Candidate qualified for M.D/M.S/P.G Diploma/ M.B.B.S Examination
+                          </td>
+                          
+                          
+                                 <%
+              if(userData33.length!=0){
+              var i=1;
+              userData33.forEach(function(classdata33){
+              %> 
+              <td id="capital">:&nbsp; &nbsp; <%= classdata33.mdms_university %> <%= classdata33.pg_diplamo_university %> <%= classdata33.mbbs_university %></td>  
+                <%  i++; }) %>
+            <% } else{ %>
+            
+            <% } %>                                                                                                             
+                          </tr>
+                          <tr>
+                            <td></td>
+                            <td>(b) The State in which the University is situated</td>
+                            
+                            
+                                   <%
+              if(userData33.length!=0){
+              var i=1;
+              userData33.forEach(function(classdata33){
+              %> 
+              <td id="capital">:&nbsp; &nbsp; <%= classdata33.mdms_state %> <%= classdata33.pg_diplamo_state %> <%= classdata33.mbbs_state %></td>  
+                <%  i++; }) %>
+            <% } else{ %>
+            
+            <% } %>                                                                                                             
+                            </tr>
+                            <tr>
+                              <td></td>
+                              <td>(c) Whether recognition certificate has been obtained from this University
+                                
+                                </td>
+                              
+                              
+                                     <%
+              if(userData33.length!=0){
+              var i=1;
+              userData33.forEach(function(classdata33){
+              %> 
+              <td id="capital">:&nbsp; &nbsp;</td>  
+                <%  i++; }) %>
+            <% } else{ %>
+            
+            <% } %>                                                                                                             
+                              </tr>
+                              <tr>
+                                <td></td>
+                                <td>(d) If recognition certificate has been obtained quote the Number
+                                  and date of this office letter,communicating the certificate
+                                  </td>
+                                
+                                
+                                       <%
+              if(userData.length!=0){
+              var i=1;
+              userData.forEach(function(classdata){
+              %> 
+              <td id="capital">:&nbsp; &nbsp; </td>  
+                <%  i++; }) %>
+            <% } else{ %>
+            
+            <% } %>                                                                                                             
+                                </tr>
+                                <tr>
+                                  <td></td>
+                                  <td style="">(e) Migration Certificate
+                                    </td>
+                                  
+                                  
+                                         <%
+              if(userData25.length!=0){
+              var i=1;
+              userData25.forEach(function(classdata25){
+              %> 
+              <td id="capital">:&nbsp; &nbsp; <%=classdata25.reg_no %></td>  
+                <%  i++; }) %>
+            <% } else{ %>
+            
+            <% } %>                                                                                                             
+                                  </tr>
+                                  <tr>
+                                    <td>12.</td>
+                                    <td style="">Whether the Degree Qualification has been
+                                      Registered in the State Council
+                                      </td>
+                                    
+                                    
+                                           <%
+                if(userData25.length!=0){
+                var i=1;
+                userData25.forEach(function(classdata25){
+                %> 
+                <td id="capital">:&nbsp; &nbsp; </td>  
+                  <%  i++; }) %>
+              <% } else{ %>
+              
+              <% } %>                                                                                                             
+                                    </tr>
+                                    <tr>
+                                      <td></td>
+                                      <td style="">(a) Mention the name of the State Council
+                                        </td>
+                                      
+                                      
+                                             <%
+                  if(userData25.length!=0){
+                  var i=1;
+                  userData25.forEach(function(classdata25){
+                  %> 
+                  <td id="capital">:&nbsp; &nbsp;</td>  
+                    <%  i++; }) %>
+                <% } else{ %>
+                
+                <% } %>                                                                                                             
+                                      </tr>
+                                      <tr>
+                                        <td></td>
+                                        <td style="">(b) Permanent Regn. No and Date
+                                          </td>
+                                        
+                                        
+                                               <%
+                    if(userData1.length!=0){
+                    var i=1;
+                    userData1.forEach(function(classdata1){
+                    %> 
+                    <td id="capital">:&nbsp; &nbsp; </td>  
+                      <%  i++; }) %>
+                  <% } else{ %>
+                  
+                  <% } %>                                                                                                             
+                                        </tr>
+                                        <tr>
+                                          <td>13.</td>
+                                          <td style="">Category in which admitted to the course[Govt.quota/Management quota]
+                                            </td>
+                                          
+                                          
+                                                 <%
+                      if(userData1.length!=0){
+                      var i=1;
+                      userData1.forEach(function(classdata1){
+                      %> 
+                      <td id="capital">:&nbsp; &nbsp; <%=classdata1.selected_category %></td>  
+                        <%  i++; }) %>
+                    <% } else{ %>
+                    
+                    <% } %>                                                                                                             
+                                          </tr>
+                                          <tr>
+                                            <td>14.</td>
+                                            <td style="">Eligibility Certificate Number and date
+                                              </td>
+                                            
+                                            
+                       
+                        <td id="capital">:&nbsp; &nbsp;
+                          <%
+                          if(userData24.length!=0){
+                          var i=1;
+                          userData24.forEach(function(classdata24){
+                          %>
+                          <%=classdata24.reg_no %> / <%=classdata24.date %></td>  
+                          <%  i++; }) %>
+                      <% } else{ %>
+                      
+                      <% } %>                                                                                                             
+                                            </tr>
+                                            <tr>
+                                              <td>15.</td>
+                                              <td style="">Signature of the Professor /
+                                                Head of the Department of the Speciality
+                                                </td>
+                                              
+                         
+                          <td id="capital">:&nbsp; &nbsp; 
+                                                 
+                            <%
+                            if(userData24.length!=0){
+                            var i=1;
+                            userData24.forEach(function(classdata24){
+                            %> 
+                           </td>  
+                            <%  i++; }) %>
+                        <% } else{ %>
+                        
+                        <% } %>                                                                                                             
+                                              </tr>
+                                              <tr>
+                                                <td>16.</td>
+                                                <td colspan="2" >
+                                                  The following documents should be produced in original along with the prescribed fees
+                                                </td>
+                                              </tr>
+                                           
+                                              
+                                              
+
+          </tbody>
+        </table>
+        <ol style=" page-break-before: always;
+        " class="mt-5">
+          <li><p>Degree Certificate</p></li>
+          <li><p>Transfer Certificate</p></li>
+          <li><p>Community Certificate</p></li>
+          <li><p>Eligibility Certificate</p></li>
+          <li><p>Migration Certificate</p></li>
+          <li><p>Proof for Date of Birth</p></li>
+          <li><p>Order of the Selection Commitee</p></li>
+          <li><p>Medical Council Registration Certificate for the Candidates of
+          Medical Course  Additional Council Registration Certificate for PG Diploma courses/MD/MS courses as the case may be 
+          </p></li>
+
+        </ol> 
+        </div>
+
+      <table class="table  text-left index">
+        <tbody>
+          <tr>
+            <td style="width: 50px;">17. </td>
+            <td style="width: 400px;">(a) Blood Group (Certificate from a competant person should be enclosed)</td>
+            <%
+            if(userData.length!=0){
+            var i=1;
+            userData.forEach(function(classdata){
+            %> 
+            <td id="capital">:&nbsp; &nbsp; <%=classdata.blood_group %></td>  
+              <%  i++; }) %>
+          <% } else{ %>
+          
+          <% } %>                                                                                                             
+                          
+          </tr>
+          <tr>
+            <td> </td>
+            <td>(b) Contact Phone No.</td>
+            <%
+            if(userData8.length!=0){
+            var i=1;
+            userData8.forEach(function(classdata8){
+            %> 
+            <td id="capital">:&nbsp; &nbsp; <%=classdata8.tel_phone %></td>  
+              <%  i++; }) %>
+          <% } else{ %>
+          
+          <% } %>                                                                                                             
+                          
+          </tr>
+          <tr>
+            <td> </td>
+            <td>(c) Willingness to donate blood</td>
+            <%
+            if(userData.length!=0){
+            var i=1;
+            userData.forEach(function(classdata){
+            %> 
+            <td id="capital">:&nbsp; &nbsp; <%=classdata.willing_to_donate_blood %></td>  
+              <%  i++; }) %>
+          <% } else{ %>
+          
+          <% } %>                                                                                                             
+                          
+          </tr>
+        </tbody>
+      </table>
+
+  </div>
+    
+</section>
+
+<section id="unibotto"style="page-break-before:always"class="text-dark pt-5">
+  <h5 class="text-center text-dark"style=""> <u>DECLARATION BY THE CANDIDATE</u></h5>
+  <br>
+  <p style="text-indent: 1.5cm;font-size:20px"class="text-dark ml-5 pl-5">I declare that the particulars mentioned above are true and I will not claim/ ask for any<br>
+    change with regard to any of the particulars furnished above.<br>
+    
+     </p>
+     <p style="text-indent: 2cm;font-size:20px">I agree to abide by the rules and regulations of the University as framed from time to time.</p>
+<div class="row mt-150">
+  <div class="col-md-9">
+    <p style="font-size:20px">Date :</p>
+  </div>
+  <div class="col-md-3">
+    <p style="font-size:18px">Signature of the Candidate</p>
+  </div>
+</div><br><br>
+<h5 class="text-center text-dark mt-50"style=""> <u>CERTIFICATE BY THE HEAD OF THE INSTITUTION</u></h5>
+<p style="text-indent: 2cm;font-size:20px"class="text-dark ml-5 pl-5 mt-4">The above mentioned details are certified to be true after due verification with the<br> relevant
+  documents and I hereby recommend the candidate for registration.
+  <br>
+  <div class="row text-dark">
+    <div class="col-md-8 mt-5">
+      <p style="font-size:20px">Place :
+      </p>
+      <p style="font-size:20px">Date :</p>
+      <p style="font-size:20px">Seal :</p>
+    </div>
+    <div class="col-md-4 mt-100">
+      <p style="font-size:18px">Signature of the Head of the Institution</p>
+      <p style="font-size: 18px"class="text-center"><b>DEAN <br>Tirunelveli Medical College,<br> Tirunelveli 11</b>
+
+    </div>
+  </div>
+    </section>
+</div>
+</div>
+</section>
+
+
+
+ 
+<!-- jQuery bootstrap -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script>
+UPLOADCARE_PUBLIC_KEY = 'demopublickey';
+</script>
+<script src="https://ucarecdn.com/libs/widget/3.x/uploadcare.full.min.js" charset="utf-8"></script>
+<!-- AdminLTE App -->
+<script src="js/adminlte.js"></script>
+<script src="js/mbbs.js"></script>
+
+<!-- AdminLTE for demo purposes -->
+<script src="js/demo.js"></script>
+<!-- page script -->
+
+
+</body>
+
+</html>

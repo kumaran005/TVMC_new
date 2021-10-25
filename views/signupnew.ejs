@@ -1,0 +1,357 @@
+I<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Signup</title>
+    <link rel="icon" type="image/x-icon" href="/assets/img/logo.gif" />
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="/assets/dashboard/plugins/fontawesome-free/css/all.min.css"
+    />
+    <!-- Ionicons -->
+    <link
+      rel="stylesheet"
+      href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"
+    />
+    <!-- bootsrtap -->
+
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <!-- Theme style -->
+    <link rel="stylesheet" href="/assets/dashboard/dist/css/alter.css" />
+    <!-- <link rel="stylesheet" href="/assets/dashboard/dist/css/mbbs.css"> -->
+    <!-- Google Font Source Sans Pro -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Source+Sans+Pro300,400,400i,700"
+      rel="stylesheet"
+    />
+  </head>
+  <style type="text/css">
+    @media only screen and (max-width: 768px) {
+      .container {
+        width: 100% !important;
+      }
+    }
+  </style>
+  <body>
+    <div class="container" style="width: 65%">
+      <div class="card p-4">
+        <div class="row">
+          <div
+            class="col-md-5"
+            style="
+              background: url(../assets/img/logo.gif);
+              background-repeat: no-repeat;
+              background-position: center;
+              background-size: 70%;
+            "
+            id="alertmsg"
+          >
+            <% if (message.length > 0) { %>
+            <div class="alert alert-info col-sm-12"><%= message %></div>
+            <% } %>
+            <!-- <img width="100px" src="/assets/img/logo.gif"class="img-fluid"alt="logo"> -->
+          </div>
+          <div class="col-md-7">
+            <h4 class="text-primary">Tirunelveli Medical College</h4>
+            <h5>My Profile(Basic Details)</h5>
+
+            <form
+              id="loginform"
+              class="form-horizontal"
+              role="form"
+              method="post"
+              action="/add_user"
+            >
+              <div class="form-row">
+                <div class="col">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="First name*"
+                    name="name"
+                    required
+                  />
+                </div>
+                <div class="col">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Last name"
+                    name="second_name"
+                  />
+                </div>
+              </div>
+
+              <div class="form-row mt-2">
+                <div class="form-group col-md-12">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="inputAddress"
+                    placeholder="Address*"
+                    name="address"
+                    required
+                  />
+                </div>
+
+                <div class="form-group col-md-6">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="inputCity"
+                    placeholder="City"
+                    name="city"
+                    required
+                  />
+                </div>
+                <div class="form-group col-md-4">
+                  <select id="state" class="form-control" name="state">
+                    <option disabled="" selected="" value="">State*</option>
+
+                    <% if(userData10.length!=0){ var i=1;
+                    userData10.forEach(function(classdata10){ %>
+                    <option value="<%=classdata10.name %>">
+                      <%=classdata10.name %>
+                    </option>
+                    <% i++; }) %> <% } else{ %> <% } %>
+                  </select>
+                </div>
+
+                <div class="form-group col-md-2">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="inputZip"
+                    placeholder="Pin"
+                    name="pin"
+                  />
+                </div>
+              </div>
+              <div class="form-row mt-2">
+                <div class="form-group col-md-6">
+                  <select
+                    id="course"
+                    class="form-control"
+                    name="course"
+                    aria-placeholder="Course*"
+                    required
+                  >
+                    <option disabled="" selected="" value="">Course*</option>
+                    <option value="MBBS">MBBS</option>
+                    <option value="MDMS">MDMS</option>
+                    <option value="AISSC">AISSC</option>
+                    <option value="BSC">B.Sc</option>
+                    <option value="Diploma in Nursing">Nursing Diploma</option>
+                    <option value="">Paramedical Diploma</option>
+                    <option value="">Paramedical Certificate</option>
+                  </select>
+                </div>
+                <div class="form-group col-md-6">
+                  <select
+                    class="form-control"
+                    id="quota"
+                    name="admission_quota"
+                  >
+                    <option disabled="" selected="" value="">
+                      Admission Quota*
+                    </option>
+
+                    <% if(userData7.length!=0){ var i=1;
+                    userData7.forEach(function(classdata7){ %>
+                    <option value="<%=classdata7.admiss_quota %>">
+                      <%=classdata7.admiss_quota %>
+                    </option>
+                    <% i++; }) %> <% } else{ %> <% } %>
+                  </select>
+                </div>
+                <div class="form-group col-md-12">
+                  <select
+                    class="form-control"
+                    id="community"
+                    name="community"
+                    required
+                  >
+                    <option disabled="" selected="" value="">Community*</option>
+                    <% if(userData6.length!=0){ var i=1;
+                    userData6.forEach(function(classdata6){ %>
+                    <option value="<%=classdata6.community %>">
+                      <%=classdata6.community %>
+                    </option>
+                    <% i++; }) %> <% } else{ %> <% } %>
+                  </select>
+                </div>
+
+                <div class="form-group col-md-6" hidden>
+                  <select
+                    id="relation"
+                    class="form-control"
+                    hidden
+                    name="relation"
+                  >
+                    <option selected value="Self">Self</option>
+                    <option value="Father">Father</option>
+                    <option value="Mother">Mother</option>
+                    <option value="Brother">Brother</option>
+                    <option value="Sister">Sister</option>
+                    <option value="Uncle">Uncle</option>
+                    <option value="Guardian">Guardian</option>
+                  </select>
+                </div>
+                <div class="form-group col-md-12">
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="inputEmail4"
+                    placeholder="Email*"
+                    name="emailid"
+                    required
+                  />
+                </div>
+                <div class="form-group col-md-6">
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="inputPassword4"
+                    name="sam_password"
+                    required
+                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                    title="Must contain: Minimum 8 Characters includes Number,Uppercase,Lowercase,Symbol."
+                    placeholder="Password*"
+                  />
+                </div>
+                <div class="form-group col-md-6">
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="inputPassword5"
+                    name="password"
+                    required
+                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                    title="Must contain: Minimum 8 Characters includes Number,Uppercase,Lowercase,Symbol."
+                    placeholder="Confirm Password*"
+                  />
+                </div>
+                <!-- <div class="col">
+                  <input
+                    type="text"
+                    placeholder="Date of Birth"
+                    onfocus="(this.type='date')"
+                    class="form-control"
+                    name="dob"
+                  />
+                </div> -->
+                <!-- <div class="form-group col-md-6">
+                  <select id="inputState" class="form-control" name="gender">
+                    <option selected>Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="third gender">Third Gender</option>
+                    <option value="Rather Not to Say">Rather Not to Say</option>
+                  </select>
+                </div> -->
+              </div>
+
+              <!-- <div class="form-group">
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    id="gridCheck"
+                  />
+                  <label class="form-check-label" for="gridCheck">
+                    Check me out
+                  </label>
+                </div>
+              </div> -->
+              <div class="d-flex justify-content-between">
+                <a href="/login">Sign in instead</a>
+                <button
+                  type="button"
+                  onclick="forcheck()"
+                  class="btn btn-primary"
+                >
+                  Sign Up
+                </button>
+                <input hidden type="submit" id="submission" />
+              </div>
+              <script>
+                forcheck = () => {
+                  var course = document.getElementById("course").value;
+                  var community = document.getElementById("community").value;
+                  var quota = document.getElementById("quota").value;
+                  var state = document.getElementById("state").value;
+                  var relation = document.getElementById("relation").value;
+                  if (course && community && state && quota && relation) {
+                    document.getElementById("submission").click();
+                  } else {
+                    document.getElementById("alertmsg").innerHTML = `
+                    <div class="alert alert-info col-sm-12">Please fill the required fields</div>`;
+                  }
+                };
+              </script>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- jQuery bootstrap -->
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      UPLOADCARE_PUBLIC_KEY = "demopublickey";
+    </script>
+    <script
+      src="https://ucarecdn.com/libs/widget/3.x/uploadcare.full.min.js"
+      charset="utf-8"
+    ></script>
+    <!-- AdminLTE App -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <script src="/assets/js/print.js"></script>
+    <script src="js/adminlte.js"></script>
+    <script src="js/mbbs.js"></script>
+
+    <!-- AdminLTE for demo purposes -->
+    <script src="js/demo.js"></script>
+    <!-- page script -->
+    <script>
+      var password = document.getElementById("inputPassword4"),
+        confirm_password = document.getElementById("inputPassword5");
+
+      function validatePassword() {
+        if (password.value != confirm_password.value) {
+          confirm_password.setCustomValidity("Passwords Don't Match");
+        } else {
+          confirm_password.setCustomValidity("");
+        }
+      }
+
+      password.onchange = validatePassword;
+      confirm_password.onkeyup = validatePassword;
+    </script>
+  </body>
+</html>

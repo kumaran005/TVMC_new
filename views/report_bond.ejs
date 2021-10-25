@@ -1,0 +1,1219 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Bond Form</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="/assets/dashboard/plugins/fontawesome-free/css/all.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- bootsrtap -->
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="/assets/dashboard/dist/css/alter.css">
+  <link rel="stylesheet" href="/assets/dashboard/dist/css/mbbs.css">
+  <!-- Google Font Source Sans Pro -->
+  <!-- <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro300,400,400i,700" rel="stylesheet"> -->
+  <!-- <link href="http://fonts.cdnfonts.com/css/berlin-sans-fb" rel="stylesheet"> -->
+  <style>
+      body,html,li,.margin,.text-left, #center{
+  font-family: 'Berlin Sans FB', sans-serif!important;
+                                                
+}
+#tablename td ,#lef2 p{
+  font-size: 20px!important;
+}   
+b{
+  font-weight: 100;
+}
+    @media print{
+body{
+  margin-top: 150px!important;
+
+}
+    }
+</style>
+</head>
+<body class="hold-transition sidebar-mini">
+    <div class="toolbar no-print">
+      <button class="btn btn-info" onclick="window.print()">
+        Print Certificate
+      </button>
+        <% if (course == 'MBBS'){ %>
+      <a href="/mbbs_board"><button class="btn btn-info">Back</button></a>
+      <%}%> <% if (course == 'MDMS'){ %>
+      <a href="/mdms_board"><button class="btn btn-info">Back</button></a>
+      <%}%> <% if (course == 'BSC'){ %>
+      <a href="/bsc_board"><button class="btn btn-info">Back</button></a>
+      <%}%><% if (course == 'AISSC'){ %>
+      <a href="/aissc_board"><button class="btn btn-info">Back</button></a>
+      <%}%><% if (course == 'DIPLOMA IN NURSING'){ %>
+      <a href="/nursing_board"><button class="btn btn-info">Back</button></a>
+      <%}%>
+    </div>
+   
+<section id="report"class="text-dark black report"style=" color: #000;">
+  <div class="container">
+         <div id="reportcard"class="bond">
+ 
+          <div class="row justify-content-center">
+            <div class="col-md-12"><i><h4 class="other-font text-dark "style="font-weight:400"><u>TIRUNELVELI MEDICAL COLLEGE, TIRUNELVELI-11. </u>
+          </h4></i>
+               </div>
+                   
+          
+                
+          </div>
+     
+
+<br>
+<section id="tablename">
+  <table class="col-md-12">
+      <tbody>
+          <tr>
+              <td style="width: 200px;"><p style="width: 200px;">Name</p></td>
+              <td style="width: 300px;">
+                
+                 <%
+                 if(userData.length!=0){
+                 var i=1;
+                 userData.forEach(function(classdata){
+                 %>
+                 <p style="width: 350px;"> :&nbsp;&nbsp;<%=classdata.name %></p>
+                 
+                 <%  i++; }) %>
+                 <% } else{ %>
+                 
+                 <% } %>
+              </td>
+              <td style="width: 200px;"><p  style="width: 200px;">Date Of Admission</p></td>
+              <td style="width: 200px;">
+                 <%
+                 if(userData1.length!=0){
+                 var i=1;
+                 userData1.forEach(function(classdata1){
+                 %>
+                 <p>:&nbsp;<%=classdata1.date_of_admission %></p>
+                 <%  i++; }) %>
+                 <% } else{ %>
+                 
+                 <% } %>
+              </td>
+          </tr>
+      <tr>
+         <td style="width: 200px;"><p>A.R No</p></td>
+      <td style="width: 300px;"> <%
+           if(userData1.length!=0){
+           var i=1;
+           userData1.forEach(function(classdata1){
+           %>
+           <p>:&nbsp;&nbsp;<%=classdata1.ar_no%></p>
+           <%  i++; }) %>
+           <% } else{ %>
+           
+           <% } %>
+      </td>
+      
+      <td style="width: 200px;"><p>Rank</p></td>
+      <td style="width: 200px;"> <%
+         if(userData1.length!=0){
+         var i=1;
+         userData1.forEach(function(classdata1){
+         %>
+         <p>:&nbsp;<%=classdata1.rank%></p>
+         <%  i++; }) %>
+         <% } else{ %>
+         
+         <% } %>
+      </td>
+      </tr>
+      <tr>
+         <td style="width: 200px;"><p>Neet Mark</p></td>
+         <td style="width: 300px;">
+           
+            <%
+            if(userData1.length!=0){
+            var i=1;
+            userData1.forEach(function(classdata1){
+            %>
+            <p>:&nbsp;&nbsp;<%=classdata1.neet_mark%></p>
+            
+            <%  i++; }) %>
+            <% } else{ %>
+            
+            <% } %>
+         </td>
+         <td style="width: 200px;"><p>Community</p></td>
+         <td style="width: 200px;">
+            <%
+            if(userData.length!=0){
+            var i=1;
+            userData.forEach(function(classdata){
+            %>
+            <p>:&nbsp;<%=classdata.community%></p>
+            <%  i++; }) %>
+            <% } else{ %>
+            
+            <% } %>
+         </td>
+      </tr>
+      <tr>
+         <td style="width: 200px;"><p>Neet PG Roll No</p></td>
+         <td style="width: 300px;">
+           
+            <%
+            if(userData1.length!=0){
+            var i=1;
+            userData1.forEach(function(classdata1){
+            %>
+            <p>:&nbsp;&nbsp;<%=classdata1.neet_roll_no%></p>
+            
+            <%  i++; }) %>
+            <% } else{ %>
+            
+            <% } %>
+         </td>
+         <td style="width: 200px;"><p>Select Category</p></td>
+         <td style="width: 200px;">
+            <%
+            if(userData1.length!=0){
+            var i=1;
+            userData1.forEach(function(classdata1){
+            %>
+            <p style="width: 300px;">:&nbsp;<%=classdata1.selected_category %></p>
+            <%  i++; }) %>
+            <% } else{ %>
+            
+            <% } %>
+         </td>
+      </tr>
+      <tr>
+         <td style="width: 200px;"><p>Year of Admission</p></td>
+         <td style="width: 300px;">
+           
+            <%
+            if(userData.length!=0){
+            var i=1;
+            userData.forEach(function(classdata){
+            %>
+            <p>:&nbsp;&nbsp;<%=classdata.academic_year %></p>
+            
+            <%  i++; }) %>
+            <% } else{ %>
+            
+            <% } %>
+         </td>
+         <td style="width: 200px;"><p  style="width: 200px;">Name Of The Course</p></td>
+         <td style="width: 200px;">
+            <%
+            if(userData1.length!=0){
+            var i=1;
+            userData1.forEach(function(classdata1){
+            %>
+            <p>:&nbsp;<%=classdata1.course %></p>
+            <%  i++; }) %>
+            <% } else{ %>
+            
+            <% } %>
+         </td>
+      </tr>
+      </tbody>  
+  </table>
+  </section>
+<h5 class="text-center"id="textcenter"style="font-weight:400"><span class="text-dark">ANNEXURE  IX</span></h5>
+ <h5 class="text-center "id="textcenter"style="font-family:normal;font-weight:600"><span class="text-dark"style="font-size:20px">AGREEMENT BOND FORM FOR CANDIDATES ADMITTED FOR M.B.B.S. COURSE FOR THE ACADEMIC YEAR 2020-2021 </span></h5>
+
+<i><p id="annex"style="text-indent:1cm"class="m-0">This   agreement   made   on    this--------------------day    of---------------------------- 
+  <% if(userData.length!=0){ var i=1;userData.forEach(function(classdata){ %>
+     <%=classdata.academic_year.substring(0,4) %>    between    the    Governor    of    Tamil   Nadu  (hereinafter  called  the  Governor  which  expression  shall,  where  the  context  so  admits  include  his  successor  in  Office)  of  the  one  part  and <u class="text-capitalize"><%=classdata.name %></u>  son/daughter  of <u class="text-capitalize"><%=classdata.father_name %></u>  
+  <% i++; }) %>
+   <% } else{ %> 
+    <% } %> 
+  <%if(userData2.length!=0){ var i=1; userData2.forEach(function(classdata2){ %> resident  of <u class="text-capitalize"><%=classdata2.ps_address %> <%=classdata2.ps_pincode %>  <%=classdata2.ps_district %> <%=classdata2.ps_state %></u>
+    <%  i++; }) %>
+  <% } else{ %>
+  
+  <% } %> in  the  Taluk   of  district  (hereinafter  called  the  candidate)  which  expression shall, where the context so admits include his/her heirs, executors, administrators and representatives of the other part.</p></i>
+    
+<i><p style="text-indent: 2cm;font-weight: ;"class="m-0">WHEREAS the  candidate  has,  on  his/her  application  been  selected  to  undergo  training  for  the MBBS/BDS Course  in  the  TIRUNELVELI MEDICAL COLLEGE.TIRUNELVELI. </p>
+
+                   
+                   </i>
+                   <i><p class="m-0" style="text-indent: 2cm;font-weight: ;">AND WHEREAS the candidate has agreed to complete  his/her  training  for  the  said  course,  at  the  said  college,  subject  to  the  condition hereinafter appearing.</p>
+                   
+                   </i>             
+                         <i><p style="font-weight: ;">Now THEREFORE, this agreement witnesses and it is hereby agreed as follows:</p></i>
+                   <ul id="annexul"class="text-dark">
+                     <li><p>(1) The  candidate  shall  diligently  complete  his/her  training  for  the  said  course  at  the  said  college,  shall  abide  by  the  rules  of  the    said  college  for  the  time  being  in  force  regulating  the  conduct  of  students  at  the  said  college  and  shall  pass   all   the   examinations prescribed for the said course by the University or the Medical Institution concerned.</p></li>
+  <li><p>
+(2) Upon  passing  the  final  M.B.B.S.  examination  the  candidate  shall  serve  as  “Intern”  for  the  prescribed  period   as   laid   down   by    the Medical Council Act.1956 (Central Act 102 of 1956).
+</p></li>
+  <li><p>
+
+(3) (i) The candidate shall,  on  demand  made  by  the  Government  within  two  years  from  the  date  on  which  he/she  registers  himself/herself  as  a  Medical  Practitioner,  serve  for  a  period  of  not  less  than  five  years  and  in  such  rural  areas   as   the Government may be General or Special Orders specify.
+<br><br>(ii) Those candidates who fail to comply with clause 3 ( i ) shall have to pay a sum of Rs.5,00,000/- (Five Lakhs Only) or as the Government may direct as penalty for having breached the   contract in the bond.
+
+</p></li>
+ <li><p>
+
+(4) During  the  period  of  Internship  under  clause  (2)  and  while  in  service  under  clause  (3)  the   candidate   shall   faithfully,  diligently   and with skill and ability perform his/her duties and observe the  rules  for  the  time  being  in  force  made  by  the  Governor  or  the  President as the case may be for regulating the conduct of Government Servants.
+</p></li>
+ <li><p>
+
+(5) While  in  service  under  clause  (3)  the  Pay  and  Allowances  and  Other  conditions  of  service  of  the  candidate   shall   be  regulated   by the rules and orders of the Government for the time being in force, for the post to which he/she is appointed.
+</p></li>
+ <li><p>
+  <% if(userData.length!=0){ var i=1;userData.forEach(function(classdata){ %>
+    
+(6) Candidates   who   discontinue   the   course   between   ---------------------   <%=classdata.academic_year.substring(0,4) %>  and   -------------------   <%=classdata.academic_year.substring(0,4) %>   are   bound   by   the   Bond   and   thereby they  shall  have  to  pay  a  sum  of  Rs.1,00,000/-  (Rupees  One  Lakh  Only)  as  penalty  for  having  breached  the  contract  in  the      bond  and  the  candidates  who  discontinue  the    course  on  or  after  ----------------------  <%=classdata.academic_year.substring(0,4) %> and  in  any  date  of  the   subsequent  years     they shall have to pay a sum of Rs. 10,00,000/- (Rupees Ten Lakhs only) as penalty.
+<%  i++; }) %>
+<% } else{ %>
+
+<% } %>
+</p></li>
+ <li><p>
+
+(7) Any sum falling due from the candidate under this agreement shall be recovered from him/her as an arrear of land revenue..
+</p></li>
+ <li><p>
+
+(8) If any dispute shall arise between the parties hereto in  respect  of  this  agreement  or  any  of  the  provisions  here  in  contained  or  anything  arising  hereunto  except  in  respect  of  matters  on  which  decision  of  the  Government  under  clause  (6)  is  declared  to  be final and binding, the same shall be referred to the arbitration of Director of Medical Education whose decision thereon shall be final and binding on the parties
+</p></li>
+<li class="pt-5"style="page-break-before:always"><p>
+
+(9)   The witness shall  bear  the  stamp duty  payable  in  respect  of  this  agreement  if  required.  In  witness whereof the parties hereto have appended their signature hereunto on the dates respectively
+mentioned against the signature
+
+</p></li>
+<div id="bond2">
+<li id="wi">WITNESS: </li>
+<ol >
+<li style="list-style: decimal"></li><br>
+<li style="list-style: decimal"></li>
+</ol>
+</div>
+<li>
+  <div class="row mt-5"id="bold">
+    <div class="col-md-4">
+      <p>
+   Signature of the Parent with date
+</p>
+<%
+if(userData2.length!=0){
+var i=1;
+userData2.forEach(function(classdata2){
+%>
+<p><address>
+  <%=classdata2.ps_address %>,
+<%=classdata2.ps_pincode %>
+
+<%=classdata2.ps_district %></address></p>
+<%  i++; }) %>
+<% } else{ %>
+
+<% } %>
+</div>
+  <div class="col-md-4 text-center">
+    <p>COUNTER SIGNED.</p>
+    <p>Dean<br>
+      Tirunelveli Medical College,<br>
+      Tirunelveli-11<br>
+      (For and on behalf of the Governor)</p>
+</div>
+  <div class="col-md-4"style="    margin-top: -122px;
+  ">
+    <p>Signature of the Candidate with date </p>
+    <%
+    if(userData2.length!=0){
+    var i=1;
+    userData2.forEach(function(classdata2){
+    %>
+    <p><address>
+      <%=classdata2.ps_address %>,
+    <%=classdata2.ps_pincode %>
+    
+    <%=classdata2.ps_district %></address></p>
+    <%  i++; }) %>
+    <% } else{ %>
+    
+    <% } %>
+</div>
+
+</li>
+<li><p style="font-weight: ;">To</p></li>
+<li><p style="font-weight: ;"><b>The Governor of Tamil Nadu.</b></p></li>
+ <li><p style="font-weight: ;text-indent: 1cm;"><b>WHEREAS, the  Governor  has,  in  order  to  secure   due   performance   of   the   above   agreement,   demanded   security from the candidate.</b></p></li>
+ <li><p style="font-weight: ;text-indent: 1cm;"><b>Now, THEREFORE,  in  consideration  of  the  admission  of  the  candidate  to  the  said  college  and  his/her  continuance there, for training as aforesaid and at the request of the candidate.</b></p></li>
+  <li><p style="font-weight: ;"><b>(i)      ------------------------------------------------------------------- S/o &nbsp; &nbsp; &nbsp; D/o---------------------------------------------------- Resident  of
+----------------------------------------------------- in  the Taluk of ----------------------------------------------------  District
+of ------------------------------------------ (Parent)
+</b></p></li>
+
+<li><p style="font-weight: ;"><b>(ii)      ------------------------------------------------------------------- S/o &nbsp; &nbsp; &nbsp; D/o---------------------------------------------------- Resident  of
+  ----------------------------------------------------- in  the Taluk of ----------------------------------------------------  District
+  of ------------------------------------------ 
+  </b></p></li>
+  <li><p style="font-weight: ;"><b>(iii)      ------------------------------------------------------------------- S/o &nbsp; &nbsp; &nbsp; D/o---------------------------------------------------- Resident  of
+    ----------------------------------------------------- in  the Taluk of ----------------------------------------------------  District
+    of ------------------------------------------ 
+    </b></p></li>
+ <li><p style="font-weight: ;"><b>
+Hereinafter called  “the  sureties”  on  behalf  of  the  candidate  do  hereby  jointly  and  severally  agree  that  in  the event of  the  candidate  committing  any  breach  of  any  term  of  the  above  agreement  to   which  breach   the decision  of  the  Government  shall  be  final  and  binding  on  the  sureties,  we  shall  pay  the  Government  on  demand    and  without  demur  the  sum  of  Rs.5,00,000/-  (Rupees  Five  Lakhs  only)/   Rs.10,00,000/-  (Rupees  Ten   lakhs  only)   as   the case may be; or as the  Government  may  direct  and  we  hereby  bind  ourselves  and  representatives for  such  payment. We further agree that any sum due hereunder shall be recovered as an arrear of land revenue.
+
+
+</b></p></li>
+ <li><p style="font-weight: ;"><b>
+We also agree that notwithstanding the provision of section 133 and 135 of the India Contract Act 1872
+(Central Act IX of  1872)  or  any  other  rule  of  Law  or  equity  in  that  behalf,  any  indulgence  of  forbearance  shown  by the  Government  to  the  candidates  or  any  variance  in  the  terms  of  the  contract  with  the  candidate  whether  with        or without  the  consent  of  the  sureties  or  either  of  this  shall  not  operate  as  a   discharge   of   the   sureties   obligations under this bond.
+
+
+
+</b></p></li>
+ <li><p style="font-weight: ;text-align: center;"><b>Signed by us this ______________________________ day of ______________________________ 2020.
+
+
+
+</b></p></li>
+
+  <div class="row bond1 text-dark black"style="font-weight:600">
+<div class="col-md-6"style="line-height:45px">
+
+<li>Witness: </li>
+<ol >
+<li style="list-style: decimal"></li><br>
+<li style="list-style: decimal"></li>
+</ol>
+</div>
+<div class="col-md-6"style="line-height:22px">
+<ol >
+<li style="list-style: decimal;margin-bottom: 30px;"> Signature of First Surety<br>
+Parent or Guardian of Candidate <br>Full Address:
+</li><br>
+<li style="list-style: decimal ;margin-bottom: 40px;">Signature of Second Surety<br>
+Full Address:
+</li>
+<li style="list-style: decimal">  Signature of Third Surety <br> Full Address:
+</li>
+</ol>
+  </div>
+</div>
+ 
+<div class="row justify-content-center mt-5"style="page-break-before:always;float:none">
+  <div class="col-md-12"><i><h4 class="other-font text-dark "><u>TIRUNELVELI MEDICAL COLLEGE, TIRUNELVELI-11. </u>
+</h4></i>
+     </div>
+         
+
+      
+</div>
+
+
+<br>
+<section id="tablename">
+  <table class="col-md-12">
+      <tbody>
+          <tr>
+              <td style="width: 200px;"><p style="width: 200px;">Name</p></td>
+              <td style="width: 300px;">
+                
+                 <%
+                 if(userData.length!=0){
+                 var i=1;
+                 userData.forEach(function(classdata){
+                 %>
+                 <p style="width: 350px;"> :&nbsp;&nbsp;<%=classdata.name %></p>
+                 
+                 <%  i++; }) %>
+                 <% } else{ %>
+                 
+                 <% } %>
+              </td>
+              <td style="width: 200px;"><p  style="width: 200px;">Date Of Admission</p></td>
+              <td style="width: 200px;">
+                 <%
+                 if(userData1.length!=0){
+                 var i=1;
+                 userData1.forEach(function(classdata1){
+                 %>
+                 <p>:&nbsp;<%=classdata1.date_of_admission %></p>
+                 <%  i++; }) %>
+                 <% } else{ %>
+                 
+                 <% } %>
+              </td>
+          </tr>
+      <tr>
+         <td style="width: 200px;"><p>A.R No</p></td>
+      <td style="width: 300px;"> <%
+           if(userData1.length!=0){
+           var i=1;
+           userData1.forEach(function(classdata1){
+           %>
+           <p>:&nbsp;&nbsp;<%=classdata1.ar_no%></p>
+           <%  i++; }) %>
+           <% } else{ %>
+           
+           <% } %>
+      </td>
+      
+      <td style="width: 200px;"><p>Rank</p></td>
+      <td style="width: 200px;"> <%
+         if(userData1.length!=0){
+         var i=1;
+         userData1.forEach(function(classdata1){
+         %>
+         <p>:&nbsp;<%=classdata1.rank%></p>
+         <%  i++; }) %>
+         <% } else{ %>
+         
+         <% } %>
+      </td>
+      </tr>
+      <tr>
+         <td style="width: 200px;"><p>Neet Mark</p></td>
+         <td style="width: 300px;">
+           
+            <%
+            if(userData1.length!=0){
+            var i=1;
+            userData1.forEach(function(classdata1){
+            %>
+            <p>:&nbsp;&nbsp;<%=classdata1.neet_mark%></p>
+            
+            <%  i++; }) %>
+            <% } else{ %>
+            
+            <% } %>
+         </td>
+         <td style="width: 200px;"><p>Community</p></td>
+         <td style="width: 200px;">
+            <%
+            if(userData.length!=0){
+            var i=1;
+            userData.forEach(function(classdata){
+            %>
+            <p>:&nbsp;<%=classdata.community%></p>
+            <%  i++; }) %>
+            <% } else{ %>
+            
+            <% } %>
+         </td>
+      </tr>
+      <tr>
+         <td style="width: 200px;"><p>Neet PG Roll No</p></td>
+         <td style="width: 300px;">
+           
+            <%
+            if(userData1.length!=0){
+            var i=1;
+            userData1.forEach(function(classdata1){
+            %>
+            <p>:&nbsp;&nbsp;<%=classdata1.neet_roll_no%></p>
+            
+            <%  i++; }) %>
+            <% } else{ %>
+            
+            <% } %>
+         </td>
+         <td style="width: 200px;"><p>Select Category</p></td>
+         <td style="width: 200px;">
+            <%
+            if(userData1.length!=0){
+            var i=1;
+            userData1.forEach(function(classdata1){
+            %>
+            <p style="width: 300px;">:&nbsp;<%=classdata1.selected_category %></p>
+            <%  i++; }) %>
+            <% } else{ %>
+            
+            <% } %>
+         </td>
+      </tr>
+      <tr>
+         <td style="width: 200px;"><p>Year of Admission</p></td>
+         <td style="width: 300px;">
+           
+            <%
+            if(userData.length!=0){
+            var i=1;
+            userData.forEach(function(classdata){
+            %>
+            <p>:&nbsp;&nbsp;<%=classdata.academic_year %></p>
+            
+            <%  i++; }) %>
+            <% } else{ %>
+            
+            <% } %>
+         </td>
+         <td style="width: 200px;"><p  style="width: 200px;">Name Of The Course</p></td>
+         <td style="width: 200px;">
+            <%
+            if(userData1.length!=0){
+            var i=1;
+            userData1.forEach(function(classdata1){
+            %>
+            <p>:&nbsp;<%=classdata1.course %></p>
+            <%  i++; }) %>
+            <% } else{ %>
+            
+            <% } %>
+         </td>
+      </tr>
+      </tbody>  
+  </table>
+  </section>
+     
+
+
+
+<h5 class="text-center"><span class="text-dark"style="font-size:20px;font-weight:600">ANNEXURE  X</span></h5>
+<h5 class="text-center col-md-8"style="margin-left: 124px;font-size:22px;font-weight:600"><span class="text-dark">Joint Declaration by the candidate and Parent / Guardian (This should not be enclosed with the application
+but should be submitted only at the time of admission)
+</span></h5>
+<br>
+          <p ><b><i style="font-size: 20px!important">I / We do hereby Solemnly and sincerely affirm</i></b></p>
+
+<li>
+          <p  ><b><i  style="font-size: 20px!important;font-weight: 100;">1.   that the statements made and information furnished  in  the  application  submitted  and  also  in  all  the  enclosures  thereto  submitted by him/her are true. Should it  however  be  found  that  any  information  furnished  therein  is  untrue  in  material  particulars,  I/we  realize  that  he/she  is  liable  for  criminal  prosecution  and  forfeiture  of  his  /  her  seat   in   the   Institution   allotted during the counseling.</i></b></p>
+
+</li>
+<li>
+          <p  ><b><i style="font-size: 20px!important;font-weight: 100;">2. that my son/daughter/ward would conform strictly to  all  the  rules  and  regulations  prescribed  by  the  Tamil  Nadu  Dr.  M.G.R.  Medical University, Chennai in force now or  which  may  be  introduced  in  the  Institution  hereafter  and  that  I /we  realize  that  breach  of  discipline  and  rules  on  my  son’s/daughter’s/ward’s  part  would  entail  forfeiture  of   his   /   her   seat   in   the   Institution.</i></b></p>
+
+</li>
+<li>
+          <p ><b><i style="font-size: 20px!important;font-weight: 100;">3. that my son/daughter/ward shall not make any claim for admission to a particular college as a matter of right during allotment/Re-allotment..</i></b></p>
+
+</li>
+<li>
+          <p  ><b><i style="font-size: 20px!important;font-weight: 100;">4. that  my  son/daughter/ward  agrees  to  pay  any  amount  that  may  become  due  as  and  when  the  fee  structure  is  revised  as    may be decided by Government of Tamil Nadu /Committee appointed by the Government for the purpose..</i></b></p>
+
+</li>
+<li>
+          <p ><b><i style="font-size: 20px!important;font-weight: 100;">5. that my son/daughter/ward  do  hereby  agree  to  conform  to  follow  the  rules  and  regulations  including  those  relating  to  the  hostel  laid  down  or  to  be  laid  down  by  the  Dean  of  the  Institution  for  due  maintenance  of  discipline  at  the  said  College    and  assure  that  he/she  will  not  join  any  agitation   /strike  of  any  kind  during  course  of  study  and  further  agree  to  make    good  when  called  upon  to  do  so  to  the  Government  of  Tamil  Nadu  any  damage  to  furniture,  apparatus  or  other  articles  which may be caused by any carelessness negligence and wantonly on his/her part.</i></b></p>
+
+</li>
+<li>
+          <p  ><b><i style="font-size: 20px!important;font-weight: 100;">6. that my son/daughter/ward who is a Native of Tamil Nadu and will not claim dual Nativity in future.</i></b></p>
+
+</li>
+<li>
+          <p  ><b><i style="font-size: 20px!important;font-weight: 100;">7. that my son/daughter/ward hereby declare that he/she belongs to ----------------------------------
+Community  (Sub  caste-------------------------)  and  is  fully   aware   that   producing   a   false   Community   certificate   leads   to expulsion from any course of study at any time besides initiation of criminal action against him/her as per law.
+.</i></b></p>
+
+</li>
+<li>
+          <p ><b><i style="font-size: 20px!important;font-weight: 100;">
+8.    that  we  are  fully  aware,  as  per  the  directions  of  the  Hon’ble  Supreme  Court  of  India  and  Tamil  Nadu  Prohibition   of   Ragging Act 1997, Ragging is an offence, and is banned in  the  Institution  and  anyone  indulging  in  ragging  is  liable  to  be  punished by expulsion from the Institution and /or rigorous imprisonment up to 3 years, and / or fine up to Rs.25,000/-
+
+</i></b></p>
+
+</li>
+<li><p  style="font-size: 20px;
+  font-weight: 600;
+"><b>Place:</b></p></li>
+
+<li><p  style="font-size: 20px;
+  font-weight: 600;
+"><b>Date:</b></p></li>
+
+  </div>
+<i style="font-size: 15px;"><div class="row text-dark "id="mt-140">
+  <div class="col-md-6">
+   <p style="font-size: 20px;"><b>Signature of the Parent / Guardian</b></p>
+   <%
+   if(userData2.length!=0){
+   var i=1;
+   userData2.forEach(function(classdata2){
+   %>
+   
+   <p class="col-md-6"><b>
+
+    <p><address style="font-family: sans-serif;">
+      <%=classdata2.ps_address %>, 
+ <%=classdata2.ps_pincode %>
+    
+    <%=classdata2.ps_district %></address></p>
+   </b></p>
+   <%  i++; }) %>
+   <% } else{ %>
+   
+   <% } %>
+  </div>
+  <div class="col-md-4">
+    <p  style="font-size: 20px;"><b>Signature of the Candidate</b></p>
+    <%
+    if(userData2.length!=0){
+    var i=1;
+    userData2.forEach(function(classdata2){
+    %>
+    
+    <p class="col-md-4"><b>
+ 
+     <p><address style="font-family: sans-serif;">
+       <%=classdata2.ps_address %>, 
+  <%=classdata2.ps_pincode %>
+     
+     <%=classdata2.ps_district %></address></p>
+    </b></p>
+    <%  i++; }) %>
+    <% } else{ %>
+    
+    <% } %>
+  </div>
+</div></i>
+ 
+<div class="row justify-content-center mt-3"style="page-break-before: always;float-none">
+  <div class="col-md-12"><i><h4 class="other-font black text-dark"style="font-weight:400"><u>TIRUNELVELI MEDICAL COLLEGE, TIRUNELVELI-11. </u>
+</h4></i>
+     </div>
+         
+
+      
+</div>
+
+
+<br>
+<section id="tablename">
+  <table class="col-md-12 text-dark">
+      <tbody>
+          <tr>
+              <td style="width: 200px;"><p style="width: 200px;">Name</p></td>
+              <td style="width: 300px;">
+                
+                 <%
+                 if(userData.length!=0){
+                 var i=1;
+                 userData.forEach(function(classdata){
+                 %>
+                 <p style="width: 350px;"> :&nbsp;&nbsp;<%=classdata.name %></p>
+                 
+                 <%  i++; }) %>
+                 <% } else{ %>
+                 
+                 <% } %>
+              </td>
+              <td style="width: 200px;"><p  style="width: 200px;">Date Of Admission</p></td>
+              <td style="width: 200px;">
+                 <%
+                 if(userData1.length!=0){
+                 var i=1;
+                 userData1.forEach(function(classdata1){
+                 %>
+                 <p>:&nbsp;<%=classdata1.date_of_admission %></p>
+                 <%  i++; }) %>
+                 <% } else{ %>
+                 
+                 <% } %>
+              </td>
+          </tr>
+      <tr>
+         <td style="width: 200px;"><p>A.R No</p></td>
+      <td style="width: 300px;"> <%
+           if(userData1.length!=0){
+           var i=1;
+           userData1.forEach(function(classdata1){
+           %>
+           <p>:&nbsp;&nbsp;<%=classdata1.ar_no%></p>
+           <%  i++; }) %>
+           <% } else{ %>
+           
+           <% } %>
+      </td>
+      
+      <td style="width: 200px;"><p>Rank</p></td>
+      <td style="width: 200px;"> <%
+         if(userData1.length!=0){
+         var i=1;
+         userData1.forEach(function(classdata1){
+         %>
+         <p>:&nbsp;<%=classdata1.rank%></p>
+         <%  i++; }) %>
+         <% } else{ %>
+         
+         <% } %>
+      </td>
+      </tr>
+      <tr>
+         <td style="width: 200px;"><p>Neet Mark</p></td>
+         <td style="width: 300px;">
+           
+            <%
+            if(userData1.length!=0){
+            var i=1;
+            userData1.forEach(function(classdata1){
+            %>
+            <p>:&nbsp;&nbsp;<%=classdata1.neet_mark%></p>
+            
+            <%  i++; }) %>
+            <% } else{ %>
+            
+            <% } %>
+         </td>
+         <td style="width: 200px;"><p>Community</p></td>
+         <td style="width: 200px;">
+            <%
+            if(userData.length!=0){
+            var i=1;
+            userData.forEach(function(classdata){
+            %>
+            <p>:&nbsp;<%=classdata.community%></p>
+            <%  i++; }) %>
+            <% } else{ %>
+            
+            <% } %>
+         </td>
+      </tr>
+      <tr>
+         <td style="width: 200px;"><p>Neet PG Roll No</p></td>
+         <td style="width: 300px;">
+           
+            <%
+            if(userData1.length!=0){
+            var i=1;
+            userData1.forEach(function(classdata1){
+            %>
+            <p>:&nbsp;&nbsp;<%=classdata1.neet_roll_no%></p>
+            
+            <%  i++; }) %>
+            <% } else{ %>
+            
+            <% } %>
+         </td>
+         <td style="width: 200px;"><p>Select Category</p></td>
+         <td style="width: 200px;">
+            <%
+            if(userData1.length!=0){
+            var i=1;
+            userData1.forEach(function(classdata1){
+            %>
+            <p style="width: 300px;">:&nbsp;<%=classdata1.selected_category %></p>
+            <%  i++; }) %>
+            <% } else{ %>
+            
+            <% } %>
+         </td>
+      </tr>
+      <tr>
+         <td style="width: 200px;"><p>Year of Admission</p></td>
+         <td style="width: 300px;">
+           
+            <%
+            if(userData.length!=0){
+            var i=1;
+            userData.forEach(function(classdata){
+            %>
+            <p>:&nbsp;&nbsp;<%=classdata.academic_year %></p>
+            
+            <%  i++; }) %>
+            <% } else{ %>
+            
+            <% } %>
+         </td>
+         <td style="width: 200px;"><p  style="width: 200px;">Name Of The Course</p></td>
+         <td style="width: 200px;">
+            <%
+            if(userData1.length!=0){
+            var i=1;
+            userData1.forEach(function(classdata1){
+            %>
+            <p>:&nbsp;<%=classdata1.course %></p>
+            <%  i++; }) %>
+            <% } else{ %>
+            
+            <% } %>
+         </td>
+      </tr>
+      </tbody>  
+  </table>
+  </section>
+  <br>
+  <div class="row text-dark">
+  <div class="col-md-12  "id="draft">
+    <h3 style="text-decoration: underline;font-size: 20px;"class="text-center"><b style="font-weight: 600;">DRAFT REGULATIONS FOR PREVENTION AND PROHIBITION OF RAGGING IN MEDICAL COLLEGES /<br>
+
+      INSTITUTIONS 2021<br>
+      NEW DELHI, 20 TH APRIL 2021<br>
+      ANNEXURE I<br>
+      
+      FORMAT OF UNDERTAKING BY THE STUDENT</b></h3>
+     
+      <li class="text-center"> 1. I  <%
+        if(userData.length!=0){
+        var i=1;
+        userData.forEach(function(classdata){
+        %> <u class="text-capitalize"> <%=classdata.name %></u><br>
+        <%  i++; }) %>
+        <% } else{ %>
+        
+        <% } %>
+        (Full Name in Block Letters)<br>
+        
+        Son/Daughter of Mr./Mrs./Ms. _____________________________________________________________<br>
+        
+        (Full Name in Block Letters)<br>
+        <%
+        if(userData1.length!=0){
+        var i=1;
+        userData1.forEach(function(classdata1){
+        %>
+        admitted to the course of <u><%=classdata1.course %></u> with Admission No.____________________<br>
+        
+        (Name of Course)<br>
+        
+        at <u class="text-uppercase">Tirunelveli Medical College, Tirunelveli</u><br>
+        
+        (Name of College / Institution)<br>
+        
+        affiliated to <u>THE Dr. M.G.R MEDICAL UNIVERSITY , CHENNAI</u><br>
+        
+        (Name of University)</li>
+        <%  i++; }) %>
+<% } else{ %>
+
+<% } %>
+        <li class="text-center">have received a copy of the REGULATIONS FOR PREVENTION AND PROHIBITION OF RAGGING <br>IN MEDICAL COLLEGES / INSTITUTIONS,2021 of the National Medical Commission (NMC)</li>
+        <li class="pl-5"id="lef2">2.I have carefully read and fully understood the provisions in these Regulations.</li>
+        <li class="pl-5"id="lef2">3.I have particularly perused CHAPTER II SECTION 3 and have fully understood what constitutes “Ragging”</li>
+      <li class="pl-5"id="lef2">4.I have also in particular perused Chapter IV and read and understood the Administrative and Penal actions that 
+        may be taken against me in case I am found guilty of ragging or abetting ragging, actively or passively, or being 
+        part of a conspiracy to promote ragging.
+        </li>
+      <li class="pl-5"id="lef2">5. I hereby undertake that:-<br>
+        <p style="text-indent: 2cm;margin: 0;">(i)	I will not indulge in any behaviour or act that may come under the definition of ragging as  may be constituted under Section 3 of these regulations.</p>
+   
+      <p style="text-indent: 2cm;margin: 0;">(ii)	I will not participate in or abet or propagate ragging in any form included but not limited to those that may be constituted under Section 3 of these regulations.</p>
+        <p style="text-indent: 2cm;margin: 0;">(iii)	 I will not hurt anyone physically or psychologically or cause any other harm</p>
+      </li>
+      <LI class="pl-5"id="lef2">6.I hereby agree that if found guilty of any aspect of ragging, I may be punished as per the provisions of the NMC 
+        Regulations mentioned above and / or as per the law in force.
+        </LI>
+        <li class="pl-5"id="lef2">7.I also declare that I have never been found to be guilty of ragging or abetting ragging, actively or passively, or 
+          being part of a conspiracy to promote ragging and have never been punished in any manner for these offences and 
+          further affirm that if this declaration is incorrect or false, my admission is liable to be cancelled / withdrawn.
+          
+          </li>
+      <li class="pl-5"id="lef2">signed on this ____________day of ___________month of ________________year ____________________<br>
+
+        ______________________<br>
+        Signature
+        </li>
+      
+      </div>
+      </div>
+      <div class="row justify-content-cente pl-5 col-md-12 ml-0 text-dark"id="draft">
+        <div class="col-md-4">
+          <li>Name:	</li>
+          <li>Address:</li><br>
+          <li>Tel./Mobile No:	</li>
+        </div>
+        <div class="col-md-4">
+          <li>(Signature of Witness 1)	</li>
+          <li>(Name of Witness 1)</li>
+          <li>Address		</li>
+        </div>
+        <div class="col-md-4">
+          <li>(Signature of Witness 2)	</li>
+          <li>(Name of Witness 2)</li>
+          <li>Address		</li>
+        </div>
+      </div>
+      
+     
+
+<div class="row justify-content-center mt-3"style="page-break-before:always;float:none">
+  <div class="col-md-12"><i><h4 class="other-font black text-dark"style="font-weight:400"><u>TIRUNELVELI MEDICAL COLLEGE, TIRUNELVELI-11. </u>
+</h4></i>
+     </div>
+         
+
+      
+</div>
+
+
+<br>
+<section id="tablename">
+  <table class="col-md-12">
+      <tbody>
+          <tr>
+              <td style="width: 200px;"><p style="width: 200px;">Name</p></td>
+              <td style="width: 300px;">
+                
+                 <%
+                 if(userData.length!=0){
+                 var i=1;
+                 userData.forEach(function(classdata){
+                 %>
+                 <p style="width: 350px;"> :&nbsp;&nbsp;<%=classdata.name %></p>
+                 
+                 <%  i++; }) %>
+                 <% } else{ %>
+                 
+                 <% } %>
+              </td>
+              <td style="width: 200px;"><p  style="width: 200px;">Date Of Admission</p></td>
+              <td style="width: 200px;">
+                 <%
+                 if(userData1.length!=0){
+                 var i=1;
+                 userData1.forEach(function(classdata1){
+                 %>
+                 <p>:&nbsp;<%=classdata1.date_of_admission %></p>
+                 <%  i++; }) %>
+                 <% } else{ %>
+                 
+                 <% } %>
+              </td>
+          </tr>
+      <tr>
+         <td style="width: 200px;"><p>A.R No</p></td>
+      <td style="width: 300px;"> <%
+           if(userData1.length!=0){
+           var i=1;
+           userData1.forEach(function(classdata1){
+           %>
+           <p>:&nbsp;&nbsp;<%=classdata1.ar_no%></p>
+           <%  i++; }) %>
+           <% } else{ %>
+           
+           <% } %>
+      </td>
+      
+      <td style="width: 200px;"><p>Rank</p></td>
+      <td style="width: 200px;"> <%
+         if(userData1.length!=0){
+         var i=1;
+         userData1.forEach(function(classdata1){
+         %>
+         <p>:&nbsp;<%=classdata1.rank%></p>
+         <%  i++; }) %>
+         <% } else{ %>
+         
+         <% } %>
+      </td>
+      </tr>
+      <tr>
+         <td style="width: 200px;"><p>Neet Mark</p></td>
+         <td style="width: 300px;">
+           
+            <%
+            if(userData1.length!=0){
+            var i=1;
+            userData1.forEach(function(classdata1){
+            %>
+            <p>:&nbsp;&nbsp;<%=classdata1.neet_mark%></p>
+            
+            <%  i++; }) %>
+            <% } else{ %>
+            
+            <% } %>
+         </td>
+         <td style="width: 200px;"><p>Community</p></td>
+         <td style="width: 200px;">
+            <%
+            if(userData.length!=0){
+            var i=1;
+            userData.forEach(function(classdata){
+            %>
+            <p>:&nbsp;<%=classdata.community%></p>
+            <%  i++; }) %>
+            <% } else{ %>
+            
+            <% } %>
+         </td>
+      </tr>
+      <tr>
+         <td style="width: 200px;"><p>Neet PG Roll No</p></td>
+         <td style="width: 300px;">
+           
+            <%
+            if(userData1.length!=0){
+            var i=1;
+            userData1.forEach(function(classdata1){
+            %>
+            <p>:&nbsp;&nbsp;<%=classdata1.neet_roll_no%></p>
+            
+            <%  i++; }) %>
+            <% } else{ %>
+            
+            <% } %>
+         </td>
+         <td style="width: 200px;"><p>Select Category</p></td>
+         <td style="width: 200px;">
+            <%
+            if(userData1.length!=0){
+            var i=1;
+            userData1.forEach(function(classdata1){
+            %>
+            <p style="width: 300px;">:&nbsp;<%=classdata1.selected_category %></p>
+            <%  i++; }) %>
+            <% } else{ %>
+            
+            <% } %>
+         </td>
+      </tr>
+      <tr>
+         <td style="width: 200px;"><p>Year of Admission</p></td>
+         <td style="width: 300px;">
+           
+            <%
+            if(userData.length!=0){
+            var i=1;
+            userData.forEach(function(classdata){
+            %>
+            <p>:&nbsp;&nbsp;<%=classdata.academic_year %></p>
+            
+            <%  i++; }) %>
+            <% } else{ %>
+            
+            <% } %>
+         </td>
+         <td style="width: 200px;"><p  style="width: 200px;">Name Of The Course</p></td>
+         <td style="width: 200px;">
+            <%
+            if(userData1.length!=0){
+            var i=1;
+            userData1.forEach(function(classdata1){
+            %>
+            <p>:&nbsp;<%=classdata1.course %></p>
+            <%  i++; }) %>
+            <% } else{ %>
+            
+            <% } %>
+         </td>
+      </tr>
+      </tbody>  
+  </table>
+  </section>
+  <br>
+  <div class="row">
+  <div class="col-md-12 text-dark"id="draft">
+    <h3 style="text-decoration: underline;font-size: 20px;"class="text-center"><b style="font-weight: 600;">DRAFT REGULATIONS FOR PREVENTION AND PROHIBITION OF RAGGING IN MEDICAL COLLEGES /<br>
+
+      INSTITUTIONS 2021<br>
+      NEW DELHI, 20 TH APRIL 2021<br>
+      ANNEXURE II<br>
+      
+      FORMAT OF UNDERTAKING BY  PARENT / GUARDIAN OF THE CANDIDATE/STUDENT</b></h3>
+      <li class="text-center"> 1. I __________________________________________________________________________________________<br>
+
+        (Full Name in Block Letters)<br>
+        <%
+if(userData.length!=0){
+var i=1;
+userData.forEach(function(classdata){
+%>
+        Father/ Mother/Guardian of Mr./Mrs./Ms.  <u class="text-capitalize"><%=classdata.name %> </u> <br>
+        
+        (Full Name of Student in Block Letters)<br>
+        <%  i++; }) %>
+<% } else{ %>
+
+<% } %>
+<%
+if(userData1.length!=0){
+var i=1;
+userData1.forEach(function(classdata1){
+%>
+        admitted to the course of <u> <%=classdata1.course %> </u>With Admission No.____________________<br>
+        
+        (Name of Course)<br>
+        <%  i++; }) %>
+        <% } else{ %>
+        
+        <% } %>
+        at <u style="
+        text-transform: uppercase;
+    ">Tirunelveli Medical College, Tirunelveli</u><br>
+        
+        (Name of College / Institution)<br>
+        
+        affiliated to <u> THE Dr. M.G.R MEDICAL UNIVERSITY , CHENNAI</u> <br>
+        
+        (Name of University)</li>
+        <li class="text-center">Hereby declare that I have received a copy of the REGULATIONS FOR PREVENTION AND <br>PROHIBITION OF RAGGING IN MEDICAL COLLEGES / INSTITUTIONS,2021 of the National<br> Medical Commission (NMC)</li>
+        <li class="pl-5"id="lef2">2.I have carefully read and fully understood the provisions in these Regulations.</li>
+        <li class="pl-5"id="lef2">3.I have particularly perused CHAPTER II SECTION 3 and have fully understood what constitutes “Ragging”</li>
+      <li class="pl-5"id="lef2">4.I have also in particular perused Chapter IV and read and understood the Administrative and Penal actions that      
+        may be taken against my son / daughter / ward  in case he / she is  found guilty of ragging or abetting ragging, actively or passively, or being  part of a conspiracy to promote ragging.
+    
+        </li>
+      <li class="pl-5"id="lef2">5. I hereby undertake that my son / daughter / ward - <br>
+       <p style="text-indent: 2cm;font-size: ;margin:0"> (iv)Will not indulge in any behaviour or act that may come under the definition of ragging as may be 
+        constituted under Section 3 of these regulations.</p>
+           
+              <p style="text-indent: 2cm;font-size: ;margin:0"> (v) Will not participate in or abet or propagate ragging in any form included but not limited to those
+              that may be constituted under Section 3 of these regulations.</p>
+              <p style="text-indent: 2cm;font-size: ;margin:0"> (vi) Will not hurt anyone physically or psychologically or cause any other harm</p>
+                  </li>
+      <LI class="pl-5"id="lef2">6.I hereby agree that if my  son / daughter / ward  is found guilty of any aspect of ragging, he / she  may be punished as per the provisions of the NMC Regulations mentioned above and / or as per the law in force.
+        </LI>
+        <li class="pl-5"id="lef2">7.I also declare that  he / she  has  never been found to be guilty of ragging or abetting ragging, actively or passively,
+           or being part of a conspiracy to promote ragging and have never been punished in any manner for these offences and further affirm that if this declaration is incorrect or false, his/her admission is liable to be cancelled / withdrawn.
+          </li>
+      <li class="pl-5"id="lef2">signed on this ____________day of ___________month of ________________year ____________________<br>
+
+        ______________________<br>
+        Signature
+        </li>
+      
+      </div>
+  </div>
+      <div class="row justify-content-center ml-0 pl-5 col-md-12 text-dark"id="draft">
+        <div class="col-md-4">
+          <li>Name:	</li>
+          <li>Address:</li><br>
+          <li>Tel./Mobile No:	</li>
+        </div>
+        <div class="col-md-4">
+          <li>(Signature of Witness 1)	</li>
+          <li>(Name of Witness 1)</li>
+          <li>Address		</li>
+        </div>
+        <div class="col-md-4">
+          <li>(Signature of Witness 2)	</li>
+          <li>(Name of Witness 2)</li>
+          <li>Address		</li>
+        </div>
+      </div>
+      
+     
+</div>
+
+                   </ul>
+  </div>
+</div>
+</div>
+</section>
+
+
+
+ 
+<!-- jQuery bootstrap -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script>
+UPLOADCARE_PUBLIC_KEY = 'demopublickey';
+</script>
+<script src="https://ucarecdn.com/libs/widget/3.x/uploadcare.full.min.js" charset="utf-8"></script>
+<!-- AdminLTE App -->
+<script src="js/adminlte.js"></script>
+<script src="js/mbbs.js"></script>
+
+<!-- AdminLTE for demo purposes -->
+<script src="js/demo.js"></script>
+<!-- page script -->
+
+
+</body>
+
+</html>

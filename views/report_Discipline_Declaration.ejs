@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Discipline Declaration</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="/assets/dashboard/plugins/fontawesome-free/css/all.min.css"
+    />
+    <!-- Ionicons -->
+    <link
+      rel="stylesheet"
+      href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"
+    />
+    <!-- bootsrtap -->
+
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <!-- Theme style -->
+    <link rel="stylesheet" href="/assets/dashboard/dist/css/alter.css" />
+    <link rel="stylesheet" href="/assets/dashboard/dist/css/mbbs.css" />
+    <!-- Google Font Source Sans Pro -->
+    <!-- <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro300,400,400i,700" rel="stylesheet"> -->
+    <link
+      href="http://fonts.cdnfonts.com/css/berlin-sans-fb"
+      rel="stylesheet"
+    />
+
+    <style>
+      body,
+      html,
+      li,
+      .margin,
+      .text-left,
+      #center,
+      p,
+      h4 {
+        font-family: "Berlin Sans FB", sans-serif !important;
+      }
+      p,
+      h4 {
+        font-size: 25px !important;
+      }
+    </style>
+  </head>
+  <body class="hold-transition sidebar-mini">
+    <div class="toolbar no-print">
+      <button class="btn btn-info" onclick="window.print()">
+        Print Certificate
+      </button>
+      <% if (course == 'MBBS'){ %>
+      <a href="/mbbs_board"><button class="btn btn-info">Back</button></a>
+      <%}%> <% if (course == 'MDMS'){ %>
+      <a href="/mdms_board"><button class="btn btn-info">Back</button></a>
+      <%}%> <% if (course == 'BSC'){ %>
+      <a href="/bsc_board"><button class="btn btn-info">Back</button></a>
+      <%}%><% if (course == 'AISSC'){ %>
+      <a href="/aissc_board"><button class="btn btn-info">Back</button></a>
+      <%}%><% if (course == 'DIPLOMA IN NURSING'){ %>
+      <a href="/nursing_board"><button class="btn btn-info">Back</button></a>
+      <%}%>
+    </div>
+
+    <section id="report" class="text-dark" style="color: #000">
+      <div class="container">
+        <div id="reportcard" class="bond">
+          <div class="row justify-content-center">
+            <div class="col-md-12">
+              <h4 class="other-font text-dark" style="line-height: 40px">
+                <u
+                  >ANNEXURE-VII <br />DISCIPLINE DECLARATION BY THE CANDIDATE
+                </u>
+              </h4>
+            </div>
+          </div>
+
+          <br /><BR />
+          <p style="text-indent: 1cm" class="mt-50">
+            This agreement made on this --------------- day of -------------- <%
+            if(userData.length!=0){ var
+            i=1;userData.forEach(function(classdata){ %>
+            <%=classdata.academic_year.substring(0,4) %> between the Governor of
+            Tamil Nadu (herein after called the Governor which expression shall,
+            where the context so admits include his successor in Office) of the
+            one part and
+            <u class="text-capitalize"><%=classdata.name %></u> son/daughter of
+            <u class="text-capitalize"><%=classdata.father_name %></u> <% i++;
+            }) %> <% } else{ %> <% } %> <%if(userData2.length!=0){ var i=1;
+            userData2.forEach(function(classdata2){ %> resident of
+            <u class="text-capitalize"
+              ><%=classdata2.ps_address %> <%=classdata2.ps_pincode %></u
+            >
+            in the Taluk of
+            <u> <%=classdata2.ps_district %> / <%=classdata2.ps_state %></u>
+            district/State (hereinafter called the candidate) which expression
+            shall, where the context so admits include his/her heirs, executors,
+            administrators and representatives of the other part. <% i++; }) %>
+            <% } else{ %> <% } %>
+          </p>
+          <br />
+          <% if(userData.length!=0){ var
+          i=1;userData.forEach(function(classdata){ %>
+          <p style="text-indent: 1cm">
+            I, <u><%=classdata.name %> </u> the undersigned, a candidate
+            selected for admission to the Super Speciality
+            <%=classdata.academic_year %> session in Course <%
+            if(userData1.length!=0){ var
+            i=1;userData1.forEach(function(classdata1){ %>
+            <u><%=classdata1.course %></u>
+            <% i++; }) %> <% } else{ %> <% } %> at Tirunelveli Medical College ,
+            Tirunelveli do hereby agree to confirm from this date if I am
+            admitted thereto rules and regulations including those relating to
+            the hostel laid down or to be laid down hereafter by the Dean for
+            the time being of the College for the due maintenance of discipline
+            at the said college and I assure that I will not join in any ragging
+            activity inside college or outside college campus /agitation /Strike
+            of any kind during the course of study. I further agree to make good
+            when called upon to do so to the Government of Tamil Nadu any damage
+            to furniture, apparatus or other articles which may be caused by any
+            carelessness negligence and wantonly on my part. I hereby declare
+            that I am aware of that I can be expelled from the College if I
+            indulge in ragging during any part of my course of study.
+          </p>
+          <% i++; }) %> <% } else{ %> <% } %>
+          <br /><br />
+          <div class="row justify-content-around">
+            <div class="col-md-6">
+              <p>STATION:</p>
+              <BR />
+              <p>DATE:</p>
+            </div>
+            <DIV class="COL-MD-6">
+              <p>Signature of Candidate</p>
+              <br />
+              <p>Signature of Parent/Guardian</p>
+              <br />
+              <p>Occupation and Address</p>
+            </DIV>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

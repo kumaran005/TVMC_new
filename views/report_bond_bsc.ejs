@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Bond Form</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="/assets/dashboard/plugins/fontawesome-free/css/all.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- bootsrtap -->
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="/assets/dashboard/dist/css/alter.css">
+  <link rel="stylesheet" href="/assets/dashboard/dist/css/mbbs.css">
+  <!-- Google Font Source Sans Pro -->
+  <!-- <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro300,400,400i,700" rel="stylesheet"> -->
+  <!-- <link href="http://fonts.cdnfonts.com/css/berlin-sans-fb" rel="stylesheet"> -->
+  <style>
+      body,html,li,.margin,.text-left, #center{
+  font-family: 'Berlin Sans FB', sans-serif!important;
+                                                
+} 
+p,h5,li,i{
+    font-size: 23px!important;
+}  
+b{
+  font-weight: 100;
+}
+    @media print{
+body{
+  margin-top: 150px!important;
+
+}
+    }
+</style>
+</head>
+<body class="hold-transition sidebar-mini">
+    <div class="toolbar no-print">
+      <button class="btn btn-info" onclick="window.print()">
+        Print Certificate
+      </button>
+      <% if (course == 'MBBS'){ %>
+      <a href="/mbbs_board"><button class="btn btn-info">Back</button></a>
+      <%}%> <% if (course == 'MDMS'){ %>
+      <a href="/mdms_board"><button class="btn btn-info">Back</button></a>
+      <%}%> <% if (course == 'BSC'){ %>
+      <a href="/bsc_board"><button class="btn btn-info">Back</button></a>
+      <%}%><% if (course == 'AISSC'){ %>
+      <a href="/aissc_board"><button class="btn btn-info">Back</button></a>
+      <%}%><% if (course == 'DIPLOMA IN NURSING'){ %>
+      <a href="/nursing_board"><button class="btn btn-info">Back</button></a>
+      <%}%>
+    </div>
+   
+<section id="report"class="text-dark black report"style=" color: #000;">
+  <div class="container">
+         <div id="reportcard"class="bond">
+ 
+        
+     
+
+<br>
+
+<h4 class="text-center  mb-3"id=""style="font-weight:"><span class="text-dark"><u>ANNEXURE-VII</u></span></h4>
+ <h5 class=" "id=""style="font-family:normal;font-weight:600"><span class="text-dark"style="font-size:">DECLARATION BY THE CANDIDATE FOR PAYMENT OF DUES AS A RESULT OF REVISION OF FEES AS MAY 
+BE DECIDED BY THE GOVERNMENT OF INDIA / THE STATE GOVERNMENT / COMMITTEE APPOINTED BY THE GOVERNMENT FOR THE ACADEMIC 
+YEAR 
+<% if(userData.length!=0){ var i=1;userData.forEach(function(classdata){ %>
+    <%=classdata.academic_year %>    
+
+</span></h5>
+
+
+<BR>
+
+ 
+    
+<i><p style="text-indent: 3cm;font-weight: ;"class="mt-5"> I  <u>    <%=classdata.name %> </u> the undersigned, a student selected_category
+    for admission in Paramedical Degree Courses in Tirunelveli Medical College, Tirunelveli-11 do hereby agree to 
+    pay any amount that may become due from me as and when the fee structure is revised as may be decided by the
+    Government of India or State Government / Commitee  appointed by the Government for this purpose for the year
+    <%=classdata.academic_year %>    
+
+</p>
+    <% i++; }) %>
+    <% } else{ %> 
+     <% } %> 
+                   
+                   </i>
+                   <div class="row mt-5 pt-5">
+                    <div class="col-md-6">
+                        <p>In the presence of:</p>
+                        <p class="mt-5">STATION:</p>
+                        <p class="mt-5">DATE:</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p>Signature of Candidate:</p>
+                        <p class="mt-5">Signature of Parent/Guardian:</p>
+                        <p class="mt-5">Occupation and Address:</p>
+                    </div>
+                    
+                </div>
+                   <h4 class="text-center  mb-3 mt-5"id=""style="page-break-before:always"><span class="text-dark"><u>ANNEXURE-VIII</u></span></h4>
+                   <h5 class=" "id=""style="font-family:normal;font-weight:600"><span class="text-dark"style="font-size:">DECLARATION / UNDERTAKING ON 
+                    ALLOTMENT AND RE-ALLOTMENT OF INSTITUTIONS OF SELECTED CANDIDATES FOR ADMISSION TO PARAMEDICAL DEGREE COURSES
+                  <% if(userData.length!=0){ var i=1;userData.forEach(function(classdata){ %>
+                  
+                  </span></h5>
+                  
+                  
+                  <BR>
+                  
+                   
+                      
+                  <i><p style="text-indent: 3cm;font-weight: ;"class="mt-5"> I  <u>    <%=classdata.name %> </u> the undersigned, a student selected_category
+                      for admission in Paramedical Degree Courses in Tirunelveli Medical College, Tirunelveli-11 do hereby agree to 
+                    abide the Regulations prescribed in the prospectus for admission to the above course <%=classdata.academic_year %>.
+                    Session, and shall not make any claim for admission to a particular College as a matter of right.
+                      <%=classdata.academic_year %>    
+                  
+                  </p>
+                      <% i++; }) %>
+                      <% } else{ %> 
+                       <% } %> 
+                                     
+                                     </i>   
+<div class="row mt-5 pt-5">
+    <div class="col-md-6">
+        <p>In the presence of:</p>
+        <p class="mt-5">STATION:</p>
+        <p class="mt-5">DATE:</p>
+    </div>
+    <div class="col-md-6">
+        <p>Signature of Candidate:</p>
+        <p class="mt-5">Signature of Parent/Guardian:</p>
+        <p class="mt-5">Occupation and Address:</p>
+    </div>
+    <div class="col-md-12 mt-5 pt-5">
+       <p> <u>NOTE:</u> To be submitted to the Head of the Institution at the time of Admission.</p>
+    </div>
+</div>
+<h4 class="text-center  mb-5 mt-5"id=""style="page-break-before:always"><span class="text-dark"><u>ANNEXURE-IV</u></span></h4>
+<% if(userData.length!=0){ var i=1;userData.forEach(function(classdata){ %>
+                  
+
+
+
+
+ 
+    
+<i><p style="text-indent: 3cm;font-weight: ;"class=""> I  <u>    <%=classdata.name %> </u> hereby state that I am willing to work for the
+State of Tamil Nadu for 5 years if called upon to do so within a period of three years from the date of completion
+of the course. If I fail to do so, I shall pay to the Government of demand and without demur such sum not exceeding Rs. 20,000/-
+(Rupees Twenty Thousand Only) or as the Government may direct.   
+       
+
+</p>
+    <% i++; }) %>
+    <% } else{ %> 
+     <% } %> 
+     <div class="row mt-100">
+         <div class="col-md-6">
+             <p>Signature of the Parent/Guardian</p>
+         </div>
+         <div class="col-md-6">
+             <p>Signature of the Candidate</p>
+        </div>
+        <div class="col-md-12 mt-5 pt-5">
+            <p>Place:</p>
+            <p>Date:</p>
+
+        </div>
+     </div>
+     <h4 class="text-center  mb-4 mt-5"id=""style="page-break-before:always"><span class="text-dark"><u>ANNEXURE-VI</u></span></h4>
+     <p class="text-center">Joint Declaration by the candidate and  Paramedical Degree Course 
+        <% if(userData.length!=0){ var i=1;userData.forEach(function(classdata){ %>
+            <%=classdata.academic_year %>  Session Parent / Guardian
+            <% i++; }) %>
+            <% } else{ %> 
+             <% } %> 
+     </p>
+     <p class="text-center"><b style="font-weight: 600!important;">(This should not be enclosed with the application but <br>should be submitted only at the time of admission)</b></p>
+<br>
+<p><b><i style="font-weight: 600!important;">I / We do hereby Solemnly and sincerely affirm</i></b></p>
+<ul>
+    <li>
+        <p><b><i style="font-size:21px !important;font-weight: 100;">1.   that the statements made and information furnished  in  the  application  submitted  and  also  in  all  the  enclosures  thereto  submitted by him/her are true. Should it  however  be  found  that  any  information  furnished  therein  is  untrue  in  material  particulars,  I/we  realize  that  he/she  is  liable  for  criminal  prosecution  and  forfeiture  of  his  /  her  seat   in   the   Institution   allotted during the counseling.</i></b></p>
+
+</li>
+<li>
+    <p><b><i style="font-size:21px !important;font-weight: 100;">2. that my son/daughter/ward would conform strictly to  all  the  rules  and  regulations  prescribed  by  the  Tamil  Nadu  Dr.  M.G.R.  Medical University, Chennai in force now or  which  may  be  introduced  in  the  Institution  hereafter  and  that  I /we  realize  that  breach  of  discipline  and  rules  on  my  son’s/daughter’s/ward’s  part  would  entail  forfeiture  of   his   /   her   seat   in   the   Institution.</i></b></p>
+
+</li>
+<li>
+    <p><b><i style="font-size:21px !important;font-weight: 100;">3. that my son/daughter/ward shall not make any claim for admission to a particular college as a matter of right during allotment/Re-allotment..</i></b></p>
+
+</li>
+<li>
+    <p><b><i style="font-size:21px !important;font-weight: 100;">4. that  my  son/daughter/ward  agrees  to  pay  any  amount  that  may  become  due  as  and  when  the  fee  structure  is  revised  as    may be decided by Government of Tamil Nadu /Committee appointed by the Government for the purpose..</i></b></p>
+
+</li>
+<li>
+    <p><b><i style="font-size:21px !important;font-weight: 100;">5. that my son/daughter/ward  do  hereby  agree  to  conform  to  follow  the  rules  and  regulations  including  those  relating  to  the  hostel  laid  down  or  to  be  laid  down  by  the  Dean  of  the  Institution  for  due  maintenance  of  discipline  at  the  said  College    and  assure  that  he/she  will  not  join  any  agitation   /strike  of  any  kind  during  course  of  study  and  further  agree  to  make    good  when  called  upon  to  do  so  to  the  Government  of  Tamil  Nadu  any  damage  to  furniture,  apparatus  or  other  articles  which may be caused by any carelessness negligence and wantonly on his/her part.</i></b></p>
+
+</li>
+<li>
+    <p><b><i style="font-size:21px !important;font-weight: 100;">6. that my son/daughter/ward who is a Native of Tamil Nadu and will not claim dual Nativity in future.</i></b></p>
+
+</li>
+<li>
+    <p><b><i style="font-size:21px !important;font-weight: 100;">7. that my son/daughter/ward hereby declare that he/she belongs to 
+        <% if(userData.length!=0){ var i=1;userData.forEach(function(classdata){ %>
+           <u> <%=classdata.community %> </u>
+           <% i++; }) %>
+            <% } else{ %> 
+             <% } %> 
+ and  is  fully   aware   that   producing   a   false   Community   certificate   leads   to expulsion from any course of study at any time besides initiation of criminal action against him/her as per law.
+.</i></b></p>
+
+</li>
+<li>
+    <p><b><i style="font-size:21px !important;font-weight: 100;">
+8.    that  we  are  fully  aware,  as  per  the  directions  of  the  Hon’ble  Supreme  Court  of  India  and  Tamil  Nadu  Prohibition   of   Ragging Act 1997, Ragging is an offence, and is banned in  the  Institution  and  anyone  indulging  in  ragging  is  liable  to  be  punished by expulsion from the Institution and /or rigorous imprisonment up to 3 years, and / or fine up to Rs.25,000/-
+
+</i></b></p>
+
+</li>
+<div class="row mt-100 f-20">
+  
+   <div class="col-md-4">
+       <p>Place:</p>
+       <p>Date:</p>
+
+   </div>
+   <div class="col-md-4 mt-5">
+    <p>Signature of the Candidate</p>
+</div>
+   <div class="col-md-4 mt-5">
+    <p>Signature of the Parent/Guardian</p>
+</div>
+
+</div>
+</ul>
+    </div>
+</section>
+
+
+
+ 
+<!-- jQuery bootstrap -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script>
+UPLOADCARE_PUBLIC_KEY = 'demopublickey';
+</script>
+<script src="https://ucarecdn.com/libs/widget/3.x/uploadcare.full.min.js" charset="utf-8"></script>
+<!-- AdminLTE App -->
+<script src="js/adminlte.js"></script>
+<script src="js/mbbs.js"></script>
+
+<!-- AdminLTE for demo purposes -->
+<script src="js/demo.js"></script>
+<!-- page script -->
+
+
+</body>
+
+</html>

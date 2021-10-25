@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Education Details</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="/assets/dashboard/plugins/fontawesome-free/css/all.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- bootsrtap -->
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="/assets/dashboard/dist/css/alter.css">
+  <link rel="stylesheet" href="/assets/dashboard/dist/css/mbbs.css">
+  <!-- Google Font Source Sans Pro -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro300,400,400i,700" rel="stylesheet">
+  <style>
+          body,html,li,.margin,.text-left, #center{
+  font-family: 'Berlin Sans FB', sans-serif!important;
+                                                
+}   
+#tablecerti th{
+  font-weight: 600;
+}
+.table th, .table td {
+    padding: 2px 8px;
+}
+.index th, .index td ,.index thead,.index tbody {
+  border: none!important;
+  font-size: 20px;
+  text-align: left;
+}
+.index th{
+font-weight: 600;
+}
+.bordercerti th, #borderhead th {
+   
+    
+    font-weight: 600;
+}
+.bordercerti td,  i,.bordercerti th, #borderhead th{
+  font-size: 20px!important;
+}
+    @media print{
+body{
+  margin-top: 150px!important;
+
+}
+.bordercerti td, .bordercerti th {
+    border-bottom: none!important;
+   
+}
+.table-bordered td, .table-bordered th {
+    
+    border-right: 2px solid!important;
+  
+}
+.table-bordered #tbody td {
+    padding: 10px;
+}
+    }
+</style>
+</head>
+<body class="hold-transition sidebar-mini">
+    <div class="toolbar no-print">
+      <button class="btn btn-info" onclick="window.print()">
+        Print Certificate
+      </button>  <% if (course == 'MBBS'){ %>
+      <a href="/mbbs_board"><button class="btn btn-info">Back</button></a>
+      <%}%> <% if (course == 'MDMS'){ %>
+      <a href="/mdms_board"><button class="btn btn-info">Back</button></a>
+      <%}%> <% if (course == 'BSC'){ %>
+      <a href="/bsc_board"><button class="btn btn-info">Back</button></a>
+      <%}%><% if (course == 'AISSC'){ %>
+      <a href="/aissc_board"><button class="btn btn-info">Back</button></a>
+      <%}%><% if (course == 'DIPLOMA IN NURSING'){ %>
+      <a href="/nursing_board"><button class="btn btn-info">Back</button></a>
+      <%}%>
+    </div>
+   
+<section id="report"class="text-dark"style=" color: #000;">
+  <div class="container">
+         <div id="reportcard"class="bond">
+ 
+          <div class="row justify-content-center">
+            <i><div class="col-md-12"><h4 class="other-font text-dark"style="   line-height:40px
+                "><u>TIRUNELVELI MEDICAL COLLEGE, TIRUNELVELI-11. 
+           <br>CHECK SLIP FOR VERIFICATION OF ADMISSION DOCUMENTS
+        </u>
+          </h4>
+          
+               </div></i>
+                   
+          
+                
+          </div>
+     
+
+<br>
+
+<section id="tablename">
+  <table class="col-md-12">
+    <tbody>
+        <tr>
+            <td style="width: 200px;"><p style="width: 200px;">Name</p></td>
+            <td style="width: 300px;">
+              
+               <%
+               if(userData.length!=0){
+               var i=1;
+               userData.forEach(function(classdata){
+               %>
+               <p style="width: 350px;"> :&nbsp;&nbsp;<%=classdata.name %></p>
+               
+               <%  i++; }) %>
+               <% } else{ %>
+               
+               <% } %>
+            </td>
+            <td style="width: 200px;"><p  style="width: 200px;">Date Of Admission</p></td>
+            <td style="width: 200px;">
+               <%
+               if(userData1.length!=0){
+               var i=1;
+               userData1.forEach(function(classdata1){
+               %>
+               <p>:&nbsp;<%=classdata1.date_of_admission %></p>
+               <%  i++; }) %>
+               <% } else{ %>
+               
+               <% } %>
+            </td>
+        </tr>
+    <tr>
+       <td style="width: 200px;"><p>A.R No</p></td>
+    <td style="width: 300px;"> <%
+         if(userData1.length!=0){
+         var i=1;
+         userData1.forEach(function(classdata1){
+         %>
+         <p>:&nbsp;&nbsp;<%=classdata1.ar_no%></p>
+         <%  i++; }) %>
+         <% } else{ %>
+         
+         <% } %>
+    </td>
+    
+    <td style="width: 200px;"><p>Rank</p></td>
+    <td style="width: 200px;"> <%
+       if(userData1.length!=0){
+       var i=1;
+       userData1.forEach(function(classdata1){
+       %>
+       <p>:&nbsp;<%=classdata1.rank%></p>
+       <%  i++; }) %>
+       <% } else{ %>
+       
+       <% } %>
+    </td>
+    </tr>
+    <tr>
+       <td style="width: 200px;"><p>Neet Mark</p></td>
+       <td style="width: 300px;">
+         
+          <%
+          if(userData1.length!=0){
+          var i=1;
+          userData1.forEach(function(classdata1){
+          %>
+          <p>:&nbsp;&nbsp;<%=classdata1.neet_mark%></p>
+          
+          <%  i++; }) %>
+          <% } else{ %>
+          
+          <% } %>
+       </td>
+       <td style="width: 200px;"><p>Community</p></td>
+       <td style="width: 200px;">
+          <%
+          if(userData.length!=0){
+          var i=1;
+          userData.forEach(function(classdata){
+          %>
+          <p>:&nbsp;<%=classdata.community%></p>
+          <%  i++; }) %>
+          <% } else{ %>
+          
+          <% } %>
+       </td>
+    </tr>
+    <tr>
+       <td style="width: 200px;"><p>Neet PG Roll No</p></td>
+       <td style="width: 300px;">
+         
+          <%
+          if(userData1.length!=0){
+          var i=1;
+          userData1.forEach(function(classdata1){
+          %>
+          <p>:&nbsp;&nbsp;<%=classdata1.neet_roll_no%></p>
+          
+          <%  i++; }) %>
+          <% } else{ %>
+          
+          <% } %>
+       </td>
+       <td style="width: 200px;"><p>Select Category</p></td>
+       <td style="width: 200px;">
+          <%
+          if(userData1.length!=0){
+          var i=1;
+          userData1.forEach(function(classdata1){
+          %>
+          <p style="width: 300px;">:&nbsp;<%=classdata1.selected_category %></p>
+          <%  i++; }) %>
+          <% } else{ %>
+          
+          <% } %>
+       </td>
+    </tr>
+    <tr>
+       <td style="width: 200px;"><p>Year of Admission</p></td>
+       <td style="width: 300px;">
+         
+          <%
+          if(userData.length!=0){
+          var i=1;
+          userData.forEach(function(classdata){
+          %>
+          <p>:&nbsp;&nbsp;<%=classdata.academic_year %></p>
+          
+          <%  i++; }) %>
+          <% } else{ %>
+          
+          <% } %>
+       </td>
+       <td style="width: 200px;"><p  style="width: 200px;">Name Of The Course</p></td>
+       <td style="width: 200px;">
+          <%
+          if(userData1.length!=0){
+          var i=1;
+          userData1.forEach(function(classdata1){
+          %>
+          <p>:&nbsp;<%=classdata1.course %></p>
+          <%  i++; }) %>
+          <% } else{ %>
+          
+          <% } %>
+       </td>
+    </tr>
+    </tbody>  
+</table>
+  </section>
+
+<section id="f-15"class="text-dark">
+    <h1 class="ml-4"><i><b style="font-weight: 500;">Academic Information</b></i>
+    </h1>
+    <table class="table text-left index">
+        <thead>
+          <tr>
+            <th scope="col" width="50px">1.</th>
+            <th scope="col"width="450px">Exam Passed</th>
+            <%
+            if(userData4.length!=0){
+            var i=1;
+            userData4.forEach(function(classdata4){
+            %>
+            <td>:</td>
+            <td scope="col"  class="text-capitalize">   <%=classdata4.exam_passed %>
+           
+            </td>
+            <%  i++; }) %>
+            <% } else{ %>
+            
+            <% } %>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>2.</th>
+            <th scope="col">Name of the Board</th>
+            <%
+            if(userData4.length!=0){
+            var i=1;
+            userData4.forEach(function(classdata4){
+            %>
+            <td>:</td>
+            <td scope="col" class="text-capitalize" >  <%=classdata4.board %>
+           
+            </td>
+            <%  i++; }) %>
+            <% } else{ %>
+            
+            <% } %>
+          </tr>
+          <tr>
+            <th>3.</th>
+            <th scope="col">School Name</th>
+            <td>:</td>
+            <%
+            if(userData4.length!=0){
+            var i=1;
+            userData4.forEach(function(classdata4){
+            %>
+            <td scope="col"  class="text-capitalize">  <%=classdata4.institute_name%>
+           
+            </td>
+            <%  i++; }) %>
+            <% } else{ %>
+            
+            <% } %>
+          </tr>
+          <tr>
+            <th>4.</th>
+            <th scope="col">Place of School With District & State</th>
+            <td>:</td>
+            <%
+            if(userData4.length!=0){
+            var i=1;
+            userData4.forEach(function(classdata4){
+            %>
+            <td scope="col" class="text-capitalize" >  <%=classdata4.place%>, <%=classdata4.district%>, <%=classdata4.state%>
+           
+            </td>
+            <%  i++; }) %>
+            <% } else{ %>
+            
+            <% } %>
+          </tr>
+          <tr>
+            <th>5.</th>
+            <th scope="col">Plus Two Mark Sheet Register No</th>
+            <td>:</td>
+            <%
+            if(userData4.length!=0){
+            var i=1;
+            userData4.forEach(function(classdata4){
+            %>
+            <td scope="col" >  <%=classdata4.register_no%>
+           
+            </td>
+            <%  i++; }) %>
+            <% } else{ %>
+            
+            <% } %>
+          </tr>
+          <tr>
+           <th>6.</th>
+           <th scope="col">Month & Year of Passing</th>
+           <td>:</td>
+           <%
+           if(userData4.length!=0){
+           var i=1;
+           userData4.forEach(function(classdata4){
+           %>
+           <td scope="col" >  <%=classdata4.month_of_passing%>, <%=classdata4.year_of_passing%>
+          
+           </td>
+           <%  i++; }) %>
+           <% } else{ %>
+           
+           <% } %>
+          </tr>
+          <tr>
+           <th>7.</th>
+           <th scope="col">TC No. & Date</th>
+           <td>:</td>
+           <%
+           if(userData26.length!=0){
+           var i=1;
+           userData26.forEach(function(classdata26){
+           %>
+           <td scope="col" >  <%=classdata26.reg_no%>,  <%=classdata26.date%>
+          
+           </td>
+           <%  i++; }) %>
+           <% } else{ %>
+           
+           <% } %>
+          </tr>
+          <tr>
+           <th>8.</th>
+           <th scope="col">School Relieving Date</th>
+           <td>:</td>
+           <%
+           if(userData4.length!=0){
+           var i=1;
+           userData4.forEach(function(classdata4){
+           %>
+           <td scope="col" ><%=classdata4.relieving_date%>
+          
+           </td>
+           <%  i++; }) %>
+           <% } else{ %>
+           
+           <% } %>
+          </tr>
+          <tr>
+           <th>9.</th>
+           <th scope="col">Eligibilty Certificate No. & Date</th>
+           <td>:</td>
+           <%
+           if(userData23.length!=0){
+           var i=1;
+           userData23.forEach(function(classdata23){
+           %>
+           <td scope="col" >  <%=classdata23.reg_no%>, <%=classdata23.date%>
+          
+           </td>
+           <%  i++; }) %>
+           <% } else{ %>
+           
+           <% } %>
+          </tr>
+          <tr>
+           <th>10.</th>
+           <th scope="col">Migration Certificate No. & Date</th>
+           <td>:</td>
+           <%
+           if(userData24.length!=0){
+           var i=1;
+           userData24.forEach(function(classdata24){
+           %>
+           <td scope="col" >  <%=classdata24.reg_no%>, <%=classdata24.date%>
+          
+           </td>
+           <%  i++; }) %>
+           <% } else{ %>
+           
+           <% } %>
+          </tr>
+          <tr>
+           <th>11.</th>
+           <th scope="col">Marks Scored in Neet Entrance Exam</th>
+           <td>:</td>
+           <%
+           if(userData1.length!=0){
+           var i=1;
+           userData1.forEach(function(classdata1){
+           %>
+           <td scope="col" >  <%=classdata1.neet_mark%>
+          
+           </td>
+           <%  i++; }) %>
+           <% } else{ %>
+           
+           <% } %>
+          </tr>
+          
+          <tr class="p-5">
+            <th class="">12.</th>
+            <th scope="col">Willingness for Second/Third Counselling</th>
+            <td>:</td>
+            <%
+            if(userData1.length!=0){
+            var i=1;
+            userData1.forEach(function(classdata1){
+            %>
+            <td scope="col" >  <%=classdata1.willing_for_counciling%>
+           
+            </td>
+            <%  i++; }) %>
+            <% } else{ %>
+            
+            <% } %>
+          </tr>
+        
+          
+          
+          
+
+        </tbody>
+      </table>
+</section>     
+<div class="row neetcerti mt-5">
+    <div class="col-md-6">
+        <div class="table table-responsive">
+            <table class="table table-bordered">
+                <thead id="borderhead" class="text-center">
+                    <tr>
+                <th>Subject</th>
+                <th>Marks
+                    Obtained +2</th>
+                    <th>Maximum Marks</th>
+            </tr>
+        </thead>
+        <%
+        if(userData5.length!=0){
+        var i=1;
+        userData5.forEach(function(classdata5){
+        %>
+        <tbody class="bordercerti">
+            <tr>
+                <th>Tamil</th>
+                <td><%=classdata5.lang_total%> </td>
+                <td><i><%=classdata5.lang_max%></i> </td>
+            </tr>
+            <tr>
+                <th>English
+                </th>
+                <td><%=classdata5.eng_total%> </td>
+                <td><i><%=classdata5.eng_max%></i> </td>
+            </tr>
+            <tr>
+                <th>Mathematics
+                </th>
+                <td><%=classdata5.mat_total%> </td>
+
+                <td><i><%=classdata5.mat_max%></i> </td>
+
+            </tr>
+            <tr>
+                <th>Physics
+                </th>
+                <td><%=classdata5.phy_total%> </td>
+                <td><i><%=classdata5.phy_max%> </i> </td>
+            </tr>
+            <tr>
+                <th>Chemistry
+                </th>
+                <td><%=classdata5.chem_total%> </td>
+
+                <td><i><%=classdata5.chem_max%>  </i> </td>
+
+            </tr>
+            <tr>
+                <th>Biology
+                </th>
+                <td><%=classdata5.bio_total%> </td>
+                <td><i><%=classdata5.bio_max%>  </i> </td>
+            </tr>
+            <tr>
+                <th>Botany
+                </th>
+                <td><%=classdata5.bot_total%> </td>
+
+                <td><i><%=classdata5.bot_max%> </i> </td>
+
+            </tr>
+            <tr>
+                <th>Zoology
+                </th>
+                <td><%=classdata5.zoo_total%> </td>
+                <td><i><%=classdata5.zoo_max%> </i> </td>
+            </tr>
+            <!-- <tr>
+                <th>Aggregate
+                </th>
+                <td><%=classdata5.total_mark%> </td>
+                <td><i><%=classdata5.max_mark%>  </i> </td>
+            </tr> -->
+        </tbody>
+        <%  i++; }) %>
+        <% } else{ %>
+        
+        <% } %>
+            </table>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="table table-responsive"id="neetcerti">
+            <table class="table table-bordered">
+                <thead id="borderhead" class="text-center">
+            <tr>
+                <th>Subject</th>
+                <th style="width: 120px;">Percentile
+                    Obtained NEET</th>
+                    <!-- <th>Maximum Marks</th> -->
+            </tr>
+          
+        </thead>
+        <%
+        if(userData6.length!=0){
+        var i=1;
+        userData6.forEach(function(classdata6){
+        %>
+        <tbody class="bordercerti"id="tbody">
+            <tr>
+                <th>Physics</th>
+                <td><%=classdata6.phy_mark %></td>
+                <!-- <td><%=classdata6.phy_max_mark %></td> -->
+            </tr>
+            <tr>
+                <th>Chemistry</th>
+                <td><%=classdata6.chem_mark %></td>
+                <!-- <td><%=classdata6.chem_max_mark %></td> -->
+            </tr>
+            <tr>
+                <th>Biology</th>
+                <td><%=classdata6.bio_mark %></td>
+                <!-- <td><%=classdata6.bio_max_mark %></td> -->
+            </tr>
+            <tr>
+                <th>Aggregate</th>
+                <td><%=classdata6.agg_mark %></td>
+                <!-- <td><%=classdata6.agg_max_mark %></td> -->
+            </tr>
+        </tbody>
+        <%  i++; }) %>
+        <% } else{ %>
+        
+        <% } %>
+            </table>
+        </div>
+        
+    </div>
+</div>
+
+
+
+
+                
+  </div>
+  <div class="row mt-5 pt-5 text-dark"id="f-15">
+    <div class="col-md-8">
+    <h4><i>SIGNATURE OF THE PARENT/GUARDIAN</i></h4>
+    </div>
+    <div class="col-md-4">
+      <h4 class="text-right"><i>SIGNATURE OF THE CANDIDATE</i></h4>
+    
+    </div>
+        </div>
+
+</div>
+</div>
+</section>
+
+
+
+ 
+<!-- jQuery bootstrap -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script>
+UPLOADCARE_PUBLIC_KEY = 'demopublickey';
+</script>
+<script src="https://ucarecdn.com/libs/widget/3.x/uploadcare.full.min.js" charset="utf-8"></script>
+<!-- AdminLTE App -->
+<script src="js/adminlte.js"></script>
+<script src="js/mbbs.js"></script>
+
+<!-- AdminLTE for demo purposes -->
+<script src="js/demo.js"></script>
+<!-- page script -->
+
+
+</body>
+
+</html>

@@ -1,0 +1,107 @@
+<title>TVMC</title>
+
+<link rel="icon" href="/assets/img/logo.gif" type="image/x-icon" />
+<link
+  href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+  rel="stylesheet"
+  id="bootstrap-css"
+/>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="/assets/css/login.css" />
+
+<script>
+  // Change the type of input to password or text
+  function Toggle() {
+    var temp = document.getElementById("typepass");
+    if (temp.type === "password") {
+      temp.type = "text";
+    } else {
+      temp.type = "password";
+    }
+  }
+</script>
+<%- include('../views/header'); -%>
+<!------ Include the above in your HEAD tag ---------->
+<div class="wrapper fadeInDown mt-5">
+  <div class="container-fluid">
+  <div class="row">
+<div class="col-md-3 text-center">
+  <h1 class="text-right"><img src="/assets/img/tn.png" width="170"/></h1>
+
+</div>
+    <div class="col-md-5 d-flex"style="left:33px">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+    <div class="formFooter">
+      <h3 class="underlineHover">Sign In</h3>
+      <hr />
+    </div>
+    <% if (message.length > 0) { %>
+    <div class="alert alert-info col-sm-12"><%= message %></div>
+    <% } %>
+    <!-- Static navbar -->
+    <div class="text-center mt-2"></div>
+    <!-- Login Form -->
+    <form
+      id="loginform"
+      class="form-horizontal"
+      role="form"
+      method="post"
+      action="/login"
+    >
+      <input
+        type="text"
+        id="login"
+        class="fadeIn second"
+        name="user_name"
+        placeholder="User name* or Email Id*"
+        required
+      />
+      <input
+        type="password"
+        id="typepass"
+        class="fadeIn third"
+        name="password"
+        placeholder="Password*"
+        required
+      />
+      <div class="col-md-6">
+        <p>
+          <input
+            type="checkbox"
+            id="checkboxPrimary3"
+            onclick="Toggle()"
+          />&nbsp;&nbsp;Show password
+        </p>
+      </div>
+      <button id="btn-login" type="submit" class="btn">Sign In</button>
+    </form>
+
+    <!-- Remind Passowrd -->
+    <div id="formFooter">
+      <a class="underlineHover pull-left" href="/forgotpwd">Forgot password</a>
+
+      <a class="underlineHover pull-right" href="/signuphome">Sign Up</a>
+      <br />
+    </div>
+  </div>
+  </div>
+  <div class="col-md-4"style="color:  #1c70a1;">
+    <h3 style="color:  #1c70a1;"class="ml-4 pl-1"><b>USER INSTRUCTIONS:</b></h3>
+    <ol id="ol">
+      <li>Only Candidates who have officially secured admissions through the All India or
+        State Counselling to this institute shall register for admissions in this portal
+      </li>
+      <li>All documents submitted through this portal will be officially verifiable</li>
+<li>
+  The admissions office reserves the right to accept the documents after verification
+</li>
+<li>Registration in this portal is essential to start admission process on reaching the campus.</li>
+    </ol>
+
+  </div>
+  </div>
+</div>
+</div>
+<%- include('../views/footer'); -%>

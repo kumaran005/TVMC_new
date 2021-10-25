@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>ID Card</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="/assets/dashboard/plugins/fontawesome-free/css/all.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- bootsrtap -->
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="/assets/dashboard/dist/css/alter.css">
+  <link rel="stylesheet" href="/assets/dashboard/dist/css/mbbs.css">
+  <!-- Google Font Source Sans Pro -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro300,400,400i,700" rel="stylesheet">
+  <style>
+    #card{
+      position: relative;
+    top: 40px;
+    margin-bottom: 47px;
+    }
+    p{
+      font-weight: 600;
+    }
+span{
+  position: relative;
+  right: 30px;
+}
+#tablecerti th{
+  font-weight: 600;
+}
+#span{
+  bottom: 2px;
+}
+#spanleft{
+  top: 2px;
+}
+th,td {
+    
+    font-size: 20px!important;
+}
+.table-bordered td, .table-bordered th {
+    border: 1px solid black!important;
+}
+td{
+    font-weight: 100;
+    
+}
+.table th, .table td {
+    padding: 2px 8px;
+}
+    @media print{
+body{
+ margin: 0px!important;
+
+padding: 0;
+}
+#card{
+  position: relative;
+    top: 20px!important;
+}
+/* @page {size: landscape!important;} */
+
+    }
+h5{
+  font-size: 14px!important;
+  font-weight: 900;
+}
+  #card1{
+    height: 350px;
+    border: 1px solid;
+    overflow: hidden;
+    overflow-wrap: anywhere;
+    line-height: 20px;
+    background: repeating-linear-gradient( 
+-45deg
+ , #cccccc45, #fff 10px); 
+
+  }
+  #photo{
+        background: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFERL9wvve6caZmEdeP79y1S6ajRlEJike7w&usqp=CAU);
+    /* background-attachment: fixed; */
+    background-repeat: no-repeat;
+    background-size: 100% 70%;
+    background-position: center;
+  }
+  #sign1{
+    /* border: 5px solid #170a4ca8; */
+    line-height: 0px;
+    height: 70px;
+    text-align: center;
+    background: white;
+ 
+
+   /* position: relative;
+    bottom: 24px;*/
+  }
+  p{
+    padding: 0;
+    margin: 0;
+    line-height: 15px;
+    font-size: 12px;
+  }
+</style>
+</head>
+<body class="hold-transition sidebar-mini">
+  <div class="toolbar no-print">
+    <button class="btn btn-info" onclick="window.print()">
+      Print Certificate
+    </button>
+        <% if (course == 'MBBS'){ %>
+      <a href="/mbbs_board"><button class="btn btn-info">Back</button></a>
+      <%}%> <% if (course == 'MDMS'){ %>
+      <a href="/mdms_board"><button class="btn btn-info">Back</button></a>
+      <%}%> <% if (course == 'BSC'){ %>
+      <a href="/bsc_board"><button class="btn btn-info">Back</button></a>
+      <%}%> <% if (course == 'AISSC'){ %>
+      <a href="/aissc_board"><button class="btn btn-info">Back</button></a>
+      <%}%><% if (course == 'DIPLOMA IN NURSING'){ %>
+      <a href="/nursing_board"><button class="btn btn-info">Back</button></a>
+      <%}%>
+  </div>
+  <%for (i in  userData){%>
+   <section id="card"class="">
+ <div class="container-fluid">
+  <div class="row">
+    <div class="col-md-6">
+  <div class="card p-3"id="card1">
+    <div class="row ">
+
+      <div class="col-md-8">
+        <div class="card-block">
+          <!--           <h4 class="card-title">Small card</h4> -->
+          <img class="card-img-top" style="    height: 70px;
+    width: 300px;" src="https://www.incimages.com/uploaded_files/image/1920x1080/*Barcode_32896.jpg" alt="barcode">
+      <div class="card-boy mt-2">
+        <div class="row"style="line-height:10px">
+          <div class="col-md-4">
+            <p>Course    </p>
+          </div>
+          <div class="col-md-8 d-flex">
+            <span id="spanleft">: </span>
+            <%if(userData[i].course_title =='MBBS'){%>
+            <p>MBBS- Graduate Medical Program <%=userData1[i].academic_year.substr(4,10)%></p>
+            <%}else{%>
+              <p><%=userData[i].course_title%>-<%=userData[i].course%> <%=userData1[i].academic_year.substr(4,10)%></p>
+              <%}%>
+  </div>
+  <div class="col-md-4">
+      <p>Student   
+</p>
+</div>
+<div class="col-md-8 d-flex">
+  <span  id="spanleft">: </span>
+  <p><%=userData[i].cand_name%></p>
+     </div>
+     <div class="col-md-4">
+        <p>Admission No   
+</p></div>
+<div class="col-md-8  d-flex">
+  <span  id="spanleft">: </span>
+<p style="position: relative;right: 0px">
+        <%=userData[i].student_code%></p>
+      </div>
+    <div class="col-md-8 text-center mt-4 pt-2">
+
+        <img src="https://pbs.twimg.com/profile_images/1288182756845826053/gfi-uCAe.jpg"class="float-lef"alt="logo"style="width: 100px;border-radius: 55%">
+      </div>
+      <div class="col-md-8 text-center"style="line-heigt:0px">
+
+        <h5>Tirunelveli Medical College </h5>
+        <p style="line-height:0px">Tirunelveli, Tamilnadu.  Pin - 627011</p>
+      </div>
+  </div>
+</div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+
+        <img class="d-block " style="border: 2px solid;height: 40mm;width:40mm;"src="data:image/png;base64,<%=userData12[i].Filename%>" alt="">
+  
+<!--  <div id="photo"style="height: 80%;width:100%"></div>  
+ -->  
+  <img src="https://img.freepik.com/free-vector/quill-signature-logo-design-inspiration_57043-204.jpg?size=626&ext=jpg"
+  alt="sign"style="width:130px"class="img-fluid pt-5"> 
+  <p id="sin"class=" pl-5 mt-2"> Proctor</p>
+   </div>
+
+    </div>
+  </div>
+</div>
+
+     <div class="col-md-6">
+  <div class="card p-3"id="card1">
+    <div class="row ">
+
+      <div class="col-md-5">
+        <div class="card-block">
+          <!--           <h4 class="card-title">Small card</h4> -->
+         
+      <div class="card-boy">
+        <div class="row">
+          <div class="col-md-5">
+            <p>Course    </p>
+          </div>
+          <div class="col-md-7 d-flex">
+            <span id="span">: </span>
+             <%if(userData[i].course_title =='MBBS'){%>
+            <p>MBBS-Graduate Medical Program <%=userData1[i].academic_year.substr(4,10)%></p>
+            <%}else{%>
+              <p><%=userData[i].course_title%>-<%=userData[i].course%> <%=userData1[i].academic_year.substr(4,10)%></p>
+              <%}%>
+  </div>
+
+     <div class="col-md-7">
+        <p>Admission No 
+</p></div> 
+<div class="col-md-5 d-flex p-0"style="right:">
+  <span id="span">: </span>
+<p style="position: relative;right: 22px"><%=userData[i].student_code%></p>
+      </div>
+     
+<div class="col-md-12 text-center mt-50 pt-5">
+        <img src="https://pbs.twimg.com/profile_images/1288182756845826053/gfi-uCAe.jpg"class="float-lef"alt="logo"style="width: 100px;border-radius: 55%">
+      </div>
+      <div class="col-md-12 text-center">
+
+        <h5>Tirunelveli Medical College </h5>
+        <p style="line-height:2px">Tirunelveli, Tamilnadu.  Pin - 627011</p>
+      </div>
+  </div>
+   </div>
+        </div>
+      </div>
+
+      <div class="col-md-7">
+<div class="row">
+    <div class="col-md-5">
+      <p>Student  
+</p>
+</div>
+<div class="col-md-7  d-flex">
+  <span id="span">: </span>
+    <p><%=userData[i].cand_name%></p>
+     </div>
+         <div class="col-md-5">
+      <p>Guardian   
+</p>
+</div>
+<div class="col-md-7  d-flex">
+
+  
+  <span id="span">: </span>
+    <p><%=userData1[i].father_name%></p>
+    
+     </div>
+         <div class="col-md-5">
+      <p>Date of Birth  
+</p>
+</div>
+<div class="col-md-7  d-flex">
+  <span id="span">: </span>
+     <p><%=userData1[i].date_of_birth%></p>
+     </div>
+         <div class="col-md-5">
+      <p>Blood Group  
+</p>
+</div>
+<div class="col-md-7  d-flex">
+  <span id="span">: </span>
+       <p><%=userData1[i].blood_group%></p>
+     </div>
+           <div class="col-md-5">
+      <p>Residential Address  
+</p>
+</div>
+<div class="col-md-7 d-flex">
+  <span id="span">: </span>
+  <p style="height: 100px;overflow: hidden;">
+        <%=userData2[i].ps_address%></p>
+     </div>
+             <div class="col-md-5">
+      <p>Mobile No  
+</p>
+</div>
+<div class="col-md-7 d-flex">
+  <span id="span">: </span>
+  <p>
+        <%=userData8[i].mobile_phone%></p>
+     </div>
+             <div class="col-md-5">
+      <p>Email-ID  
+</p>
+</div>
+<div class="col-md-7 d-flex">
+  <span id="span">: </span>
+  <p><%=userData8[i].email_id%></p>
+     </div>
+             <div class="col-md-5 mt-3">
+      <p>Signature  
+</p>
+</div>
+<div class="col-md-7 d-flex mt-3">
+  <span>: </span>
+  <img src="data:image/png;base64,<%=userData13[i].Filename%>"alt="sign1"width="100"class="img-fluid bg-light"> 
+  <p>
+        </p>
+     </div>
+</div>
+   </div>
+
+    </div>
+  </div>
+</div>
+  </div>
+</div>
+   </section>
+<%}%>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+ 
+<!-- jQuery bootstrap -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script>
+UPLOADCARE_PUBLIC_KEY = 'demopublickey';
+</script>
+<script src="https://ucarecdn.com/libs/widget/3.x/uploadcare.full.min.js" charset="utf-8"></script>
+<!-- AdminLTE App -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+<script src="/assets/js/print.js"></script>
+<script src="js/adminlte.js"></script>
+<script src="js/mbbs.js"></script>
+
+<!-- AdminLTE for demo purposes -->
+<script src="js/demo.js"></script>
+<!-- page script -->
+
+
+
+
+</body>
+
+</html>
