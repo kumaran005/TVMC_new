@@ -1,83 +1,148 @@
+// date formatter
+function reformatDate(dateStr) {
+  dArr = dateStr.split("-");
+  return dateStr && dArr[2] + "-" + dArr[1] + "-" + dArr[0];
+}
+// relieve-filter
+filter_relieve = () => {
+  var quota = $("#choice").val();
+  var rdate = $("#reldate").val();
+  data = {
+    quota: quota,
+    date: rdate,
+  };
+  axios({
+    method: "post",
+    url: "/filter_relieve",
+    data: data,
+  })
+    .then(function (response) {
+      var r_d = response.data;
+      var table = "";
+      r_d.map((classdata) => {
+        var i = 0;
+        table += `<tr  id="cand_table"><td class="pt-4">`;
+        table += ` <input type="checkbox" form="for_report"class="check_item" name="rel_check" id="cand_check${i}" value="${classdata.cand_id}"></td>`;
+        // table += `<td id="id"  hidden>${classdata.cand_id}</td>`;
+        table += `<td id="id">`;
+        if (classdata.student_code == "" || classdata.student_code == null) {
+          table += classdata.cand_id;
+        } else {
+          table += classdata.student_code;
+        }
+        table += `</td>`;
+        table += `<td>${classdata.cand_name}</td>`;
+
+        table += `<td>${classdata.reg_no}</td>`;
+
+        table += `<td>${classdata.admission_type}</td>`;
+        table += `<td>${
+          classdata.date_of_admission == null ? "" : classdata.date_of_admission
+        }</td>`;
+
+        table += `<td hidden>${classdata.admission_quota}</td>`;
+        table += `<td hidden>${classdata.date_of_relieving}</td>`;
+        table += `</tr>`;
+        i++;
+      });
+      document.getElementById("myTabl").innerHTML = table;
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+};
 // other_add
-$('#add_blood_group').on('change',()=>{
+$("#add_blood_group").on("change", () => {
   var bg = $("#add_blood_group :selected").val();
-  bg == "Others" ? $('#bloodModal').modal('show') : null;
-})
+  bg == "Others" ? $("#bloodModal").modal("show") : null;
+});
 select_blood = () => {
   var b = document.getElementById("custom_bg").value;
-  var x = document.getElementById("add_blood_group");
-  var option = document.createElement("option");
-  option.text = b;
-  option.value = b;
-  x.add(option);
-  document.getElementById("add_blood_group").value = b;
+  if (b) {
+    var x = document.getElementById("add_blood_group");
+    var option = document.createElement("option");
+    option.text = b;
+    option.value = b;
+    x.add(option);
+    document.getElementById("add_blood_group").value = b;
+  }
 };
-$('#add_religion').on('change',()=>{ 
+$("#add_religion").on("change", () => {
   var bg = $("#add_religion :selected").val();
-  bg == "Others" ? $('#religionModal').modal('show') : null;
-})
+  bg == "Others" ? $("#religionModal").modal("show") : null;
+});
 select_religion = () => {
   var r = document.getElementById("custom_religion").value;
-  var x = document.getElementById("add_religion");
-  var option = document.createElement("option");
-  option.text = r;
-  option.value = r;
-  x.add(option);
-  document.getElementById("add_religion").value = r;
+  if (r) {
+    var x = document.getElementById("add_religion");
+    var option = document.createElement("option");
+    option.text = r;
+    option.value = r;
+    x.add(option);
+    document.getElementById("add_religion").value = r;
+  }
 };
-$('#add_nationality').on('change',()=>{
+$("#add_nationality").on("change", () => {
   var bg = $("#add_nationality :selected").val();
-  bg == "Others" ? $('#nationalityModal').modal('show') : null;
-})
+  bg == "Others" ? $("#nationalityModal").modal("show") : null;
+});
 select_nationality = () => {
   var n = document.getElementById("custom_nationality").value;
-  var x = document.getElementById("add_nationality");
-  var option = document.createElement("option");
-  option.text = n;
-  option.value = n;
-  x.add(option);
-  document.getElementById("add_nationality").value = n;
+  if (n) {
+    var x = document.getElementById("add_nationality");
+    var option = document.createElement("option");
+    option.text = n;
+    option.value = n;
+    x.add(option);
+    document.getElementById("add_nationality").value = n;
+  }
 };
 
 //other_edit
-$('#edit_blood_group').on('change',() =>{
+$("#edit_blood_group").on("change", () => {
   var bg = $("#edit_blood_group :selected").val();
-  bg == "Others" ? $('#editbloodModal').modal('show') : null;
-})
+  bg == "Others" ? $("#editbloodModal").modal("show") : null;
+});
 select_blood_edit = () => {
   var b = document.getElementById("edit_custom_bg").value;
-  var x = document.getElementById("edit_blood_group");
-  var option = document.createElement("option");
-  option.text = b;
-  option.value = b;
-  x.add(option);
-  document.getElementById("edit_blood_group").value = b;
+  if (b) {
+    var x = document.getElementById("edit_blood_group");
+    var option = document.createElement("option");
+    option.text = b;
+    option.value = b;
+    x.add(option);
+    document.getElementById("edit_blood_group").value = b;
+  }
 };
-$('#edit_religion').on('change',()=>{
+$("#edit_religion").on("change", () => {
   var bg = $("#edit_religion :selected").val();
-  bg == "Others" ? $('#editreligionModal').modal('show') : null;
-})
+  bg == "Others" ? $("#editreligionModal").modal("show") : null;
+});
 select_religion_edit = () => {
   var r = document.getElementById("edit_custom_religion").value;
-  var x = document.getElementById("edit_religion");
-  var option = document.createElement("option");
-  option.text = r;
-  option.value = r;
-  x.add(option);
-  document.getElementById("edit_religion").value = r;
+  if (r) {
+    var x = document.getElementById("edit_religion");
+    var option = document.createElement("option");
+    option.text = r;
+    option.value = r;
+    x.add(option);
+    document.getElementById("edit_religion").value = r;
+  }
 };
-$('#edit_nationality').on('change',()=>{
+$("#edit_nationality").on("change", () => {
   var bg = $("#edit_nationality :selected").val();
-  bg == "Others" ? $('#editnationalityModal').modal('show') : null;
-})
+  bg == "Others" ? $("#editnationalityModal").modal("show") : null;
+});
 select_nationality_edit = () => {
   var n = document.getElementById("edit_custom_nationality").value;
-  var x = document.getElementById("edit_nationality");
-  var option = document.createElement("option");
-  option.text = n;
-  option.value = n;
-  x.add(option);
-  document.getElementById("edit_nationality").value = n;
+  if (n) {
+    var x = document.getElementById("edit_nationality");
+    var option = document.createElement("option");
+    option.text = n;
+    option.value = n;
+    x.add(option);
+    document.getElementById("edit_nationality").value = n;
+  }
 };
 
 // mbbs_save
@@ -376,12 +441,12 @@ docs_files_only_1 = (id, name) => {
       if (data) {
         $("#loading").modal("hide");
       }
- setTimeout(function() {
-              var isShown = $('#loading').hasClass('show');
-              if(isShown){
- 				$("#loading").modal("hide");
-				}
-           }, 2500);
+      setTimeout(function () {
+        var isShown = $("#loading").hasClass("show");
+        if (isShown) {
+          $("#loading").modal("hide");
+        }
+      }, 2500);
     }
   };
 
@@ -412,12 +477,12 @@ docs_files_only_2 = (id, name) => {
       if (data) {
         $("#loading").modal("toggle");
       }
- setTimeout(function() {
-              var isShown = $('#loading').hasClass('show');
-              if(isShown){
- 				$("#loading").modal("hide");
-				}
-           }, 2500);
+      setTimeout(function () {
+        var isShown = $("#loading").hasClass("show");
+        if (isShown) {
+          $("#loading").modal("hide");
+        }
+      }, 2500);
     }
   };
 
@@ -448,12 +513,12 @@ docs_files_only_3 = (id, name) => {
       if (data) {
         $("#loading").modal("toggle");
       }
- setTimeout(function() {
-              var isShown = $('#loading').hasClass('show');
-              if(isShown){
- 				$("#loading").modal("hide");
-				}
-           }, 2500);
+      setTimeout(function () {
+        var isShown = $("#loading").hasClass("show");
+        if (isShown) {
+          $("#loading").modal("hide");
+        }
+      }, 2500);
     }
   };
 
@@ -484,12 +549,12 @@ docs_files_only_4 = (id, name) => {
       if (data) {
         $("#loading").modal("toggle");
       }
- setTimeout(function() {
-              var isShown = $('#loading').hasClass('show');
-              if(isShown){
- 				$("#loading").modal("hide");
-				}
-           }, 2500);
+      setTimeout(function () {
+        var isShown = $("#loading").hasClass("show");
+        if (isShown) {
+          $("#loading").modal("hide");
+        }
+      }, 2500);
     }
   };
 
@@ -520,12 +585,12 @@ docs_files_only_5 = (id, name) => {
       if (data) {
         $("#loading").modal("toggle");
       }
- setTimeout(function() {
-              var isShown = $('#loading').hasClass('show');
-              if(isShown){
- 				$("#loading").modal("hide");
-				}
-           }, 2500);
+      setTimeout(function () {
+        var isShown = $("#loading").hasClass("show");
+        if (isShown) {
+          $("#loading").modal("hide");
+        }
+      }, 2500);
     }
   };
 
@@ -556,12 +621,12 @@ docs_files_only_6 = (id, name) => {
       if (data) {
         $("#loading").modal("toggle");
       }
- setTimeout(function() {
-              var isShown = $('#loading').hasClass('show');
-              if(isShown){
- 				$("#loading").modal("hide");
-				}
-           }, 2500);
+      setTimeout(function () {
+        var isShown = $("#loading").hasClass("show");
+        if (isShown) {
+          $("#loading").modal("hide");
+        }
+      }, 2500);
     }
   };
 
@@ -591,12 +656,12 @@ docs_files_only_7 = (id, name) => {
       if (data) {
         $("#loading").modal("toggle");
       }
- setTimeout(function() {
-              var isShown = $('#loading').hasClass('show');
-              if(isShown){
- 				$("#loading").modal("hide");
-				}
-           }, 2500);
+      setTimeout(function () {
+        var isShown = $("#loading").hasClass("show");
+        if (isShown) {
+          $("#loading").modal("hide");
+        }
+      }, 2500);
     }
   };
 
@@ -626,12 +691,12 @@ docs_files_only_8 = (id, name) => {
       if (data) {
         $("#loading").modal("toggle");
       }
- setTimeout(function() {
-              var isShown = $('#loading').hasClass('show');
-              if(isShown){
- 				$("#loading").modal("hide");
-				}
-           }, 2500);
+      setTimeout(function () {
+        var isShown = $("#loading").hasClass("show");
+        if (isShown) {
+          $("#loading").modal("hide");
+        }
+      }, 2500);
     }
   };
 
@@ -661,12 +726,12 @@ docs_files_only_9 = (id, name) => {
       if (data) {
         $("#loading").modal("toggle");
       }
- setTimeout(function() {
-              var isShown = $('#loading').hasClass('show');
-              if(isShown){
- 				$("#loading").modal("hide");
-				}
-           }, 2500);
+      setTimeout(function () {
+        var isShown = $("#loading").hasClass("show");
+        if (isShown) {
+          $("#loading").modal("hide");
+        }
+      }, 2500);
     }
   };
 
@@ -696,12 +761,12 @@ docs_files_only_10 = (id, name) => {
       if (data) {
         $("#loading").modal("toggle");
       }
- setTimeout(function() {
-              var isShown = $('#loading').hasClass('show');
-              if(isShown){
- 				$("#loading").modal("hide");
-				}
-           }, 2500);
+      setTimeout(function () {
+        var isShown = $("#loading").hasClass("show");
+        if (isShown) {
+          $("#loading").modal("hide");
+        }
+      }, 2500);
     }
   };
 
@@ -731,12 +796,12 @@ docs_files_only_11 = (id, name) => {
       if (data) {
         $("#loading").modal("toggle");
       }
- setTimeout(function() {
-              var isShown = $('#loading').hasClass('show');
-              if(isShown){
- 				$("#loading").modal("hide");
-				}
-           }, 2500);
+      setTimeout(function () {
+        var isShown = $("#loading").hasClass("show");
+        if (isShown) {
+          $("#loading").modal("hide");
+        }
+      }, 2500);
     }
   };
 
@@ -766,12 +831,12 @@ docs_files_only_12 = (id, name) => {
       if (data) {
         $("#loading").modal("toggle");
       }
- setTimeout(function() {
-              var isShown = $('#loading').hasClass('show');
-              if(isShown){
- 				$("#loading").modal("hide");
-				}
-           }, 2500);
+      setTimeout(function () {
+        var isShown = $("#loading").hasClass("show");
+        if (isShown) {
+          $("#loading").modal("hide");
+        }
+      }, 2500);
     }
   };
 
@@ -801,12 +866,12 @@ docs_files_only_13 = (id, name) => {
       if (data) {
         $("#loading").modal("toggle");
       }
- setTimeout(function() {
-              var isShown = $('#loading').hasClass('show');
-              if(isShown){
- 				$("#loading").modal("hide");
-				}
-           }, 2500);
+      setTimeout(function () {
+        var isShown = $("#loading").hasClass("show");
+        if (isShown) {
+          $("#loading").modal("hide");
+        }
+      }, 2500);
     }
   };
 
@@ -836,12 +901,12 @@ docs_files_only_14 = (id, name) => {
       if (data) {
         $("#loading").modal("toggle");
       }
- setTimeout(function() {
-              var isShown = $('#loading').hasClass('show');
-              if(isShown){
- 				$("#loading").modal("hide");
-				}
-           }, 2500);
+      setTimeout(function () {
+        var isShown = $("#loading").hasClass("show");
+        if (isShown) {
+          $("#loading").modal("hide");
+        }
+      }, 2500);
     }
   };
 
@@ -871,12 +936,12 @@ docs_files_only_15 = (id, name) => {
       if (data) {
         $("#loading").modal("toggle");
       }
- setTimeout(function() {
-              var isShown = $('#loading').hasClass('show');
-              if(isShown){
- 				$("#loading").modal("hide");
-				}
-           }, 2500);
+      setTimeout(function () {
+        var isShown = $("#loading").hasClass("show");
+        if (isShown) {
+          $("#loading").modal("hide");
+        }
+      }, 2500);
     }
   };
 
@@ -906,12 +971,12 @@ docs_files_only_16 = (id, name) => {
       if (data) {
         $("#loading").modal("toggle");
       }
- setTimeout(function() {
-              var isShown = $('#loading').hasClass('show');
-              if(isShown){
- 				$("#loading").modal("hide");
-				}
-           }, 2500);
+      setTimeout(function () {
+        var isShown = $("#loading").hasClass("show");
+        if (isShown) {
+          $("#loading").modal("hide");
+        }
+      }, 2500);
     }
   };
 
@@ -941,12 +1006,12 @@ docs_files_only_17 = (id, name) => {
       if (data) {
         $("#loading").modal("toggle");
       }
- setTimeout(function() {
-              var isShown = $('#loading').hasClass('show');
-              if(isShown){
- 				$("#loading").modal("hide");
-				}
-           }, 2500);
+      setTimeout(function () {
+        var isShown = $("#loading").hasClass("show");
+        if (isShown) {
+          $("#loading").modal("hide");
+        }
+      }, 2500);
     }
   };
 
@@ -976,12 +1041,12 @@ docs_files_only_18 = (id, name) => {
       if (data) {
         $("#loading").modal("toggle");
       }
- setTimeout(function() {
-              var isShown = $('#loading').hasClass('show');
-              if(isShown){
- 				$("#loading").modal("hide");
-				}
-           }, 2500);
+      setTimeout(function () {
+        var isShown = $("#loading").hasClass("show");
+        if (isShown) {
+          $("#loading").modal("hide");
+        }
+      }, 2500);
     }
   };
 
@@ -1011,12 +1076,12 @@ docs_files_only_19 = (id, name) => {
       if (data) {
         $("#loading").modal("toggle");
       }
- setTimeout(function() {
-              var isShown = $('#loading').hasClass('show');
-              if(isShown){
- 				$("#loading").modal("hide");
-				}
-           }, 2500);
+      setTimeout(function () {
+        var isShown = $("#loading").hasClass("show");
+        if (isShown) {
+          $("#loading").modal("hide");
+        }
+      }, 2500);
     }
   };
 
@@ -1046,12 +1111,12 @@ docs_files_only_20 = (id, name) => {
       if (data) {
         $("#loading").modal("toggle");
       }
- setTimeout(function() {
-              var isShown = $('#loading').hasClass('show');
-              if(isShown){
- 				$("#loading").modal("hide");
-				}
-           }, 2500);
+      setTimeout(function () {
+        var isShown = $("#loading").hasClass("show");
+        if (isShown) {
+          $("#loading").modal("hide");
+        }
+      }, 2500);
     }
   };
 
@@ -1081,12 +1146,12 @@ docs_files_only_21 = (id, name) => {
       if (data) {
         $("#loading").modal("toggle");
       }
- setTimeout(function() {
-              var isShown = $('#loading').hasClass('show');
-              if(isShown){
- 				$("#loading").modal("hide");
-				}
-           }, 2500);
+      setTimeout(function () {
+        var isShown = $("#loading").hasClass("show");
+        if (isShown) {
+          $("#loading").modal("hide");
+        }
+      }, 2500);
     }
   };
 
@@ -1116,12 +1181,12 @@ docs_files_only_22 = (id, name) => {
       if (data) {
         $("#loading").modal("toggle");
       }
- setTimeout(function() {
-              var isShown = $('#loading').hasClass('show');
-              if(isShown){
- 				$("#loading").modal("hide");
-				}
-           }, 2500);
+      setTimeout(function () {
+        var isShown = $("#loading").hasClass("show");
+        if (isShown) {
+          $("#loading").modal("hide");
+        }
+      }, 2500);
     }
   };
 
@@ -1151,12 +1216,12 @@ docs_files_only_23 = (id, name) => {
       if (data) {
         $("#loading").modal("toggle");
       }
- setTimeout(function() {
-              var isShown = $('#loading').hasClass('show');
-              if(isShown){
- 				$("#loading").modal("hide");
-				}
-           }, 2500);
+      setTimeout(function () {
+        var isShown = $("#loading").hasClass("show");
+        if (isShown) {
+          $("#loading").modal("hide");
+        }
+      }, 2500);
     }
   };
 
@@ -1186,12 +1251,12 @@ docs_files_only_24 = (id, name) => {
       if (data) {
         $("#loading").modal("toggle");
       }
- setTimeout(function() {
-              var isShown = $('#loading').hasClass('show');
-              if(isShown){
- 				$("#loading").modal("hide");
-				}
-           }, 2500);
+      setTimeout(function () {
+        var isShown = $("#loading").hasClass("show");
+        if (isShown) {
+          $("#loading").modal("hide");
+        }
+      }, 2500);
     }
   };
 
@@ -1221,12 +1286,12 @@ docs_files_only_25 = (id, name) => {
       if (data) {
         $("#loading").modal("toggle");
       }
- setTimeout(function() {
-              var isShown = $('#loading').hasClass('show');
-              if(isShown){
- 				$("#loading").modal("hide");
-				}
-           }, 2500);
+      setTimeout(function () {
+        var isShown = $("#loading").hasClass("show");
+        if (isShown) {
+          $("#loading").modal("hide");
+        }
+      }, 2500);
     }
   };
 
@@ -1256,12 +1321,12 @@ docs_files_only_26 = (id, name) => {
       if (data) {
         $("#loading").modal("toggle");
       }
- setTimeout(function() {
-              var isShown = $('#loading').hasClass('show');
-              if(isShown){
- 				$("#loading").modal("hide");
-				}
-           }, 2500);
+      setTimeout(function () {
+        var isShown = $("#loading").hasClass("show");
+        if (isShown) {
+          $("#loading").modal("hide");
+        }
+      }, 2500);
     }
   };
 
@@ -1291,12 +1356,12 @@ docs_files_only_27 = (id, name) => {
       if (data) {
         $("#loading").modal("toggle");
       }
- setTimeout(function() {
-              var isShown = $('#loading').hasClass('show');
-              if(isShown){
- 				$("#loading").modal("hide");
-				}
-           }, 2500);
+      setTimeout(function () {
+        var isShown = $("#loading").hasClass("show");
+        if (isShown) {
+          $("#loading").modal("hide");
+        }
+      }, 2500);
     }
   };
 
@@ -1326,12 +1391,12 @@ docs_files_only_28 = (id, name) => {
       if (data) {
         $("#loading").modal("toggle");
       }
- setTimeout(function() {
-              var isShown = $('#loading').hasClass('show');
-              if(isShown){
- 				$("#loading").modal("hide");
-				}
-           }, 2500);
+      setTimeout(function () {
+        var isShown = $("#loading").hasClass("show");
+        if (isShown) {
+          $("#loading").modal("hide");
+        }
+      }, 2500);
     }
   };
 
@@ -1361,12 +1426,12 @@ docs_files_only_29 = (id, name) => {
       if (data) {
         $("#loading").modal("toggle");
       }
- setTimeout(function() {
-              var isShown = $('#loading').hasClass('show');
-              if(isShown){
- 				$("#loading").modal("hide");
-				}
-           }, 2500);
+      setTimeout(function () {
+        var isShown = $("#loading").hasClass("show");
+        if (isShown) {
+          $("#loading").modal("hide");
+        }
+      }, 2500);
     }
   };
 
@@ -1561,7 +1626,7 @@ $(document).ready(function () {
   });
 
   //same as present address
-   $("#chkCopy").click(function () {
+  $("#chkCopy").click(function () {
     if ($("#chkCopy").is(":checked")) {
       $("#add_pm_district").val($("#add_ps_district").val());
       $("#add_pm_address").val($("#add_ps_address").val());

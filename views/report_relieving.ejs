@@ -48,17 +48,7 @@ th{
       <button class="btn btn-info" onclick="window.print()">
         Print Certificate
       </button>
-        <% if (course == 'MBBS'){ %>
-      <a href="/mbbs_board"><button class="btn btn-info">Back</button></a>
-      <%}%> <% if (course == 'MDMS'){ %>
-      <a href="/mdms_board"><button class="btn btn-info">Back</button></a>
-      <%}%> <% if (course == 'BSC'){ %>
-      <a href="/bsc_board"><button class="btn btn-info">Back</button></a>
-      <%}%><% if (course == 'AISSC'){ %>
-      <a href="/aissc_board"><button class="btn btn-info">Back</button></a>
-      <%}%><% if (course == 'DIPLOMA IN NURSING'){ %>
-      <a href="/nursing_board"><button class="btn btn-info">Back</button></a>
-      <%}%>
+        
     </div>
    
 <section id="report"class="blue ">
@@ -101,7 +91,8 @@ th{
                
                
                <div class="col-md-10 pl-5">
-                   <p>Medical Education - Tirunelveli Medical College, Tirunelveli - Candidates who joined MBBS
+                   <p>Medical Education - Tirunelveli Medical College, Tirunelveli - Candidates who joined <%=userData[0].course_title %> 
+
                     under <b><%=userData[0].admission_quota %> </b>
                    (<%=userData1[0].academic_year%>)
                     Session - relieved on 

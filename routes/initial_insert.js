@@ -1,5 +1,14 @@
 const initial_files = require("./insert_files");
 
+function capitalize(string) {
+  if (string.toUpperCase() == "OTHERS") {
+    return "";
+  }
+  return (
+    string && string.charAt(0).toUpperCase() + string.slice(1).toLowerCase()
+  );
+}
+
 exports.student_home = (req, res) => {
   var message = "";
   var post = req.body;
@@ -17,12 +26,12 @@ exports.student_home = (req, res) => {
   var father_name = post.father_name;
   var mother_name = post.mother_name;
   var date_of_birth = post.date_of_birth;
-  var gender = post.gender;
-  var blood_group = post.blood_group;
-  var religion = post.religion;
+  var gender = post.gender == "undefined" ? "" : post.gender;
+  var blood_group = post.blood_group == "Others" ? "" : post.blood_group;
+  var religion = capitalize(post.religion);
   var community = post.community;
   var caste = post.caste;
-  var nationality = post.nationality;
+  var nationality = capitalize(post.nationality);
   var willing_to_donate_blood = post.willing_to_donate_blood;
   var academic_year = post.academic_year;
   var student_code = post.student_code;

@@ -207,3 +207,21 @@ console.log(encodeURIComponent("&"));
 console.log(decodeURIComponent("A%2B"));
 
 // console.log(JSON.stringify(decodeURI(text1.blur)));
+
+var _case = "A1";
+var _case_ = "AB+";
+var cs = "HEKBDUBKKU";
+var csq = "sdhbfsdb";
+
+function capitalize(string) {
+  if (string.toUpperCase() == "OTHERS") {
+    return "";
+  }
+  return (
+    string && string.charAt(0).toUpperCase() + string.slice(1).toLowerCase()
+  );
+}
+console.log(capitalize(_case));
+console.log(capitalize(_case_));
+console.log(capitalize(cs));
+console.log(capitalize(csq));

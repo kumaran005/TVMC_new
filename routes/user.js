@@ -215,7 +215,9 @@ exports.login = function (req, res) {
     var sql =
       "SELECT * FROM `admintv_ems`.`user_details` WHERE `user_name`='" +
       username +
-      "' or `emailid`='"+username+"' and `password` = '" +
+      "' or `emailid`='" +
+      username +
+      "' and `password` = '" +
       epass +
       "'";
     db.query(sql, function (err, results) {
@@ -358,7 +360,7 @@ exports.all_boards = (req, res) => {
     db.query(sql, function (err, data31) {
       var sql = `SELECT * FROM admintv_ems.check_slip_status`;
       db.query(sql, function (err, data30) {
-        var sql = `SELECT * FROM admintv_ems.cand_admission_details INNER JOIN
+        var sql = `SELECT *,DATE_FORMAT(date_of_admission, '%d/%m/%Y') date_of_admission  FROM admintv_ems.cand_admission_details INNER JOIN
   admintv_ems.cand_relieving_details ON admintv_ems.cand_admission_details.cand_id= admintv_ems.cand_relieving_details.cand_id
    where (admintv_ems.cand_relieving_details.relieved,admintv_ems.cand_admission_details.active_status,admintv_ems.cand_admission_details.course_title)= ('Yes','Yes','${course}')`;
         db.query(sql, function (err, data27) {
@@ -370,11 +372,11 @@ exports.all_boards = (req, res) => {
               db.query(sql, function (err, data7) {
                 var sql = `SELECT * FROM admintv_ems.community_details`;
                 db.query(sql, function (err, data6) {
-                  var sql = `SELECT * FROM admintv_ems.nation_details`;
+                  var sql = `select distinct nationality from admintv_ems.cand_profile_details where nationality !=' ' and nationality !='' order by nationality`;
                   db.query(sql, function (err, data5) {
-                    var sql = `SELECT * FROM admintv_ems.religion_details`;
+                    var sql = `select distinct religion from admintv_ems.cand_profile_details  where religion != ' ' and religion !='' order by religion`;
                     db.query(sql, function (err, data4) {
-                      var sql = `SELECT * FROM admintv_ems.no_delete`;
+                      var sql = `select distinct blood_group from admintv_ems.cand_profile_details where blood_group != ' ' and blood_group !='' order by blood_group`;
                       db.query(sql, function (err, data3) {
                         var sql = `select * from admintv_ems.board`;
                         db.query(sql, function (err, data28) {
@@ -404,14 +406,13 @@ exports.all_boards = (req, res) => {
                             });
                           } else if (user_details.user_type == "Public") {
                             var sql = `select cand_id from admintv_ems.user_details where user_name = '${user_details.user_name}' and password = '${user_details.password}'`;
-                            db.query(sql, (err, cand_id) => {if(err)res.send(error);
-                             
+                            db.query(sql, (err, cand_id) => {
+                              if (err) res.send(error);
+
                               var sql_1 = `SELECT *,DATE_FORMAT(date_of_admission, '%d/%m/%Y') date_of_admission FROM admintv_ems.cand_relieving_details inner join admintv_ems.cand_admission_details on admintv_ems.cand_admission_details.cand_id = admintv_ems.cand_relieving_details.cand_id
                           where (course_title,active_status,relieved ,admintv_ems.cand_admission_details.cand_id) = ('${course}','Yes','No','${cand_id[0].cand_id}')`;
                               db.query(sql_1, function (err, data) {
-									
                                 res.render(page, {
-								 
                                   message: message,
                                   userData: data,
                                   userData3: data3,
@@ -729,7 +730,7 @@ exports.forgetpasssword = (req, res) => {
       if (data[0]) {
         mail.pwdrecover(req, res, data);
         res.render("forgotpwd.ejs", {
-         message: "Username and Password send to your mail..!",
+          message: "Username and Password send to your mail..!",
         });
       } else {
         res.render("forgotpwd.ejs", {

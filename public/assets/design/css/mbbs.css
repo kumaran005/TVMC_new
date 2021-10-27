@@ -2,6 +2,12 @@ body {
   font-size: 13px;
 }
 
+/* .viewtable input {
+  font-size: small;
+}
+.viewtable th {
+  font-size: small;
+} */
 /*------------------------ mycss---------------- */
 #logomedical {
   height: 56px;
@@ -49,7 +55,8 @@ select[name="check_status"] {
 #myModal select {
   border-bottom: unset !important;
 }
-#myModal,#exampleModalLong {
+#myModal,
+#exampleModalLong {
   overflow: auto;
 }
 #myModal .academic select {

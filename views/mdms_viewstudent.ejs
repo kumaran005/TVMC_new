@@ -40,16 +40,19 @@
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro300,400,400i,700" rel="stylesheet">
   <!-- modal -->
   <div class="modal fade" id="onclickmodal" tabindex="-1" role="dialog"  aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <!-- <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5> -->
+    <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 350px;">
+      <div class="modal-content" style="background: transparent;border: none;">
+        <!-- <div class="modal-header">
+           <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5> 
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
-        </div>
-        <div class="modal-body" style="align-content: center;">
-          <p id="onclickmsg"></p>
+        </div> -->
+        <div class="modal-body" style="text-align: center;padding-bottom: inherit;
+    padding-left: inherit;
+    padding-right: inherit;">
+         <h5> <p id="onclickmsg" style="    color: white;
+    font-size: medium;"></p></h5>
         </div>
       </div>
     </div>
@@ -103,6 +106,12 @@
                  }
                   $('#onclickmodal').modal("toggle");
                  $('#myModal').modal('show');
+                setTimeout(function () {
+                var isShown = $("#onclickmodal").hasClass("show");
+                if (isShown) {
+                $("#onclickmodal").modal("hide");
+                }
+                }, 3000);
               };
               xhr.send("cand_id=" + clicked_id);
 
@@ -577,9 +586,9 @@ photos=(photos) =>{
         document.getElementById("cand_course1").innerHTML =admission['course'];
         document.getElementById("cand_admission_type").innerHTML = admission['admission_type'];
         document.getElementById("cand_admission_quota").innerHTML = admission['admission_quota'];
-        document.getElementById("cand_course_commencement").innerHTML = admission['course_commencement'];
-        document.getElementById("cand_date_of_admission").innerHTML = admission['date_of_admission'];
-        document.getElementById("cand_date_of_allotment").innerHTML = admission['date_of_allotment'];
+        document.getElementById("cand_course_commencement").innerHTML = reformatDate( admission['course_commencement']);
+        document.getElementById("cand_date_of_admission").innerHTML = reformatDate( admission['date_of_admission']);
+        document.getElementById("cand_date_of_allotment").innerHTML = reformatDate( admission['date_of_allotment']);
         document.getElementById("cand_selected_category").innerHTML = admission['selected_category'];
         document.getElementById("cand_willing_for_counciling").innerHTML = admission['willing_for_counciling'];
         document.getElementById("cand_student_code").innerHTML = admission['student_code'];
@@ -628,7 +637,7 @@ photos=(photos) =>{
         document.getElementById("cand_type_of_allotment").innerHTML = profile['type_of_allotment'];
         document.getElementById("cand_father_name").innerHTML = profile['father_name'];
         document.getElementById("cand_mother_name").innerHTML = profile['mother_name'];
-        document.getElementById("cand_date_of_birth").innerHTML = profile['date_of_birth'];
+        document.getElementById("cand_date_of_birth").innerHTML = reformatDate(profile['date_of_birth']);
         document.getElementById("cand_gender").innerHTML = profile['gender'] == "undefined" ? profile['gender']="":profile['gender'];
         document.getElementById("cand_blood_group").innerHTML = profile['blood_group'];
         document.getElementById("cand_religion").innerHTML = profile['religion'];
@@ -720,10 +729,10 @@ photos=(photos) =>{
     document.getElementById('cand_name_of_bank').innerHTML=bank['name_of_bank']
     document.getElementById('cand_name_of_branch').innerHTML=bank['name_of_branch']
     document.getElementById('cand_transaction_id').innerHTML=bank['transaction_id']
-    document.getElementById('cand_payment_date').innerHTML=bank['payment_date']
+    document.getElementById('cand_payment_date').innerHTML=reformatDate(bank['payment_date']);
     document.getElementById('cand_paid_amount').innerHTML=bank['amount_paid']
 
-    document.getElementById('cand_sq_payment_date').innerHTML=bank['sq_payment_date']
+    document.getElementById('cand_sq_payment_date').innerHTML=reformatDate(bank['sq_payment_date']);
     document.getElementById('cand_sq_paid_amount').innerHTML=bank['sq_amount_paid']
     
         // bank_edit
@@ -763,8 +772,8 @@ photos=(photos) =>{
         document.getElementById("cand_relieved").innerHTML = relieving['relieved'];
         document.getElementById("cand_college_name").innerHTML = relieving['college_name'];
         document.getElementById("cand_amount_refunded").innerHTML = relieving['amount_refunded'];
-        document.getElementById("cand_date_of_relieving").innerHTML = relieving['date_of_relieving'];
-        document.getElementById("cand_date_of_reallotment").innerHTML = relieving['date_of_reallotment'];
+        document.getElementById("cand_date_of_relieving").innerHTML = reformatDate(relieving['date_of_relieving']);
+        document.getElementById("cand_date_of_reallotment").innerHTML = reformatDate(relieving['date_of_reallotment']);
 
         // relieve edit
          document.getElementById("edit_relieved").value = relieving['relieved'];
@@ -1477,7 +1486,7 @@ photos=(photos) =>{
                              
                             }
                           }
-                            else if($('#sel_report').val()=="Select Document Type"){
+                           else if($('#sel_report').val()=="Select Document Type"){
                               document.getElementById('alertmsg').innerText = 'Please select any document!';
                               $('#alertmodal').modal('toggle');
                             }
@@ -1500,6 +1509,7 @@ photos=(photos) =>{
                             else if($('#sel_report').val() == "Relieving Letter" ){
                               $('#relreport').modal('toggle');
                             }
+                           
                             else{
                               document.getElementById('alertmsg').innerText = 'Please select any student!';
                               $('#alertmodal').modal('toggle');}
@@ -1507,27 +1517,30 @@ photos=(photos) =>{
                       </script>
                     <!-- Modal -->
                     <div class="modal fade" id="alertmodal" tabindex="-1" role="dialog"  aria-hidden="true">
-                      <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <!-- <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5> -->
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
+                     <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 300px;">
+                            <div class="modal-content" style="background: transparent;border: none;">
+                              <!-- <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5> 
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div> -->
+                              <div class="modal-body" style="text-align: center;padding-bottom: inherit;
+                          padding-left: inherit;
+                          padding-right: inherit;">
+                              <h5> <p id="alertmsg" style="color: white;
+                          font-size: medium;"></p></h5>
+                              </div>
+                            </div>
                           </div>
-                          <div class="modal-body" style="align-content: center;">
-                            <p id="alertmsg"></p>
-                          </div>
-                        </div>
-                      </div>
                     </div>
                     <!-- Modal -->
                     <div class="col-md-3">
-                    <form id="for_report" class="form-inline my-2 my-lg-0"style="position:relative;top:-8px"role="form" method="post" action="/get_reports">
+                    <form id="for_report" class="form-inline my-2 my-lg-0"style="position:relative;top:-8px"role="form" method="post" action="/get_reports" target="_blank">
                       <!-- <input type="text" form="for_report" name="check" id="cand_eck" hidden value="" > -->
                       <input type="hidden" name="course" form="for_report" value="MDMS">
                        <select name='reports' id="sel_report" form="for_report" onchange="showModal(this.value)" class="form-control  col-md-8" style="font-size: 13px;-webkit-appearance: auto;">
-                        <option value=''readonly>Select Document Type</option> 
+                        <option value='Select Document Type'readonly>Select Document Type</option> 
                           <option value='Admission Register' >Admission Register</option>
                          <option value='Admission Letter'>Admission Letter</option>
                          <option value='Admission Details' >Admission Details</option>
@@ -1548,7 +1561,7 @@ photos=(photos) =>{
                          <option value='Enroll'> Enroll</option>
                          <option value='ID Card'> ID Card</option>
 
-                         <option value='Report' > Report</option>
+                         <!-- <option value='Report' > Report</option> -->
                        </select>
                    
                        &nbsp;&nbsp;
@@ -1795,16 +1808,17 @@ photos=(photos) =>{
                     
                         <select class="form-control" id="add_blood_group" name="blood_group">
                         <option hidden selected>&#160;</option>
-                         <option value="O+">O+</option>
-                         <option value="B+">B+</option>
-                         <option value="A+">A+</option>
-        
-                         <option value="AB+">AB+</option>
-                         <option value="A-">A-</option>
-                         <option value="B-">B-</option>
-                         <option value="O-">O-</option>
-                          <option value="AB-">AB-</option>
-                        <option value="Others">Others</option>
+                           <%
+                                      if(userData3.length!=0){
+                                      var i=1;
+                                      userData3.forEach(function(classdata3){
+                                      %>
+                                      <option value='<%=classdata3.blood_group %>'><%=classdata3.blood_group%></option>
+                                      <%  i++; }) %>
+                                      <% } else{ %>
+                                  
+                                      <% } %>
+                                       <option value="Others">Others</option>
         
                         </select>                 
                       </div> 
@@ -1831,6 +1845,7 @@ photos=(photos) =>{
                                           <% } else{ %>
                                       
                                           <% } %>
+                                          <option value="Others">Others</option>
                      </select> 
                       </div>
                       <div class="form-group">
@@ -1873,6 +1888,7 @@ photos=(photos) =>{
                                           <% } else{ %>
                                       
                                           <% } %>
+                                           <option value="Others">Others</option>
                      
                      </select> 
                      
@@ -4099,11 +4115,11 @@ photos=(photos) =>{
            
             <!-------------------------- Releiveing Details---------------------------------------------->
         
-          <div class="tab-pane fade" id="relv1" role="tabpanel" aria-labelledby="relv1-tab">
+          <!-- <div class="tab-pane fade" id="relv1" role="tabpanel" aria-labelledby="relv1-tab">
         <div class="container mt-2">
           <div class="row">
             <div class="col-md-3">
-                      <!-- <form> -->
+                      <form>
           <div class="form-group">
             <label for="add_relieved">Relieved </label>
             <select class="form-control" id="add_relieved"name="relieved">
@@ -4115,29 +4131,29 @@ photos=(photos) =>{
           </div>
            <div class="form-group">
             <label for="add_date_of_reallotment">Date Of Reallotment</label>
-            <!-- <input type="Date" class="form-control" placeholder="" id="add_date_of_reallotment"  name="date_of_reallotment"> -->
+            <input type="Date" class="form-control" placeholder="" id="add_date_of_reallotment"  name="date_of_reallotment">
             <input type="Date" class="form-control" id="add_date_of_reallotment" placeholder="" name="date_of_reallotment">
           </div>
-        <!-- </form> -->
+        </form>
             </div>
             <div class="col-md-3">
                  <div class="form-group">
             <label for="add_college_name">College Name</label>
-            <!-- <input type="text" class="form-control" id="add_college_name"  name="college_name"> -->
+            <input type="text" class="form-control" id="add_college_name"  name="college_name">
             <input type="text" class="form-control" id="add_college_name" placeholder="" name="college_name">
           </div>
             </div>
              <div class="col-md-3">
                  <div class="form-group">
             <label for="add_amount_refunded">Amount Refunded</label>
-            <!-- <input type="text" class="form-control" id="add_amount_refunded" placeholder="" name="amount_refunded"> -->
+            <input type="text" class="form-control" id="add_amount_refunded" placeholder="" name="amount_refunded">
             <input type="text" class="form-control" id="add_amount_refunded" placeholder="" name="amount_refunded">
           </div>
             </div>
              <div class="col-md-3">
                  <div class="form-group">
             <label for="add_date_of_relieving">Date Of Relieving</label>
-            <!-- <input type="Date" class="form-control" id="add_date_of_relieving" placeholder="" name="date_of_relieving" > -->
+            <input type="Date" class="form-control" id="add_date_of_relieving" placeholder="" name="date_of_relieving" >
             <input type="Date" id="add_date_of_relieving" class="form-control" name="date_of_relieving" placeholder=""> 
                      
           </div>
@@ -4146,7 +4162,7 @@ photos=(photos) =>{
           </div>
         
         </div>
-        </div>
+        </div> -->
            
         </div>
           </div>
@@ -5248,9 +5264,9 @@ image.src = URL.createadmissionectURL(event.target.files[0]);
         <section id="certificate">
       <div class="container">
 
-        <div class="table-responsive">
+        <div class="">
            <input type="hidden" name="" id="cert_cand_id">
-            <table class="table ">
+            <table class="viewtable">
               <thead class=" text-dark">
                 <tr>
                   <th>Certificate Details</th>
@@ -6265,16 +6281,17 @@ image.src = URL.createadmissionectURL(event.target.files[0]);
             
                 <select class="form-control" id="edit_blood_group" name="blood_group">
                 <option hidden selected>&#160;</option>
-                 <option value="O+">O+</option>
-                 <option value="B+">B+</option>
-                 <option value="A+">A+</option>
-
-                 <option value="AB+">AB+</option>
-                 <option value="A-">A-</option>
-                 <option value="B-">B-</option>
-                 <option value="O-">O-</option>
-                  <option value="AB-">AB-</option>
-                  <option value="Others">Others</option>
+                   <%
+                                      if(userData3.length!=0){
+                                      var i=1;
+                                      userData3.forEach(function(classdata3){
+                                      %>
+                                      <option value='<%=classdata3.blood_group %>'><%=classdata3.blood_group %></option>
+                                      <%  i++; }) %>
+                                      <% } else{ %>
+                                  
+                                      <% } %>
+                                       <option value="Others">Others</option>
 
                 </select>                 
               </div> 
@@ -6301,6 +6318,7 @@ image.src = URL.createadmissionectURL(event.target.files[0]);
                                   <% } else{ %>
                               
                                   <% } %>
+                                   <option value="Others">Others</option>
              </select> 
               </div>
               <div class="form-group">
@@ -6343,6 +6361,7 @@ image.src = URL.createadmissionectURL(event.target.files[0]);
                                   <% } else{ %>
                               
                                   <% } %>
+                                   <option value="Others">Others</option>
              
              </select> 
              
@@ -9190,25 +9209,21 @@ class="form-control">
       <div class="modal-body">
         <!-- <form id="loginform"  class="book-form" role="form" method="post" action="/get_report3"> -->
           <!-- <input type='text' name='cand_id' hidden  value='<%= message %>'/> -->
+        <h3 class="mb-3"><b>Filter</b></h3>
           <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <label for="exampleFormControlInput21">Reference No</label>
-                <input type="text" class="form-control"id="ackdate" form="for_report" name="ref_no" id="exampleFormControlInput21" placeholder="">
-              </div>
-              </div>
-            <div class="col-md-6">
+           
+                  <div class="col-md-6">
           <div class="form-group">
             <label for="exampleFormControlInput21">Relieving Date</label>
-            <input type="date" class="form-control"id="ackdate" form="for_report" name="rel_date" id="exampleFormControlInput21" placeholder="">
+            <input type="date" class="form-control"id="reldate" form="for_report" name="rel_date"  placeholder="" onchange="">
           </div>
           </div>
-          <div class="col-md-6">
+               <div class="col-md-6">
             <div class="form-group">
               <label for="exampleFormControlTextarea1">Admission Quota</label>
               <i class="fa fa-caret-down" id="drop"></i>
 
-              <select class="form-control" form="for_report" name="admission_quota">
+              <select class="form-control"id="choice" form="for_report" name="admission_quota" onchange="">
                 <option hidden="" selected="">&nbsp;</option>
 
                 <%
@@ -9223,33 +9238,56 @@ class="form-control">
                 <% } %>
               </select>
             </div>
+            
+          </div></div>
+          <div class="row">
+          <div class="col-md-12" style="text-align: end;">
+            
+              <button class="btn btn-primary" style="padding:8px 80px" onclick="filter_relieve()">Filter</button>
+            </div></div>
+            
+         
+            <div class="row">
+          <div class="col-md-12 mb-2">
+             <h3 class=""><b>Please Fill the Relieving Details to Print the Report</b></h3>
+
           </div>
+         <div class="col-md-6">
+
+              <div class="form-group">
+                <label for="exampleFormControlInput21">Reference No</label>
+                <input type="text" class="form-control"id="" form="for_report" name="ref" id="exampleFormControlInput21" placeholder="">
+              </div>
+              </div>
+         
           <div class="col-md-6">
             <div class="form-group">
               <label for="exampleFormControlInput21">Indvidual's Letter Dated</label>
-              <input type="date" class="form-control"id="ackdate" form="for_report" name="letter_date" id="exampleFormControlInput21" placeholder="">
+              <input type="date" class="form-control"id="ackdate" form="for_report" name="indiDate" id="exampleFormControlInput21" placeholder="">
             </div>
             </div>
           </div>
           <div class="table-responsive ">
 
-              <table class="table" id="studtable">
+              <table class="table studtable" id="studtable">
 
                 <thead>
                   <tr>
-                    <th scope="col"><input type="checkbox" name="" id=""></th>
+                    <th scope="col"><input type="checkbox" name="" id="checkall"></th>
                     <th scope="col">Student Id</th>
                     <th scope="col"width="300"> Candidate Name</th>
                     <th scope="col">Registration No</th>
                     
                     <th scope="col">Admission Type</th>
                     <th scope="col">Date of Admission</th>
+                   <th scope="col"hidden>admis quota</th>
+                   <th scope="col"hidden>data of relieving</th>
 
 
 
                   </tr>
                 </thead>
-                <tbody id="myTable" >
+                <tbody id="myTabl" class="myTable" >
                   
                   <% if(userData27.length!=0){ var i=0; userData27.forEach(function(classdata){ %>
                    
@@ -9257,20 +9295,18 @@ class="form-control">
                     
                     <tr  id="cand_table" >
                       <td class="pt-4">           
-                        <input type="checkbox" form="for_report" name="rel_check" id="cand_check<%=i%>" value="<%=classdata.cand_id %>">
+                        <input type="checkbox" form="for_report"class="check_item" name="rel_check" id="cand_check<%=i%>" value="<%=classdata.cand_id %>">
                         
                         <!-- <input type="text" name="check" id="cand_eck" hidden value="<%=classdata.cand_id %>"> -->
                        </td>
-                      <td id="id" >
+                      <td id="id">
                         <%=classdata.cand_id %>
                       </td>
                       <td >
-
                         <%=classdata.cand_name %>
                       </td>
                      
                       <td id="id">
-
                         <%=classdata.reg_no %>
                       </td>
                     
@@ -9280,18 +9316,17 @@ class="form-control">
                       <td >
                         <%=classdata.date_of_admission %>
                       </td>
-                       <td hidden >
+                         <td hidden >
                         <%=classdata.admission_quota %>
                       </td>
                       <td hidden >
                         <%=classdata.date_of_relieving%>
                       </td>
-
                     </tr>
                     <% i++; }) %>
                       <% } else{ %>
-
                         <% } %>
+
                 </tbody>
                
               </table>
@@ -10454,17 +10489,17 @@ $(document).ready(function() {
 //   });
 // });
 
-var $rows = $('.myTable tr');
-$('#choice,#reldate').on('input', function() {
-var val1 = $.trim($('#choice').val()).replace(/ +/g, ' ').toLowerCase();
-var val2 = $.trim($('#reldate').val()).replace(/ +/g, ' ').toLowerCase();
+// var $rows = $('.myTable tr');
+// $('#choice,#reldate').on('input', function() {
+// var val1 = $.trim($('#choice').val()).replace(/ +/g, ' ').toLowerCase();
+// var val2 = $.trim($('#reldate').val()).replace(/ +/g, ' ').toLowerCase();
 
-$rows.show().filter(function() {
-    var text1 = $(this).find('td').text().replace(/\s+/g, ' ').toLowerCase();
-    var text2 = $(this).find('td').text().replace(/\s+/g, ' ').toLowerCase();
-    return !~text1.indexOf(val1) || !~text2.indexOf(val2);
-}).hide();
-});
+// $rows.show().filter(function() {
+//     var text1 = $(this).find('td').text().replace(/\s+/g, ' ').toLowerCase();
+//     var text2 = $(this).find('td').text().replace(/\s+/g, ' ').toLowerCase();
+//     return !~text1.indexOf(val1) || !~text2.indexOf(val2);
+// }).hide();
+// });
 
 $('#select').selectpicker();
 $("#ackdate").datepicker({

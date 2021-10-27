@@ -39,17 +39,20 @@
   <!-- Google Font Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro300,400,400i,700" rel="stylesheet">
   <!-- modal -->
-  <div class="modal fade" id="onclickmodal" tabindex="-1" role="dialog"  aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <!-- <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5> -->
+   <div class="modal fade" id="onclickmodal" tabindex="-1" role="dialog"  aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 350px;">
+      <div class="modal-content" style="background: transparent;border: none;">
+        <!-- <div class="modal-header">
+           <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5> 
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
-        </div>
-        <div class="modal-body" style="align-content: center;">
-          <h5><p id="onclickmsg"></p></h5>
+        </div> -->
+        <div class="modal-body" style="text-align: center;padding-bottom: inherit;
+    padding-left: inherit;
+    padding-right: inherit;">
+         <h5> <p id="onclickmsg" style="    color: white;
+    font-size: medium;"></p></h5>
         </div>
       </div>
     </div>
@@ -103,6 +106,12 @@
                  }
                   $('#onclickmodal').modal("toggle");
                  $('#myModal').modal('show');
+                setTimeout(function () {
+                var isShown = $("#onclickmodal").hasClass("show");
+                if (isShown) {
+                $("#onclickmodal").modal("hide");
+                }
+                }, 3000);
               };
               xhr.send("cand_id=" + clicked_id);
 
@@ -576,9 +585,9 @@ photos=(photos) =>{
         document.getElementById("cand_course1").innerHTML =admission['course'];
         document.getElementById("cand_admission_type").innerHTML = admission['admission_type'];
         document.getElementById("cand_admission_quota").innerHTML = admission['admission_quota'];
-        document.getElementById("cand_course_commencement").innerHTML = admission['course_commencement'];
-        document.getElementById("cand_date_of_admission").innerHTML = admission['date_of_admission'];
-        document.getElementById("cand_date_of_allotment").innerHTML = admission['date_of_allotment'];
+        document.getElementById("cand_course_commencement").innerHTML = reformatDate(admission['course_commencement']);
+        document.getElementById("cand_date_of_admission").innerHTML = reformatDate(admission['date_of_admission']);
+        document.getElementById("cand_date_of_allotment").innerHTML = reformatDate(admission['date_of_allotment']);
         document.getElementById("cand_selected_category").innerHTML = admission['selected_category'];
         document.getElementById("cand_willing_for_counciling").innerHTML = admission['willing_for_counciling'];
         document.getElementById("cand_student_code").innerHTML = admission['student_code'];
@@ -626,7 +635,7 @@ photos=(photos) =>{
         document.getElementById("cand_type_of_allotment").innerHTML = profile['type_of_allotment'];
         document.getElementById("cand_father_name").innerHTML = profile['father_name'];
         document.getElementById("cand_mother_name").innerHTML = profile['mother_name'];
-        document.getElementById("cand_date_of_birth").innerHTML = profile['date_of_birth'];
+        document.getElementById("cand_date_of_birth").innerHTML = reformatDate(profile['date_of_birth']);
         document.getElementById("cand_gender").innerHTML = profile['gender'] == "undefined" ? profile['gender']="":profile['gender'];
         document.getElementById("cand_blood_group").innerHTML = profile['blood_group'];
         document.getElementById("cand_religion").innerHTML = profile['religion'];
@@ -718,10 +727,10 @@ photos=(photos) =>{
     document.getElementById('cand_name_of_bank').innerHTML=bank['name_of_bank']
     document.getElementById('cand_name_of_branch').innerHTML=bank['name_of_branch']
     document.getElementById('cand_transaction_id').innerHTML=bank['transaction_id']
-    document.getElementById('cand_payment_date').innerHTML=bank['payment_date']
+    document.getElementById('cand_payment_date').innerHTML=reformatDate(bank['payment_date'])
     document.getElementById('cand_paid_amount').innerHTML=bank['amount_paid']
 
-    document.getElementById('cand_sq_payment_date').innerHTML=bank['sq_payment_date']
+    document.getElementById('cand_sq_payment_date').innerHTML=reformatDate(bank['sq_payment_date'])
     document.getElementById('cand_sq_paid_amount').innerHTML=bank['sq_amount_paid']
     
         // bank_edit
@@ -1466,16 +1475,17 @@ photos=(photos) =>{
                 
                     <select class="form-control" id="add_blood_group" name="blood_group">
                     <option hidden selected>&#160;</option>
-                     <option value="O+">O+</option>
-                     <option value="B+">B+</option>
-                     <option value="A+">A+</option>
-    
-                     <option value="AB+">AB+</option>
-                     <option value="A-">A-</option>
-                     <option value="B-">B-</option>
-                     <option value="O-">O-</option>
-                      <option value="AB-">AB-</option>
-                      <option value="Others">Others</option>
+                     <%
+                                      if(userData3.length!=0){
+                                      var i=1;
+                                      userData3.forEach(function(classdata3){
+                                      %>
+                                      <option value='<%=classdata3.blood_group %>'><%=classdata3.blood_group %></option>
+                                      <%  i++; }) %>
+                                      <% } else{ %>
+                                  
+                                      <% } %>
+                                      <option value="Others">Others</option>
                       
     
                     </select>                 
@@ -1503,6 +1513,7 @@ photos=(photos) =>{
                                       <% } else{ %>
                                   
                                       <% } %>
+                    <option value="Others">Others</option>
                  </select> 
                   </div>
                   <div class="form-group"hidden>
@@ -1545,6 +1556,7 @@ photos=(photos) =>{
                                       <% } else{ %>
                                   
                                       <% } %>
+                           <option value="Others">Others</option>
                  
                  </select> 
                  
@@ -4007,7 +4019,7 @@ photos=(photos) =>{
                       <%}else{%>
                 <button class="btn btn-default"data-toggle="modal" data-target="#edit"><i class="fa fa-pencil-alt text-primary mr-2"></i>Edit</button>
                
-                <button class="btn btn-default"data-toggle="modal" data-target="#del"><i class="fa fa-trash-alt text-danger mr-2"></i>Delete</button>
+                <!-- <button class="btn btn-default"data-toggle="modal" data-target="#del"><i class="fa fa-trash-alt text-danger mr-2"></i>Delete</button> -->
                <%}}else{}%>
               </div>
               </div>
@@ -5921,17 +5933,17 @@ image.src = URL.createadmissionectURL(event.target.files[0]);
             
                 <select class="form-control" id="edit_blood_group" name="blood_group">
                 <option hidden selected>&#160;</option>
-                 <option value="O+">O+</option>
-                 <option value="B+">B+</option>
-                 <option value="A+">A+</option>
-
-                 <option value="AB+">AB+</option>
-                 <option value="A-">A-</option>
-                 <option value="B-">B-</option>
-                 <option value="O-">O-</option>
-                  <option value="AB-">AB-</option>
-                  <option value='Others'>Others</option>
-
+                  <%
+                                      if(userData3.length!=0){
+                                      var i=1;
+                                      userData3.forEach(function(classdata3){
+                                      %>
+                                      <option value='<%=classdata3.blood_group %>'><%=classdata3.blood_group %></option>
+                                      <%  i++; }) %>
+                                      <% } else{ %>
+                                  
+                                      <% } %>
+                                      <option value="Others">Others</option>
                 </select>                 
               </div> 
                <div class="form-group"hidden>
@@ -5957,6 +5969,7 @@ image.src = URL.createadmissionectURL(event.target.files[0]);
                                   <% } else{ %>
                               
                                   <% } %>
+                                      <option value="Others">Others</option>
              </select> 
               </div>
               <div class="form-group"hidden>
@@ -5999,7 +6012,7 @@ image.src = URL.createadmissionectURL(event.target.files[0]);
                                   <% } else{ %>
                               
                                   <% } %>
-             
+                                                   <option value="Others">Others</option>
              </select> 
              
               </div>

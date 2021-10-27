@@ -28,14 +28,14 @@ const mysql = require("mysql");
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 let bodyParser = require("body-parser");
-var cors = require('cors');
-app.use(cors())
+var cors = require("cors");
+app.use(cors());
 //Server port
 const pool = mysql.createPool({
-   host: process.env.HOST,
-  user: process.env.USER,
-  password: process.env.PASSWORD,
-  database: process.env.DATABASE,
+  host: "localhost",
+  user: "root",
+  password: "1234",
+  database: "admintv_ems",
 });
 
 setInterval(function () {
@@ -45,7 +45,7 @@ setInterval(function () {
 //const connection;
 var getConnection = function (callback) {
   pool.getConnection(function (err, connection) {
-	if(connection)console.log(connected);
+    if (connection) console.log(connected);
     callback(err, connection);
   });
 };
@@ -120,19 +120,18 @@ io.on("connection", (socket) => {
   });
 });
 
-app.use((req,res,next)=>{
-	res.setHeader('Access-Control-Allow-Origin','https://admin.tvmc.ac.in');
-	res.setHeader('Access-Control-Allow-Methods','GET, POST, DELETE, OPTIONS');
-	res.setHeader(
-				 'Access-Control-Allow-Headers',
-				 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
-	next();
-});
+// app.use((req,res,next)=>{
+// 	res.setHeader('Access-Control-Allow-Origin','https://admin.tvmc.ac.in');
+// 	res.setHeader('Access-Control-Allow-Methods','GET, POST, DELETE, OPTIONS');
+// 	res.setHeader(
+// 				 'Access-Control-Allow-Headers',
+// 				 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+// 	next();
+// });
 
-app.options('*',(req,res)=>{
-res.status(200);
-});
-
+// app.options('*',(req,res)=>{
+// res.status(200);
+// });
 
 // all environments
 app.set("port", process.env.PORT || 80);
@@ -145,9 +144,7 @@ app.use(bodyParser.json({ limit: "50mb" }));
 app.use(express.static("./public"));
 
 // app.use(express.static(path.join(__dirname, 'public')));
-app.use(
-  session({secret: "keyboard cat"})
-);
+app.use(session({ secret: "keyboard cat" }));
 //upload files
 const upload = multer({ storage: multer.memoryStorage() });
 
@@ -237,6 +234,7 @@ app.post("/report_print", admin.report_print);
 // relieve
 app.get("/reli_check", relieve.reli_check);
 app.post("/reli_check", relieve.reli_check);
+app.post("/filter_relieve", relieve.filter_relieve);
 
 // delete
 app.post("/del_student", delte.delete_students);
