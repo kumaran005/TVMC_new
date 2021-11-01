@@ -85,7 +85,7 @@
                   //   xhr.responseText;
                   
                   const data = JSON.parse(this.responseText);
-                   console.log(data.neet[0]);
+                  //  console.log(data.neet[0]);
                     admission(data.admission[0]);
                     pro(data.profile[0]);
                     address(data.address[0]);
@@ -121,6 +121,7 @@
     // document.getElementById('surety_file').value = surety['file_name'];
   }
 certificate_files=(certificate_name)=>{
+  console.log(certificate_name)
   for(i in certificate_name){
     if(certificate_name[i].certificate_type == 'Certificate_Form'){
       document.getElementById('certificate_form').value = certificate_name[i].certificate_files_name;
@@ -137,16 +138,16 @@ certificate_files=(certificate_name)=>{
     if(certificate_name[i].certificate_type == 'neet_score_card'){
       document.getElementById('cand_neet_score_card').value = certificate_name[i].certificate_files_name;
     }
-    if(certificate_name[i].certificate_type == '10th_mark'){
+    if(certificate_name[i].certificate_type == 'ten_mark'){
       document.getElementById('cand_ten_mark').value = certificate_name[i].certificate_files_name;
     }
-    if(certificate_name[i].certificate_type == '10th_pass'){
+    if(certificate_name[i].certificate_type == 'ten_pass'){
       document.getElementById('cand_ten_pass').value = certificate_name[i].certificate_files_name;
     }
-    if(certificate_name[i].certificate_type == '12th_mark'){
+    if(certificate_name[i].certificate_type == 'twelve_mark'){
       document.getElementById('cand_twelve_mark').value = certificate_name[i].certificate_files_name;
     }
-    if(certificate_name[i].certificate_type == '12th_pass'){
+    if(certificate_name[i].certificate_type == 'twelve_pass'){
       document.getElementById('cand_twelve_pass').value = certificate_name[i].certificate_files_name;
     }
     if(certificate_name[i].certificate_type == 'community'){
@@ -2858,7 +2859,7 @@ photos=(photos) =>{
         </div>
         
         <div class="modal-footer justify-content-end">
-          <button type="button" class="next btn btn-primary" onclick="student_home_('add_form')">Next</button>
+          <button type="button" class="next btn btn-primary" onclick="student_home_('add_form')">Save & Next</button>
       <button type="button" class=" btn btn-danger" data-dismiss="modal">Cancel</button>
       </div>   
           </div>
@@ -3194,7 +3195,7 @@ photos=(photos) =>{
                                                        <div class="modal-footer justify-content-end">
                                       <button type="button" class="prev btn btn-secondary" onclick="back_to_prev('student_home')">Prev</button>
             
-                                      <button type="button" class="next btn btn-primary" onclick="student_qual_('add_form')">Next</button>
+                                      <button type="button" class="next btn btn-primary" onclick="student_qual_('add_form')">Save & Next</button>
                                       <button type="button" class=" btn btn-danger" data-dismiss="modal">Cancel</button>
                                       </div>
         
@@ -3350,7 +3351,7 @@ photos=(photos) =>{
            <div class="modal-footer justify-content-end">
           <button type="button" class="prev btn btn-secondary" onclick="back_to_prev('student_qual')">Prev</button>
 
-          <button type="button" class="next btn btn-primary" onclick="student_bank_('add_form')">Next</button>
+          <button type="button" class="next btn btn-primary" onclick="student_bank_('add_form')">Save & Next</button>
           <button type="button" class=" btn btn-danger" data-dismiss="modal">Cancel</button>
           </div>
         </div>
@@ -3441,7 +3442,7 @@ photos=(photos) =>{
          <div class="modal-footer justify-content-end">
       <button type="button" class="prev btn btn-secondary" onclick="back_to_prev('student_bank')">Prev</button>
 
-      <button type="button" class="next btn btn-primary" onclick="student_surety_('add_form')">Next</button>
+      <button type="button" class="next btn btn-primary" onclick="student_surety_('add_form')">Save & Next</button>
       <button type="button" class=" btn btn-danger" data-dismiss="modal">Cancel</button>
       </div>
                         </div>
@@ -3487,7 +3488,7 @@ photos=(photos) =>{
                     <label for="files_transfer1"style="height:0px"> <span id="selImg" class=" btn text-info mt-3"></span><i class="fa fa-upload mt-4 mr-2 text-info"></i></span></label>
                     <input class="file-name_transfer1 text-info mt-3" type="text" placeholder="" style="border-bottom: none!important;" readonly="">
                     
-                    <input type="file" id="files_transfer1" accept=".pdf" onchange="docs_files_only_1('files_transfer1','allotment_order')" name='' hidden class="form-control"> 
+                    <input type="file" id="files_transfer1" accept=".pdf" onchange="docs_files_only_1('add_form','files_transfer1','allotment_order')" name='' hidden class="form-control"> 
                 </td>
                                     </tr>
                                     <!-- 2 -->
@@ -3507,7 +3508,7 @@ photos=(photos) =>{
                                       <label for="files_conduct1"style="height:0px"> <span id="selImg" class=" btn text-info mt-3"></span><i class="fa fa-upload mt-4 mr-2 text-info"></i></span></label>
                                       <input class="file-name_conduct1 text-info mt-3" type="text" placeholder="" style="border-bottom: none!important;" readonly="">
                                       
-                                      <input type="file" id="files_conduct1" accept=".pdf" onchange="docs_files_only_2('files_conduct1','neet_admit_card')" name='' hidden class="form-control"> 
+                                      <input type="file" id="files_conduct1" accept=".pdf" onchange="docs_files_only_2('add_form','files_conduct1','neet_admit_card')" name='' hidden class="form-control"> 
                                   </td>
                                     </tr>
                                     <!-- 3 -->
@@ -3527,7 +3528,7 @@ photos=(photos) =>{
                                       <label for="files_neetscore1"style="height:0px"> <span id="selImg" class=" btn text-info mt-3"></span><i class="fa fa-upload mt-4 mr-2 text-info"></i></span></label>
                                       <input class="file-name_neetscore1 text-info mt-3" type="text" placeholder="" style="border-bottom: none!important;" readonly="">
                                       
-                                      <input type="file" id="files_neetscore1" accept=".pdf" onchange="docs_files_only_3('files_neetscore1','neet_score_card')" name='' hidden class="form-control"> 
+                                      <input type="file" id="files_neetscore1" accept=".pdf" onchange="docs_files_only_3('add_form','files_neetscore1','neet_score_card')" name='' hidden class="form-control"> 
                                       </td>
                                       </tr>
                                         <tr class="collapse row2"id="row2">
@@ -3546,7 +3547,7 @@ photos=(photos) =>{
   <label for="files_10th1"style="height:0px"> <span id="selImg" class=" btn text-info mt-3"></span><i class="fa fa-upload mt-4 mr-2 text-info"></i></span></label>
   <input class="file-name_10th1 text-info mt-3" type="text" placeholder="" style="border-bottom: none!important;" readonly="">
   
-  <input type="file" id="files_10th1" accept=".pdf" onchange="docs_files_only_4('files_10th1','10th_mark')" name='' hidden class="form-control"> 
+  <input type="file" id="files_10th1" accept=".pdf" onchange="docs_files_only_4('add_form','files_10th1','ten_mark')" name='' hidden class="form-control"> 
   </td>
   </tr>
   <tr class="collapse row2"id="row2">
@@ -3565,7 +3566,7 @@ photos=(photos) =>{
   <label for="files_10thpass1"style="height:0px"> <span id="selImg" class=" btn text-info mt-3"></span><i class="fa fa-upload mt-4 mr-2 text-info"></i></span></label>
   <input class="file-name_10thpass1 text-info mt-3" type="text" placeholder="" style="border-bottom: none!important;" readonly="">
   
-  <input type="file" id="files_10thpass1" accept=".pdf" onchange="docs_files_only_5('files_10thpass1','10th_pass')" name='' hidden class="form-control"> 
+  <input type="file" id="files_10thpass1" accept=".pdf" onchange="docs_files_only_5('add_form','files_10thpass1','ten_pass')" name='' hidden class="form-control"> 
   </td>
   </tr>
   <tr class="collapse row2"id="row2">
@@ -3584,7 +3585,7 @@ photos=(photos) =>{
   <label for="files_12th1"style="height:0px"> <span id="selImg" class=" btn text-info mt-3"></span><i class="fa fa-upload mt-4 mr-2 text-info"></i></span></label>
   <input class="file-name_12th1 text-info mt-3" type="text" placeholder="" style="border-bottom: none!important;" readonly="">
   
-  <input type="file" id="files_12th1" accept=".pdf" onchange="docs_files_only_6('files_12th1','12th_mark')" name='' hidden class="form-control"> 
+  <input type="file" id="files_12th1" accept=".pdf" onchange="docs_files_only_6('add_form','files_12th1','twelve_mark')" name='' hidden class="form-control"> 
   </td>
   </tr>
   <tr class="collapse row2"id="row2">
@@ -3603,7 +3604,7 @@ photos=(photos) =>{
   <label for="files_12thpass1"style="height:0px"> <span id="selImg" class=" btn text-info mt-3"></span><i class="fa fa-upload mt-4 mr-2 text-info"></i></span></label>
   <input class="file-name_12thpass1 text-info mt-3" type="text" placeholder="" style="border-bottom: none!important;" readonly="">
   
-  <input type="file" id="files_12thpass1" accept=".pdf" onchange="docs_files_only_7('files_12thpass1','12th_pass')" name='' hidden class="form-control"> 
+  <input type="file" id="files_12thpass1" accept=".pdf" onchange="docs_files_only_7('add_form','files_12thpass1','twelve_pass')" name='' hidden class="form-control"> 
   </td>
   </tr>
           <tr>
@@ -3621,7 +3622,7 @@ photos=(photos) =>{
                     <label for="files_community1"style="height:0px"> <span id="selImg" class=" btn text-info mt-3"></span><i class="fa fa-upload mt-4 mr-2 text-info"></i></span></label>
                     <input class="file-name_community1 text-info mt-3" type="text" placeholder="" style="border-bottom: none!important;" readonly="">
                     
-                    <input type="file" id="files_community1" accept=".pdf" onchange="docs_files_only_8('files_community1','community')" name='' hidden class="form-control"> 
+                    <input type="file" id="files_community1" accept=".pdf" onchange="docs_files_only_8('add_form','files_community1','community')" name='' hidden class="form-control"> 
                 </td>
                                     </tr>
 
@@ -3641,7 +3642,7 @@ photos=(photos) =>{
   <label for="files_neet1"style="height:0px"> <span id="selImg" class=" btn text-info mt-3"></span><i class="fa fa-upload mt-4 mr-2 text-info"></i></span></label>
   <input class="file-name_neet1 text-info mt-3" type="text" placeholder="" style="border-bottom: none!important;" readonly="">
   
-  <input type="file" id="files_neet1" accept=".pdf" onchange="docs_files_only_9('files_neet1','mbbs_first_mark')" name='' hidden class="form-control"> 
+  <input type="file" id="files_neet1" accept=".pdf" onchange="docs_files_only_9('add_form','files_neet1','mbbs_first_mark')" name='' hidden class="form-control"> 
   </td>
   </tr>
  
@@ -3662,7 +3663,7 @@ photos=(photos) =>{
   <label for="files_passbuk1"style="height:0px"> <span id="selImg" class=" btn text-info mt-3"></span><i class="fa fa-upload mt-4 mr-2 text-info"></i></span></label>
   <input class="file-name_passbuk1 text-info mt-3" type="text" placeholder="" style="border-bottom: none!important;" readonly="">
   
-  <input type="file" id="files_passbuk1" accept=".pdf" onchange="docs_files_only_10('files_passbuk1','mbbs_second_mark')" name='' hidden class="form-control"> 
+  <input type="file" id="files_passbuk1" accept=".pdf" onchange="docs_files_only_10('add_form','files_passbuk1','mbbs_second_mark')" name='' hidden class="form-control"> 
   </td>
   </tr>
   <tr class="collapse row2"id="row2">
@@ -3681,7 +3682,7 @@ photos=(photos) =>{
   <label for="files_aadhar1"style="height:0px"> <span id="selImg" class=" btn text-info mt-3"></span><i class="fa fa-upload mt-4 mr-2 text-info"></i></span></label>
   <input class="file-name_aadhar1 text-info mt-3" type="text" placeholder="" style="border-bottom: none!important;" readonly="">
   
-  <input type="file" id="files_aadhar1" accept=".pdf" onchange="docs_files_only_11('files_aadhar1','mbbs_third_mark')" name='' hidden class="form-control"> 
+  <input type="file" id="files_aadhar1" accept=".pdf" onchange="docs_files_only_11('add_form','files_aadhar1','mbbs_third_mark')" name='' hidden class="form-control"> 
   </td>
   </tr>
   <tr class="collapse row2"id="row2">
@@ -3700,7 +3701,7 @@ photos=(photos) =>{
   <label for="files_pan1"style="height:0px"> <span id="selImg" class=" btn text-info mt-3"></span><i class="fa fa-upload mt-4 mr-2 text-info"></i></span></label>
   <input class="file-name_pan1 text-info mt-3" type="text" placeholder="" style="border-bottom: none!important;" readonly="">
   
-  <input type="file" id="files_pan1" accept=".pdf" onchange="docs_files_only_12('files_pan1','mbbs_fourth_mark')" name='' hidden class="form-control"> 
+  <input type="file" id="files_pan1" accept=".pdf" onchange="docs_files_only_12('add_form','files_pan1','mbbs_fourth_mark')" name='' hidden class="form-control"> 
   </td>
   </tr>
     <tr class="collapse row2"id="row2">
@@ -3719,7 +3720,7 @@ photos=(photos) =>{
   <label for="files_passport1"style="height:0px"> <span id="selImg" class=" btn text-info mt-3"></span><i class="fa fa-upload mt-4 mr-2 text-info"></i></span></label>
   <input class="file-name_passport1 text-info mt-3" type="text" placeholder="" style="border-bottom: none!important;" readonly="">
   
-  <input type="file" id="files_passport1" accept=".pdf" onchange="docs_files_only_13('files_passport1','mbbs_crri')" name='' hidden class="form-control"> 
+  <input type="file" id="files_passport1" accept=".pdf" onchange="docs_files_only_13('add_form','files_passport1','mbbs_crri')" name='' hidden class="form-control"> 
   </td>
   </tr>
   <tr class="collapse row2"id="row2">
@@ -3738,7 +3739,7 @@ photos=(photos) =>{
   <label for="files_visa1"style="height:0px"> <span id="selImg" class=" btn text-info mt-3"></span><i class="fa fa-upload mt-4 mr-2 text-info"></i></span></label>
   <input class="file-name_visa1 text-info mt-3" type="text" placeholder="" style="border-bottom: none!important;" readonly="">
   
-  <input type="file" id="files_visa1" accept=".pdf" onchange="docs_files_only_14('files_visa1','mbbs_degree')" name='' hidden class="form-control"> 
+  <input type="file" id="files_visa1" accept=".pdf" onchange="docs_files_only_14('add_form','files_visa1','mbbs_degree')" name='' hidden class="form-control"> 
   </td>
   </tr>
   <tr class="collapse row2"id="row2">
@@ -3757,7 +3758,7 @@ photos=(photos) =>{
   <label for="files_photo1"style="height:0px"> <span id="selImg" class=" btn text-info mt-3"></span><i class="fa fa-upload mt-4 mr-2 text-info"></i></span></label>
   <input class="file-name_photo1 text-info mt-3" type="text" placeholder="" style="border-bottom: none!important;" readonly="">
   
-  <input type="file" id="files_photo1" accept=".pdf" onchange="docs_files_only_15('files_photo1','mbbs_pro_one')" name='' hidden class="form-control"> 
+  <input type="file" id="files_photo1" accept=".pdf" onchange="docs_files_only_15('add_form','files_photo1','mbbs_pro_one')" name='' hidden class="form-control"> 
   </td>
   </tr>
   <tr class="collapse row2"id="row2">
@@ -3776,7 +3777,7 @@ photos=(photos) =>{
   <label for="files_sign1"style="height:0px"> <span id="selImg" class=" btn text-info mt-3"></span><i class="fa fa-upload mt-4 mr-2 text-info"></i></span></label>
   <input class="file-name_sign1 text-info mt-3" type="text" placeholder="" style="border-bottom: none!important;" readonly="">
   
-  <input type="file" id="files_sign1" accept=".pdf" onchange="docs_files_only_16('files_sign1','mbbs_pro_two')" name='' hidden class="form-control"> 
+  <input type="file" id="files_sign1" accept=".pdf" onchange="docs_files_only_16('add_form','files_sign1','mbbs_pro_two')" name='' hidden class="form-control"> 
   </td>
   </tr>
   <tr class="collapse row2"id="row2">
@@ -3795,7 +3796,7 @@ photos=(photos) =>{
     <label for="files_reg"style="height:0px"> <span id="selImg" class=" btn text-info mt-3"></span><i class="fa fa-upload mt-4 mr-2 text-info"></i></span></label>
     <input class="file-name_reg text-info mt-3" type="text" placeholder="" style="border-bottom: none!important;" readonly="">
     
-    <input type="file" id="files_reg" accept=".pdf" onchange="docs_files_only_17('files_reg','mbbs_register')" name='' hidden class="form-control"> 
+    <input type="file" id="files_reg" accept=".pdf" onchange="docs_files_only_17('add_form','files_reg','mbbs_register')" name='' hidden class="form-control"> 
     </td>
     </tr>
     <tr class="collapse row2"id="row2">
@@ -3814,7 +3815,7 @@ photos=(photos) =>{
       <label for="files_attempt"style="height:0px"> <span id="selImg" class=" btn text-info mt-3"></span><i class="fa fa-upload mt-4 mr-2 text-info"></i></span></label>
       <input class="file-name_attempt text-info mt-3" type="text" placeholder="" style="border-bottom: none!important;" readonly="">
       
-      <input type="file" id="files_attempt" accept=".pdf" onchange="docs_files_only_18('files_attempt','mbbs_attempt')" name='' hidden class="form-control"> 
+      <input type="file" id="files_attempt" accept=".pdf" onchange="docs_files_only_18('add_form','files_attempt','mbbs_attempt')" name='' hidden class="form-control"> 
       </td>
       </tr>
       <tr class="collapse row2"id="row2">
@@ -3833,7 +3834,7 @@ photos=(photos) =>{
         <label for="files_conductcourse"style="height:0px"> <span id="selImg" class=" btn text-info mt-3"></span><i class="fa fa-upload mt-4 mr-2 text-info"></i></span></label>
         <input class="file-name_conductcourse text-info mt-3" type="text" placeholder="" style="border-bottom: none!important;" readonly="">
         
-        <input type="file" id="files_conductcourse" accept=".pdf" onchange="docs_files_only_19('files_conductcourse','mbbs_course_cum')" name='' hidden class="form-control"> 
+        <input type="file" id="files_conductcourse" accept=".pdf" onchange="docs_files_only_19('add_form','files_conductcourse','mbbs_course_cum')" name='' hidden class="form-control"> 
         </td>
         </tr>
                 <tr class="collapse row2"id="row2">
@@ -3852,7 +3853,7 @@ photos=(photos) =>{
           <label for="files_transfercert"style="height:0px"> <span id="selImg" class=" btn text-info mt-3"></span><i class="fa fa-upload mt-4 mr-2 text-info"></i></span></label>
           <input class="file-name_transfercert text-info mt-3" type="text" placeholder="" style="border-bottom: none!important;" readonly="">
           
-          <input type="file" id="files_transfercert" accept=".pdf" onchange="docs_files_only_20('files_transfercert','mbbs_transfer')" name='' hidden class="form-control"> 
+          <input type="file" id="files_transfercert" accept=".pdf" onchange="docs_files_only_20('add_form','files_transfercert','mbbs_transfer')" name='' hidden class="form-control"> 
           </td>
           </tr>
         <tr class="collapse row2"id="row2">
@@ -3871,7 +3872,7 @@ photos=(photos) =>{
           <label for="files_diplomadeg"style="height:0px"> <span id="selImg" class=" btn text-info mt-3"></span><i class="fa fa-upload mt-4 mr-2 text-info"></i></span></label>
           <input class="file-name_diplomadeg text-info mt-3" type="text" placeholder="" style="border-bottom: none!important;" readonly="">
           
-          <input type="file" id="files_diplomadeg" accept=".pdf" onchange="docs_files_only_21('files_diplomadeg','diploma_degree')" name='' hidden class="form-control"> 
+          <input type="file" id="files_diplomadeg" accept=".pdf" onchange="docs_files_only_21('add_form','files_diplomadeg','diploma_degree')" name='' hidden class="form-control"> 
           </td>
           </tr>
           <tr class="collapse row2"id="row2">
@@ -3890,7 +3891,7 @@ photos=(photos) =>{
             <label for="files_diplomapost"style="height:0px"> <span id="selImg" class=" btn text-info mt-3"></span><i class="fa fa-upload mt-4 mr-2 text-info"></i></span></label>
             <input class="file-name_diplomapost text-info mt-3" type="text" placeholder="" style="border-bottom: none!important;" readonly="">
             
-            <input type="file" id="files_diplomapost" accept=".pdf" onchange="docs_files_only_22('files_diplomapost','diploma_pro')" name='' hidden class="form-control"> 
+            <input type="file" id="files_diplomapost" accept=".pdf" onchange="docs_files_only_22('add_form','files_diplomapost','diploma_pro')" name='' hidden class="form-control"> 
             </td>
             </tr>
             <tr class="collapse row2"id="row2">
@@ -3909,7 +3910,7 @@ photos=(photos) =>{
               <label for="files_diplomapostreg"style="height:0px"> <span id="selImg" class=" btn text-info mt-3"></span><i class="fa fa-upload mt-4 mr-2 text-info"></i></span></label>
               <input class="file-name_diplomapostreg text-info mt-3" type="text" placeholder="" style="border-bottom: none!important;" readonly="">
               
-              <input type="file" id="files_diplomapostreg" accept=".pdf" onchange="docs_files_only_23('files_diplomapostreg','diploma_register')" name='' hidden class="form-control"> 
+              <input type="file" id="files_diplomapostreg" accept=".pdf" onchange="docs_files_only_23('add_form','files_diplomapostreg','diploma_register')" name='' hidden class="form-control"> 
               </td>
               </tr>
               <tr class="collapse row2"id="row2">
@@ -3928,7 +3929,7 @@ photos=(photos) =>{
                 <label for="files_diplomapostcourse"style="height:0px"> <span id="selImg" class=" btn text-info mt-3"></span><i class="fa fa-upload mt-4 mr-2 text-info"></i></span></label>
                 <input class="file-name_diplomapostcourse text-info mt-3" type="text" placeholder="" style="border-bottom: none!important;" readonly="">
                 
-                <input type="file" id="files_diplomapostcourse" accept=".pdf" onchange="docs_files_only_24('files_diplomapostcourse','diploma_course_cum')"  name='' hidden class="form-control"> 
+                <input type="file" id="files_diplomapostcourse" accept=".pdf" onchange="docs_files_only_24('add_form','files_diplomapostcourse','diploma_course_cum')"  name='' hidden class="form-control"> 
                 </td>
                 </tr>
                  
@@ -3965,7 +3966,7 @@ photos=(photos) =>{
                                       <label for="files_eligible1"style="height:0px"> <span id="selImg" class=" btn text-info mt-3"></span><i class="fa fa-upload mt-4 mr-2 text-info"></i></span></label>
                                       <input class="file-name_eligible1 text-info mt-3" type="text" placeholder="" style="border-bottom: none!important;" readonly="">
                                       
-                                      <input type="file" id="files_eligible1" accept=".pdf" onchange="docs_files_only_25('files_eligible1','eligibility')" name='' hidden class="form-control"> 
+                                      <input type="file" id="files_eligible1" accept=".pdf" onchange="docs_files_only_25('add_form','files_eligible1','eligibility')" name='' hidden class="form-control"> 
                                   </td>
                                     </tr>
                                     <!-- 5 -->
@@ -3985,7 +3986,7 @@ photos=(photos) =>{
                                       <label for="files_migration1"style="height:0px"> <span id="selImg" class=" btn text-info mt-3"></span><i class="fa fa-upload mt-4 mr-2 text-info"></i></span></label>
                                       <input class="file-name_migration1 text-info mt-3" type="text" placeholder="" style="border-bottom: none!important;" readonly="">
                                       
-                                      <input type="file" id="files_migration1" accept=".pdf" onchange="docs_files_only_26('files_migration1','migration')" name='' hidden class="form-control"> 
+                                      <input type="file" id="files_migration1" accept=".pdf" onchange="docs_files_only_26('add_form','files_migration1','migration')" name='' hidden class="form-control"> 
                                   </td>
                                     </tr>
        <tr class="collapse row2"id="row2">
@@ -4004,7 +4005,7 @@ photos=(photos) =>{
                   <label for="files_screen"style="height:0px"> <span id="selImg" class=" btn text-info mt-3"></span><i class="fa fa-upload mt-4 mr-2 text-info"></i></span></label>
                   <input class="file-name_screen text-info mt-3" type="text" placeholder="" style="border-bottom: none!important;" readonly="">
                   
-                  <input type="file" id="files_screen" accept=".pdf" onchange="docs_files_only_27('files_screen','screening_test')"  name='' hidden class="form-control"> 
+                  <input type="file" id="files_screen" accept=".pdf" onchange="docs_files_only_27('add_form','files_screen','screening_test')"  name='' hidden class="form-control"> 
                   </td>
                   </tr>
                                     <tr class="collapse row2"id="row2">
@@ -4023,7 +4024,7 @@ photos=(photos) =>{
                                         <label for="files"style="height:0px"> <span id="selImg" class=" btn text-info mt-3"></span><i class="fa fa-upload mt-4 mr-2 text-info"></i></span></label>
                                         <input class="file-name text-info" type="text" placeholder="" style="border-bottom: none!important;" readonly="">
                                         
-                                        <input type="file" id="files" accept=".pdf" onchange="docs_files_only_28('files','Certificate_Form')" name='' hidden class="form-control"> 
+                                        <input type="file" id="files" accept=".pdf" onchange="docs_files_only_28('add_form','files','Certificate_Form')" name='' hidden class="form-control"> 
                                     </td>
                                     </tr>
 
@@ -4043,7 +4044,7 @@ photos=(photos) =>{
                                       <label for="files1"style="height:0px"> <span id="selImg" class=" btn text-info mt-3"></span><i class="fa fa-upload mt-4 mr-2 text-info"></i></span></label>
                                       <input class="file-name1 text-info" type="text" placeholder="" style="border-bottom: none!important;" readonly="">
                                       
-                                      <input type="file" id="files1" accept=".pdf" onchange="docs_files_only_29('files1','Admission_commitee_Form')" name='' hidden class="form-control"> </td>
+                                      <input type="file" id="files1" accept=".pdf" onchange="docs_files_only_29('add_form','files1','Admission_commitee_Form')" name='' hidden class="form-control"> </td>
                                     </tr>
                                 
 <!-- 
@@ -4250,20 +4251,7 @@ photos=(photos) =>{
                       <!--othermodal-->
 
 
-<!-- loading Modal -->
-                       <div class="modal fade" style="background:#3d3e3f2e"  id="loading" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" role="document">
-                          <div class="modal-content"style="background:transparent;border:none">
-                         
-                            <div class="modal-body text-center">
-                              <div class="spinner-border text-info" role="status">
-                                <span class="sr-only">Loading...</span>
-                              </div>
-                            </div>
-                          
-                          </div>
-                        </div>
-                      </div>
+
 
       <!-- ------------------------table profile view modal   -------------->
         
@@ -6115,15 +6103,17 @@ image.src = URL.createadmissionectURL(event.target.files[0]);
 
   <!-- Modal -->
     <div class="modal fade" id="veifiedmodal" tabindex="-1" role="dialog"  aria-hidden="true">
-                      <div class="modal-dialog" role="document">
+                      <div class="modal-dialog" role="document" style="max-width: 300px;">
                         <div class="modal-content">
-                          <div class="modal-header">
-                            <!-- <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5> -->
+                          <!-- <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5> 
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                               <span aria-hidden="true">&times;</span>
                             </button>
-                          </div>
-                          <div class="modal-body" style="align-content: center;">
+                          </div> -->
+                          <div class="modal-body" style="text-align: center;padding-bottom: inherit;
+    padding-left: inherit;
+    padding-right: inherit;">
                             <h5><p id="verifymsg"></p></h5>
                           </div>
                         </div>
@@ -6141,8 +6131,8 @@ image.src = URL.createadmissionectURL(event.target.files[0]);
 
 <!-- Modal -->
 <!-- <form class="form-horizontal"   role="form" method="post" action="/update_mdms"> -->
-  <form class="form-horizontal" role="form" method="post" action="/update_student" 
-  enctype="multipart/form-data">  
+  <form class="form-horizontal" role="form" method="post" action="/updated_student" 
+  enctype="multipart/form-data" id='edit_form'>  
    <input type="text" name="user_details" value="<%=JSON.stringify(user)%>" hidden />
    <input type="hidden" id="action" name="action" value='submitted'>
   <input type='text' id="edit_cand_id" name='cand_id' hidden value='' />
@@ -6161,28 +6151,28 @@ image.src = URL.createadmissionectURL(event.target.files[0]);
   <div class="container">
     <ul class="nav nav-tabs" id="myTab" role="tablist">
   <li class="nav-item">
-    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home1" role="tab" onclick="" aria-controls="home" aria-selected="true">Student Details</a>
+    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#edit_home1" role="tab" onclick="" aria-controls="home" aria-selected="true">Student Details</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profilee1" onclick="" role="tab" aria-controls="profile" aria-selected="false">Qualification Details</a>
+    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#edit_profilee1" onclick="" role="tab" aria-controls="profile" aria-selected="false">Qualification Details</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" id="bank-tab" data-toggle="tab" href="#bankk1" onclick="" role="tab" aria-controls="bank" aria-selected="false">Bank Details</a>
+    <a class="nav-link" id="bank-tab" data-toggle="tab" href="#edit_bankk1" onclick="" role="tab" aria-controls="bank" aria-selected="false">Bank Details</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" id="surety-tab" data-toggle="tab" href="#surety11" onclick="" role="tab" aria-controls="surety" aria-selected="false">Surety Details</a>
+    <a class="nav-link" id="surety-tab" data-toggle="tab" href="#edit_surety11" onclick="" role="tab" aria-controls="surety" aria-selected="false">Surety Details</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" id="contact-tab" data-toggle="tab" onclick="" href="#contact1" role="tab" aria-controls="contact" aria-selected="false">Certificate Details</a>
+    <a class="nav-link" id="contact-tab" data-toggle="tab" onclick="" href="#edit_contact1" role="tab" aria-controls="contact" aria-selected="false">Certificate Details</a>
   </li>
   
    <li class="nav-item">
-    <a class="nav-link" id="relv-tab" data-toggle="tab" onclick="" href="#relv1" role="tab" aria-controls="relv" aria-selected="false">Relieving Details</a>
+    <a class="nav-link" id="relv-tab" data-toggle="tab" onclick="" href="#edit_relv1" role="tab" aria-controls="relv" aria-selected="false">Relieving Details</a>
   </li>
   
 </ul>
 <div class="tab-content card" id="myTabContent">
-  <div class="tab-pane fade show active" id="home1" role="tabpanel" aria-labelledby="home1-tab">
+  <div class="tab-pane fade show active" id="edit_home1" role="tabpanel" aria-labelledby="home-tab">
     
 <!-------------------------- main file---------------------------------------------->
             <!-------------------------- Canditate--------------------------------------------->
@@ -6749,7 +6739,7 @@ image.src = URL.createadmissionectURL(event.target.files[0]);
           <label for="bank_files4" style="height:0px"> Upload Aadhar<span id="selImg" class=" btn  mt-3"></span><i class="fa fa-upload mt-4 mr-2 text-primary"></i></label>
           <input class="file-name_bank4 text-primary mt-1" type="text" placeholder="" style="border-bottom: none!important;" readonly="">
           
-          <input type="file" id="bank_files4" accept=".pdf" name="aadhar" hidden="" class="form-control"> 
+          <input type="file" id="bank_files4" accept=".pdf" name="" hidden="" class="form-control"> 
       
      </div>
       </div>
@@ -6766,13 +6756,13 @@ image.src = URL.createadmissionectURL(event.target.files[0]);
 
     <div class="col-md-3" style="display:grid">
   
-      <input name="n_cand_photo" accept=".jpg,.jpeg,.png" class="form-control" type="file" hidden="" id="file01" onchange="document.getElementById('frame01').src = window.URL.createObjectURL(this.files[0])">
+      <input name="" accept=".jpg,.jpeg,.png" class="form-control" type="file" hidden="" id="file01" onchange="document.getElementById('frame01').src = window.URL.createObjectURL(this.files[0])">
       <label for="file01" style="cursor: pointer;" class="p-2">Upload photo</label>
 
       <img id="frame01" src="https://www.seekpng.com/png/detail/46-462959_unknown-person-icon-png-download-single-people-logo.png" width="100px">
     </div>
     <div class="col-md-3">
-      <input name="n_cand_sign" accept=".jpg,.jpeg,.png" class="form-control" type="file" hidden="" id="file02" onchange="document.getElementById('frame02').src = window.URL.createObjectURL(this.files[0])">
+      <input name="" accept=".jpg,.jpeg,.png" class="form-control" type="file" hidden="" id="file02" onchange="document.getElementById('frame02').src = window.URL.createObjectURL(this.files[0])">
       <label for="file02" style="cursor: pointer;" class="p-2"> Upload Signature</label>
 
       <img id="frame02" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1YpRbqBJDnQHbdXxHvzrakMNXhgP-z9jpfw&amp;usqp=CAU" width="100px">
@@ -6780,7 +6770,7 @@ image.src = URL.createadmissionectURL(event.target.files[0]);
 
     </div>
     <div class="col-md-3" style="display: grid;">
-      <input name="n_cand_thumb" accept=".jpg,.jpeg,.png" class="form-control" type="file" hidden="" id="file03" onchange="document.getElementById('frame03').src = window.URL.createObjectURL(this.files[0])">
+      <input name="" accept=".jpg,.jpeg,.png" class="form-control" type="file" hidden="" id="file03" onchange="document.getElementById('frame03').src = window.URL.createObjectURL(this.files[0])">
       <label for="file03" style="cursor: pointer;" class="p-2">Upload thumb </label>
 
       <img id="frame03" src="https://i.pinimg.com/originals/89/60/53/89605396d7eabcdf01ab78ce48aa0c6d.png" width="80">
@@ -7332,7 +7322,10 @@ $.data(big_pad[0], "control", control);
 
 </div>
 </div>
-
+ <div class="modal-footer justify-content-end">
+      <button type="button" class="next btn btn-primary" onclick="student_home_('edit_form')">Save & Next</button>
+      <button type="button" class=" btn btn-danger" data-dismiss="modal">Cancel</button>
+      </div>
 
   </div>
 
@@ -7340,7 +7333,7 @@ $.data(big_pad[0], "control", control);
   <!-------------------------- Qualification---------------------------------------------->
 
 
-  <div class="tab-pane fade" id="profilee1" role="tabpanel" aria-labelledby="profile1-tab">
+  <div class="tab-pane fade" id="edit_profilee1" role="tabpanel" aria-labelledby="profile-tab">
    
                 <section id="Qualification" class="">
 
@@ -7664,10 +7657,15 @@ $.data(big_pad[0], "control", control);
                                   </div>
                                   
                                 </section>
-
+ <div class="modal-footer justify-content-end">
+                                      <!-- <button type="button" class="prev btn btn-secondary" onclick="back_to_edit_prev('student_home')">Prev</button> -->
+            
+                                      <button type="button" class="next btn btn-primary" onclick="student_qual_('edit_form')">Save & Next</button>
+                                      <button type="button" class=" btn btn-danger" data-dismiss="modal">Cancel</button>
+                                      </div>
   </div>
    <!-------------------------- bank Details---------------------------------------------->
-      <div class="tab-pane fade p-3" id="bankk1" role="tabpanel" aria-labelledby="bank1-tab">
+      <div class="tab-pane fade p-3" id="edit_bankk1" role="tabpanel" aria-labelledby="bank-tab">
     <section id="bank">
       <div class="container">
         <div class="row">
@@ -7702,7 +7700,7 @@ $.data(big_pad[0], "control", control);
     <label for="bank_files" style="height:0px"> Bank Passbook/Statement<span id="selImg" class=" btn  mt-3"></span><i class="fa fa-upload mt-4 mr-2 text-primary"></i></label>
     <input class="file-name_bank text-primary mt-1" type="text" placeholder="" style="border-bottom: none!important;" readonly="">
     
-    <input type="file" id="bank_files" accept=".pdf" name="passbook" hidden="" class="form-control"> 
+    <input type="file" id="bank_files" accept=".pdf" name="" hidden="" class="form-control"> 
 
 </div>
 <!-- </form> -->
@@ -7767,7 +7765,7 @@ $.data(big_pad[0], "control", control);
             <label for="bank_files223" style="height:0px"> Upload Transaction Reciept<span id="selImg" class=" btn  mt-3"></span><i class="fa fa-upload mt-4 mr-2 text-primary"></i></label>
             <input class="file-name_bank223 text-primary mt-1" type="text" placeholder="" id="edit_challan_file" style="border-bottom: none!important;">
             
-            <input type="file" id="bank_files223" accept=".pdf" name="challan" hidden="" class="form-control"> 
+            <input type="file" id="bank_files223" accept=".pdf" name="" hidden="" class="form-control"> 
         
         </div>
          </div>
@@ -7806,7 +7804,7 @@ $.data(big_pad[0], "control", control);
     <label for="bank_files255" style="height:0px"> Upload Transaction Reciept<span id="selImg" class=" btn  mt-3"></span><i class="fa fa-upload mt-4 mr-2 text-primary"></i></label>
     <input class="file-name_bank255 text-primary mt-1" type="text" placeholder="" id="edit_challan_file" style="border-bottom: none!important;" >
     
-    <input type="file" id="bank_files255" accept=".pdf" name="sq_challan" hidden="" class="form-control"> 
+    <input type="file" id="bank_files255" accept=".pdf" name="" hidden="" class="form-control"> 
 
 </div>
 </div>
@@ -7814,8 +7812,15 @@ $.data(big_pad[0], "control", control);
        
       </div>
     </section>
+    <div class="modal-footer justify-content-end">
+          <!-- <button type="button" class="prev btn btn-secondary" onclick="back_to_edit_prev('student_qual')">Prev</button> -->
+
+          <button type="button" class="next btn btn-primary" onclick="student_bank_('edit_form')">Save & Next</button>
+          <button type="button" class=" btn btn-danger" data-dismiss="modal">Cancel</button>
+          </div>
 </div>
-   <div class="tab-pane fade p-3" id="surety11" role="tabpanel" aria-labelledby="surety1-tab">
+<!---------------------------- surety details-------------------------->
+   <div class="tab-pane fade p-3" id="edit_surety11" role="tabpanel" aria-labelledby="surety-tab">
     <div class="crd">
                  
               
@@ -7895,16 +7900,21 @@ $.data(big_pad[0], "control", control);
                         <label for="files_mdms_surety_edit" style="height:0px"> <span id="selImg" class=" btn text-info mt-3"></span><i class="fa fa-upload mt-4 mr-2 text-info"> </i></label>
                         <input class="file-name_mdms_surety_edit text-info mt-3 pt-1" id="browse_mdms" name="Browse" type="text" placeholder="Upload Bond" style="border-bottom: none!important;" readonly="">
                         
-                        <input type="file" id="files_mdms_surety_edit" name="surety" hidden="" class="form-control"> 
+                        <input type="file" id="files_mdms_surety_edit" name="" hidden="" class="form-control"> 
                   
  </div>                      </section>
-                  
+                  <div class="modal-footer justify-content-end">
+      <!-- <button type="button" class="prev btn btn-secondary" onclick="back_to_edit_prev('student_bank')">Prev</button> -->
+
+      <button type="button" class="next btn btn-primary" onclick="student_surety_('edit_form')">Save & Next</button>
+      <button type="button" class=" btn btn-danger" data-dismiss="modal">Cancel</button>
+      </div>
                   
                 </div>
     </div>
     <!-------------------------- certificate Details---------------------------------------------->
 
-  <div class="tab-pane fade" id="contact1" role="tabpanel" aria-labelledby="contact1-tab">
+  <div class="tab-pane fade" id="edit_contact1" role="tabpanel" aria-labelledby="contact-tab">
         <section id="certificate">
       <div class="container">
 
@@ -7942,7 +7952,7 @@ $.data(big_pad[0], "control", control);
   <label for="files_transfer"style="height:0px"> <span id="selImg" class=" btn text-info mt-3"></span><i class="fa fa-upload mt-4 mr-2 text-info"></i></span></label>
   <input class="file-name_transfer text-info mt-3" type="text" placeholder="" style="border-bottom: none!important;" readonly="">
   
-  <input type="file" id="files_transfer" accept=".pdf" name='allotment_order' hidden class="form-control"> 
+  <input type="file" id="files_transfer" accept=".pdf" onchange="docs_files_only_1('edit_form','files_transfer','allotment_order')" name='' hidden class="form-control"> 
 </td>
                   </tr>
 
@@ -7962,7 +7972,7 @@ $.data(big_pad[0], "control", control);
                     <label for="files_conduct"style="height:0px"> <span id="selImg" class=" btn text-info mt-3"></span><i class="fa fa-upload mt-4 mr-2 text-info"></i></span></label>
                     <input class="file-name_conduct text-info mt-3" type="text" placeholder="" style="border-bottom: none!important;" readonly="">
                     
-                    <input type="file" id="files_conduct" accept=".pdf" name='neet_admit_card' hidden class="form-control"> 
+                    <input type="file" id="files_conduct" onchange="docs_files_only_2('edit_form','files_conduct','neet_admit_card')" accept=".pdf" name='' hidden class="form-control"> 
                 </td>
                   </tr>
              
@@ -7983,7 +7993,7 @@ class="form-control">
 <label for="files_neetscore"style="height:0px"> <span id="selImg" class=" btn text-info mt-3"></span><i class="fa fa-upload mt-4 mr-2 text-info"></i></span></label>
 <input class="file-name_neetscore text-info mt-3" type="text" placeholder="" style="border-bottom: none!important;" readonly="">
 
-<input type="file" id="files_neetscore" accept=".pdf" name='neet_score_card' hidden class="form-control"> 
+<input type="file" id="files_neetscore" onchange="docs_files_only_3('edit_form','files_neetscore','neet_score_card')" accept=".pdf" name='' hidden class="form-control"> 
 </td>
 </tr>
 <tr class="collapse row2"id="row2">
@@ -8002,7 +8012,7 @@ class="form-control">
 <label for="files_10th"style="height:0px"> <span id="selImg" class=" btn text-info mt-3"></span><i class="fa fa-upload mt-4 mr-2 text-info"></i></span></label>
 <input class="file-name_10th text-info mt-3" type="text" placeholder="" style="border-bottom: none!important;" readonly="">
 
-<input type="file" id="files_10th" accept=".pdf" name='ten_mark' hidden class="form-control"> 
+<input type="file" id="files_10th" accept=".pdf" onchange="docs_files_only_4('edit_form','files_10th','ten_mark')" name='' hidden class="form-control"> 
 </td>
 </tr>
 <tr class="collapse row2"id="row2">
@@ -8021,7 +8031,7 @@ class="form-control">
 <label for="files_10thpass"style="height:0px"> <span id="selImg" class=" btn text-info mt-3"></span><i class="fa fa-upload mt-4 mr-2 text-info"></i></span></label>
 <input class="file-name_10thpass text-info mt-3" type="text" placeholder="" style="border-bottom: none!important;" readonly="">
 
-<input type="file" id="files_10thpass" accept=".pdf" name='ten_pass' hidden class="form-control"> 
+<input type="file" id="files_10thpass" accept=".pdf" onchange="docs_files_only_5('edit_form','files_10thpass','ten_pass')" name='' hidden class="form-control"> 
 </td>
 </tr>
 <tr class="collapse row2"id="row2">
@@ -8040,7 +8050,7 @@ class="form-control">
 <label for="files_12th"style="height:0px"> <span id="selImg" class=" btn text-info mt-3"></span><i class="fa fa-upload mt-4 mr-2 text-info"></i></span></label>
 <input class="file-name_12th text-info mt-3" type="text" placeholder="" style="border-bottom: none!important;" readonly="">
 
-<input type="file" id="files_12th" accept=".pdf" name='twleve_mark' hidden class="form-control"> 
+<input type="file" id="files_12th" accept=".pdf" onchange="docs_files_only_6('edit_form','files_12th','twleve_mark')" name='' hidden class="form-control"> 
 </td>
 </tr>
 <tr class="collapse row2"id="row2">
@@ -8059,7 +8069,7 @@ class="form-control">
 <label for="files_12thpass"style="height:0px"> <span id="selImg" class=" btn text-info mt-3"></span><i class="fa fa-upload mt-4 mr-2 text-info"></i></span></label>
 <input class="file-name_12thpass text-info mt-3" type="text" placeholder="" style="border-bottom: none!important;" readonly="">
 
-<input type="file" id="files_12thpass" accept=".pdf" name='twelve_pass' hidden class="form-control"> 
+<input type="file" id="files_12thpass" accept=".pdf" onchange="docs_files_only_7('edit_form','files_12thpass','twelve_pass')" name='' hidden class="form-control"> 
 </td>
 </tr>
 
@@ -8080,7 +8090,7 @@ class="form-control">
   <label for="files_community"style="height:0px"> <span id="selImg" class=" btn text-info mt-3"></span><i class="fa fa-upload mt-4 mr-2 text-info"></i></span></label>
   <input class="file-name_community text-info mt-3" type="text" placeholder="" style="border-bottom: none!important;" readonly="">
   
-  <input type="file" id="files_community" accept=".pdf" name='community' hidden class="form-control"> 
+  <input type="file" id="files_community" accept=".pdf" onchange="docs_files_only_8('edit_form','files_community','community')" name='' hidden class="form-control"> 
 </td>
                   </tr>
 
@@ -8100,7 +8110,7 @@ class="form-control">
 <label for="files_neet"style="height:0px"> <span id="selImg" class=" btn text-info mt-3"></span><i class="fa fa-upload mt-4 mr-2 text-info"></i></span></label>
 <input class="file-name_neet text-info mt-3" type="text" placeholder="" style="border-bottom: none!important;" readonly="">
 
-<input type="file" id="files_neet" accept=".pdf" name='mbbs_first_mark' hidden class="form-control"> 
+<input type="file" id="files_neet" accept=".pdf" onchange="docs_files_only_9('edit_form','files_neet','mbbs_first_mark')" name='' hidden class="form-control"> 
 </td>
 </tr>
 <tr class="collapse row2"id="row2">
@@ -8119,7 +8129,7 @@ class="form-control">
 <label for="files_passbuk"style="height:0px"> <span id="selImg" class=" btn text-info mt-3"></span><i class="fa fa-upload mt-4 mr-2 text-info"></i></span></label>
 <input class="file-name_passbuk text-info mt-3" type="text" placeholder="" style="border-bottom: none!important;" readonly="">
 
-<input type="file" id="files_passbuk" accept=".pdf" name='mbbs_second_mark' hidden class="form-control"> 
+<input type="file" id="files_passbuk" accept=".pdf" onchange="docs_files_only_10('edit_form','files_passbuk','mbbs_second_mark')" name='' hidden class="form-control"> 
 </td>
 </tr>
 <tr class="collapse row2"id="row2">
@@ -8138,7 +8148,7 @@ class="form-control">
 <label for="files_aadhar"style="height:0px"> <span id="selImg" class=" btn text-info mt-3"></span><i class="fa fa-upload mt-4 mr-2 text-info"></i></span></label>
 <input class="file-name_aadhar text-info mt-3" type="text" placeholder="" style="border-bottom: none!important;" readonly="">
 
-<input type="file" id="files_aadhar" accept=".pdf" name='mbbs_third_mark' hidden class="form-control"> 
+<input type="file" id="files_aadhar" accept=".pdf" onchange="docs_files_only_11('edit_form','files_aadhar','mbbs_third_mark')" name='' hidden class="form-control"> 
 </td>
 </tr>
 <tr class="collapse row2"id="row2">
@@ -8157,7 +8167,7 @@ class="form-control">
 <label for="files_pan"style="height:0px"> <span id="selImg" class=" btn text-info mt-3"></span><i class="fa fa-upload mt-4 mr-2 text-info"></i></span></label>
 <input class="file-name_pan text-info mt-3" type="text" placeholder="" style="border-bottom: none!important;" readonly="">
 
-<input type="file" id="files_pan" accept=".pdf" name='mbbs_fourth_mark' hidden class="form-control"> 
+<input type="file" id="files_pan" accept=".pdf" onchange="docs_files_only_12('edit_form','files_pan','mbbs_fourth_mark')" name='' hidden class="form-control"> 
 </td>
 </tr>
 <tr class="collapse row2"id="row2">
@@ -8176,7 +8186,7 @@ class="form-control">
 <label for="files_passport"style="height:0px"> <span id="selImg" class=" btn text-info mt-3"></span><i class="fa fa-upload mt-4 mr-2 text-info"></i></span></label>
 <input class="file-name_passport text-info mt-3" type="text" placeholder="" style="border-bottom: none!important;" readonly="">
 
-<input type="file" id="files_passport" accept=".pdf" name='mbbs_crri' hidden class="form-control"> 
+<input type="file" id="files_passport" accept=".pdf" onchange="docs_files_only_13('edit_form','files_passport','mbbs_crri')" name='' hidden class="form-control"> 
 </td>
 </tr>
 <tr class="collapse row2"id="row2">
@@ -8195,7 +8205,7 @@ class="form-control">
 <label for="files_visa"style="height:0px"> <span id="selImg" class=" btn text-info mt-3"></span><i class="fa fa-upload mt-4 mr-2 text-info"></i></span></label>
 <input class="file-name_visa text-info mt-3" type="text" placeholder="" style="border-bottom: none!important;" readonly="">
 
-<input type="file" id="files_visa" accept=".pdf" name='mbbs_degree' hidden class="form-control"> 
+<input type="file" id="files_visa" accept=".pdf" onchange="docs_files_only_14('edit_form','files_visa','mbbs_degree')" name='' hidden class="form-control"> 
 </td>
 </tr>
 <tr class="collapse row2"id="row2">
@@ -8214,7 +8224,7 @@ class="form-control">
 <label for="files_photo"style="height:0px"> <span id="selImg" class=" btn text-info mt-3"></span><i class="fa fa-upload mt-4 mr-2 text-info"></i></span></label>
 <input class="file-name_photo text-info mt-3" type="text" placeholder="" style="border-bottom: none!important;" readonly="">
 
-<input type="file" id="files_photo" accept=".pdf" name='mbbs_pro_one' hidden class="form-control"> 
+<input type="file" id="files_photo" accept=".pdf" onchange="docs_files_only_15('edit_form','files_photo','mbbs_pro_one')" name='' hidden class="form-control"> 
 </td>
 </tr>
 <tr class="collapse row2"id="row2">
@@ -8233,7 +8243,7 @@ class="form-control">
 <label for="files_sign"style="height:0px"> <span id="selImg" class=" btn text-info mt-3"></span><i class="fa fa-upload mt-4 mr-2 text-info"></i></span></label>
 <input class="file-name_sign text-info mt-3" type="text" placeholder="" style="border-bottom: none!important;" readonly="">
 
-<input type="file" id="files_sign" accept=".pdf" name='mbbs_pro_two' hidden class="form-control"> 
+<input type="file" id="files_sign" accept=".pdf" onchange="docs_files_only_16('edit_form','files_sign','mbbs_pro_two')" name='' hidden class="form-control"> 
 </td>
 </tr>
 <tr class="collapse row2"id="row2">
@@ -8252,7 +8262,7 @@ class="form-control">
 <label for="files_reg1"style="height:0px"> <span id="selImg" class=" btn text-info mt-3"></span><i class="fa fa-upload mt-4 mr-2 text-info"></i></span></label>
 <input class="file-name_reg1 text-info mt-3" type="text" placeholder="" style="border-bottom: none!important;" readonly="">
 
-<input type="file" id="files_reg1" accept=".pdf" name='mbbs_register' hidden class="form-control"> 
+<input type="file" id="files_reg1" accept=".pdf" onchange="docs_files_only_17('edit_form','files_reg1','mbbs_register')" name='' hidden class="form-control"> 
 </td>
 </tr>
 <tr class="collapse row2"id="row2">
@@ -8271,7 +8281,7 @@ class="form-control">
 <label for="files_attempt1"style="height:0px"> <span id="selImg" class=" btn text-info mt-3"></span><i class="fa fa-upload mt-4 mr-2 text-info"></i></span></label>
 <input class="file-name_attempt1 text-info mt-3" type="text" placeholder="" style="border-bottom: none!important;" readonly="">
 
-<input type="file" id="files_attempt1" accept=".pdf" name='mbbs_attempt' hidden class="form-control"> 
+<input type="file" id="files_attempt1" accept=".pdf" onchange="docs_files_only_18('edit_form','files_attempt1','mbbs_attempt')" name='' hidden class="form-control"> 
 </td>
 </tr>
 <tr class="collapse row2"id="row2">
@@ -8290,7 +8300,7 @@ class="form-control">
 <label for="files_conductcourse1"style="height:0px"> <span id="selImg" class=" btn text-info mt-3"></span><i class="fa fa-upload mt-4 mr-2 text-info"></i></span></label>
 <input class="file-name_conductcourse1 text-info mt-3" type="text" placeholder="" style="border-bottom: none!important;" readonly="">
 
-<input type="file" id="files_conductcourse1" accept=".pdf" name='mbbs_course_cum' hidden class="form-control"> 
+<input type="file" id="files_conductcourse1" accept=".pdf" onchange="docs_files_only_19('edit_form','files_conductcourse1','mbbs_course_cum')" name='' hidden class="form-control"> 
 </td>
 </tr>
 <tr class="collapse row2"id="row2">
@@ -8309,7 +8319,7 @@ class="form-control">
 <label for="files_transfercert1"style="height:0px"> <span id="selImg" class=" btn text-info mt-3"></span><i class="fa fa-upload mt-4 mr-2 text-info"></i></span></label>
 <input class="file-name_transfercert1 text-info mt-3" type="text" placeholder="" style="border-bottom: none!important;" readonly="">
 
-<input type="file" id="files_transfercert1" accept=".pdf" name='mbbs_transfer' hidden class="form-control"> 
+<input type="file" id="files_transfercert1" accept=".pdf" onchange="docs_files_only_20('edit_form','files_transfercert1','mbbs_transfer')" name='' hidden class="form-control"> 
 </td>
 </tr>
 <tr class="collapse row2"id="row2">
@@ -8328,7 +8338,7 @@ class="form-control">
 <label for="files_diplomadeg1"style="height:0px"> <span id="selImg" class=" btn text-info mt-3"></span><i class="fa fa-upload mt-4 mr-2 text-info"></i></span></label>
 <input class="file-name_diplomadeg1 text-info mt-3" type="text" placeholder="" style="border-bottom: none!important;" readonly="">
 
-<input type="file" id="files_diplomadeg1" accept=".pdf" name='diploma_degree' hidden class="form-control"> 
+<input type="file" id="files_diplomadeg1" accept=".pdf" onchange="docs_files_only_21('edit_form','files_diplomadeg1','diploma_degree')" name='' hidden class="form-control"> 
 </td>
 </tr>
 <tr class="collapse row2"id="row2">
@@ -8347,7 +8357,7 @@ class="form-control">
 <label for="files_diplomapost1"style="height:0px"> <span id="selImg" class=" btn text-info mt-3"></span><i class="fa fa-upload mt-4 mr-2 text-info"></i></span></label>
 <input class="file-name_diplomapost1 text-info mt-3" type="text" placeholder="" style="border-bottom: none!important;" readonly="">
 
-<input type="file" id="files_diplomapost1" accept=".pdf" name='diploma_pro' hidden class="form-control"> 
+<input type="file" id="files_diplomapost1" accept=".pdf" onchange="docs_files_only_22('edit_form','files_diplomapost1','diploma_pro')" name='' hidden class="form-control"> 
 </td>
 </tr>
 <tr class="collapse row2"id="row2">
@@ -8366,7 +8376,7 @@ class="form-control">
 <label for="files_diplomapostreg1"style="height:0px"> <span id="selImg" class=" btn text-info mt-3"></span><i class="fa fa-upload mt-4 mr-2 text-info"></i></span></label>
 <input class="file-name_diplomapostreg1 text-info mt-3" type="text" placeholder="" style="border-bottom: none!important;" readonly="">
 
-<input type="file" id="files_diplomapostreg1" accept=".pdf" name='diploma_register' hidden class="form-control"> 
+<input type="file" id="files_diplomapostreg1" accept=".pdf" onchange="docs_files_only_23('edit_form','files_diplomapostreg1','diploma_register')" name='' hidden class="form-control"> 
 </td>
 </tr>
 <tr class="collapse row2"id="row2">
@@ -8385,7 +8395,7 @@ class="form-control">
 <label for="files_diplomapostcourse1"style="height:0px"> <span id="selImg" class=" btn text-info mt-3"></span><i class="fa fa-upload mt-4 mr-2 text-info"></i></span></label>
 <input class="file-name_diplomapostcourse1 text-info mt-3" type="text" placeholder="" style="border-bottom: none!important;" readonly="">
 
-<input type="file" id="files_diplomapostcourse1" accept=".pdf" name='diploma_course_cum' hidden class="form-control"> 
+<input type="file" id="files_diplomapostcourse1" accept=".pdf" onchange="docs_files_only_24('edit_form','files_diplomapostcourse1','diploma_course_cum')" name='' hidden class="form-control"> 
 </td>
 </tr>
 
@@ -8405,7 +8415,7 @@ class="form-control">
                     <label for="files_eligible"style="height:0px"> <span id="selImg" class=" btn text-info mt-3"></span><i class="fa fa-upload mt-4 mr-2 text-info"></i></span></label>
                     <input class="file-name_eligible text-info mt-3" type="text" placeholder="" style="border-bottom: none!important;" readonly="">
                     
-                    <input type="file" id="files_eligible" accept=".pdf" name='eligibility' hidden class="form-control"> 
+                    <input type="file" id="files_eligible" accept=".pdf" onchange="docs_files_only_25('edit_form','files_eligible','eligibility')" name='' hidden class="form-control"> 
                 </td>
                   </tr>
                   <!-- 5 -->
@@ -8424,7 +8434,7 @@ class="form-control">
                     <label for="files_migration"style="height:0px"> <span id="selImg" class=" btn text-info mt-3"></span><i class="fa fa-upload mt-4 mr-2 text-info"></i></span></label>
                     <input class="file-name_migration text-info mt-3" type="text" placeholder="" style="border-bottom: none!important;" readonly="">
                     
-                    <input type="file" id="files_migration" accept=".pdf" name='migration' hidden class="form-control"> 
+                    <input type="file" id="files_migration" accept=".pdf" onchange="docs_files_only_26('edit_form','files_migration','migration')" name='' hidden class="form-control"> 
                 </td>
                   </tr>
 
@@ -8444,7 +8454,7 @@ class="form-control">
 <label for="files_screen1"style="height:0px"> <span id="selImg" class=" btn text-info mt-3"></span><i class="fa fa-upload mt-4 mr-2 text-info"></i></span></label>
 <input class="file-name_screen1 text-info mt-3" type="text" placeholder="" style="border-bottom: none!important;" readonly="">
 
-<input type="file" id="files_screen1" accept=".pdf" name='screening_test' hidden class="form-control"> 
+<input type="file" id="files_screen1" accept=".pdf" onchange="docs_files_only_27('edit_form','files_screen1','screening_test')" name='' hidden class="form-control"> 
 </td>
 </tr>
 <!-- <tr class="row2 collapse " id="row2">
@@ -8489,7 +8499,7 @@ class="form-control">
                       <label for="bank_files2554"style="height:0px"> <span id="selImg" class=" btn text-info mt-3"></span><i class="fa fa-upload mt-4 mr-2 text-info"></i></span></label>
                       <input class="file-name_bank2554 text-info mt-3" type="text" placeholder="" style="border-bottom: none!important;" readonly="">
                       
-                      <input type="file" id="bank_files2554" accept=".pdf" name='Certificate_Form' hidden class="form-control"> 
+                      <input type="file" id="bank_files2554" accept=".pdf" onchange="docs_files_only_28('edit_form','bank_files2554','Certificate_Form')" name='' hidden class="form-control"> 
                   </td>
                   </tr>
 
@@ -8509,7 +8519,7 @@ class="form-control">
                     <label for="bank_files256"style="height:0px"> <span id="selImg" class=" btn text-info mt-3"></span><i class="fa fa-upload mt-4 mr-2 text-info"></i></span></label>
                     <input class="file-name_bank256 text-info mt-3" type="text" placeholder="" style="border-bottom: none!important;" readonly="">
                     
-                    <input type="file" id="bank_files256" accept=".pdf" name='Admission_commitee_Form' hidden class="form-control"> </td>
+                    <input type="file" id="bank_files256" accept=".pdf" onchange="docs_files_only_29('edit_form','bank_files256','Admission_commitee_Form')" name='' hidden class="form-control"> </td>
                   </tr>
               
 <!-- 
@@ -8557,26 +8567,30 @@ class="form-control">
               </tfoot>
             </table>
            
-	<div class="form-check">
+	<!-- <div class="form-check">
                   <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" checked required>
                   <label class="form-check-label" for="defaultCheck1">
                     <b>I am to certify that the above particulars furnished are accurate. I understand that on arrival all the information and documents will be verified. Discrepancies if any will lead to forfeiture of the admission.
                 </b>
                   </label>
-                </div>
+                </div> -->
         </div>
 
 
 
       </div>
     </section>
-
+<div class="modal-footer justify-content-end">
+              <!-- <button type="button" class="prev btn btn-secondary" onclick="back_to_edit_prev('student_surety')">Prev</button> -->
+            <button type="button"  class="btn btn-primary" onclick="student_docs_('edit_form')">Save & Next</button>
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                   </div>
 
   </div>
    
     <!-------------------------- Releiveing Details---------------------------------------------->
 
-  <div class="tab-pane fade" id="relv1" role="tabpanel" aria-labelledby="relv1-tab">
+  <div class="tab-pane fade" id="edit_relv1" role="tabpanel" aria-labelledby="relv-tab">
 <div class="container mt-2">
   <div class="row">
     <div class="col-md-3">
@@ -8621,7 +8635,11 @@ class="form-control">
     </div>
   
   </div>
-
+<div class="modal-footer justify-content-end">
+              <!-- <button type="button" class="prev btn btn-secondary" onclick="back_to_edit_prev('student_docs')">Prev</button> -->
+            <button type="submit" class="btn btn-primary">Save </button>
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                   </div>
 </div>
 </div>
    
@@ -8630,10 +8648,7 @@ class="form-control">
 </section>
       </div>
 
-      <div class="modal-footer justify-content-end">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-        <button type="submit" class="btn btn-primary">Update</button>
-      </div>
+      
       
     </div>
   </div>
@@ -9091,6 +9106,20 @@ class="form-control">
   </div>
 </div> 
 
+<!-- loading Modal -->
+                       <div class="modal fade" style="background:#3d3e3f2e"  id="loading" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                          <div class="modal-content"style="background:transparent;border:none">
+                         
+                            <div class="modal-body text-center">
+                              <div class="spinner-border text-info" role="status">
+                                <span class="sr-only">Loading...</span>
+                              </div>
+                            </div>
+                          
+                          </div>
+                        </div>
+                      </div>
 <!-- report modals -->
 <!-- bonafide modal -->
 <div class="modal fade" id="bonofide" tabindex="-1" role="dialog" aria-labelledby="bonofideLabel" aria-hidden="true">

@@ -14,7 +14,13 @@ exports.student_home = (req, res) => {
   var post = req.body;
   console.log(post);
   var user_details = JSON.parse(post.user_details);
-  var submitted = post.action;
+  var submit_type = post.action;
+  // var submitted;
+  // submit_type == "submitted"
+  //   ? (submitted = "Yes")
+  //   : submit_type == "saved"
+  //   ? (submitted = "No")
+  //   : null;
 
   var name = post.full_name;
   var hepatitis = post.hepatitis == "undefined" ? "No" : post.hepatitis;
@@ -392,7 +398,6 @@ exports.student_home = (req, res) => {
   //relieving details
   var relieved = "No";
 
-  // console.log('candid:'+cand_id);
   var dt = new Date();
 
   registered_time = `${(dt.getMonth() + 1).toString().padStart(2, "0")}/${dt
@@ -420,6 +425,7 @@ exports.student_home = (req, res) => {
     var num = Math.floor(Math.random() * 1e6);
     var cand_first = name.substring(0, 4);
     var cand_id = cand_first + num;
+    console.log("candid:" + cand_id);
 
     course_title == "MBBS"
       ? initial_files.initial_files(cand_id, name, last_modified_time)
@@ -693,13 +699,18 @@ exports.student_home = (req, res) => {
     });
   } else {
     var cand_id = post.cand_id;
+    console.log(cand_id);
     var sql = `UPDATE admintv_ems.cand_profile_details SET name = '${name}', initial='${initial}', initial_expansion='${initial_expansion}',type_of_allotment='${type_of_allotment}', father_name='${father_name}', mother_name='${mother_name}', date_of_birth='${date_of_birth}', gender='${gender}', blood_group='${blood_group}', religion='${religion}', community='${community}', caste='${caste}', nationality='${nationality}', willing_to_donate_blood='${willing_to_donate_blood}', academic_year='${academic_year}',registered_time='${registered_time}', last_modified_time='${last_modified_time}' WHERE (cand_id = '${cand_id}')`;
+    console.log(sql);
     db.query(sql, function () {
-      var sql = `UPDATE admintv_ems.cand_admission_details SET cand_name='${name}',rank_='${rank}',rank_no='${rank_no}',ar_no = '${ar_no}',total_mark = '${total_mark}',neet_mark = '${neet_mark}',reg_no = '${reg_no}',neet_roll_no = '${neet_roll_no}',course = '${course}',admission_type = '${admission_type}',admission_quota = '${admission_quota}',course_commencement = '${course_commencement}',date_of_admission = '${date_of_admission}',date_of_allotment = '${date_of_allotment}',selected_category = '${selected_category}',willing_for_counciling = '${willing_for_counciling}',student_code ='${student_code}',submitted ='${submitted}',hepatitis ='${hepatitis}',covid ='${covid}',last_modified_time ='${last_modified_time}' WHERE(cand_id = '${cand_id}')`;
+      var sql = `UPDATE admintv_ems.cand_admission_details SET cand_name='${name}',rank_='${rank}',rank_no='${rank_no}',ar_no = '${ar_no}',total_mark = '${total_mark}',neet_mark = '${neet_mark}',reg_no = '${reg_no}',neet_roll_no = '${neet_roll_no}',course = '${course}',admission_type = '${admission_type}',admission_quota = '${admission_quota}',course_commencement = '${course_commencement}',date_of_admission = '${date_of_admission}',date_of_allotment = '${date_of_allotment}',selected_category = '${selected_category}',willing_for_counciling = '${willing_for_counciling}',student_code ='${student_code}',hepatitis ='${hepatitis}',covid ='${covid}',last_modified_time ='${last_modified_time}' WHERE(cand_id = '${cand_id}')`;
+      console.log(sql);
       db.query(sql, function () {
         var sql = ` UPDATE admintv_ems.cand_address_details SET address_type='${address_type}', ps_address='${ps_address}', ps_pincode='${ps_pincode}', ps_state='${ps_state}', ps_district='${ps_district}', pm_address='${pm_address}', pm_pincode='${pm_pincode}', pm_state='${pm_state}', pm_district='${pm_district}',last_modified_time='${last_modified_time}' WHERE(cand_id='${cand_id}')`;
+        console.log(sql);
         db.query(sql, function () {
           var sql = `UPDATE admintv_ems.cand_contact_details SET tel_phone ='${tel_phone}', mobile_phone='${mobile_phone}', email_id='${email_id}', aadhar_no='${aadhar_no}', voter_id='${voter_id}', remarks='${remarks}',last_modified_time='${last_modified_time}' WHERE(cand_id ='${cand_id}')`;
+          console.log(sql);
           db.query(sql, function () {
             res.send({ cand_id: cand_id });
           });

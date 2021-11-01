@@ -1,5 +1,6 @@
 // date formatter
 function reformatDate(dateStr) {
+  if (!dateStr) return "";
   dArr = dateStr.split("-");
   return dateStr && dArr[2] + "-" + dArr[1] + "-" + dArr[0];
 }
@@ -145,7 +146,7 @@ select_nationality_edit = () => {
   }
 };
 
-// mbbs_save
+//----------mbbs-save_student_details------------//
 student_home = (params) => {
   var form = document.getElementById(params);
   let data = new FormData(form);
@@ -242,11 +243,19 @@ student_home_ = (params) => {
       var { cand_id } = response.data;
 
       document.getElementById("add_cand_id").value = cand_id;
-      home_files_only();
-      $("#student_home").removeClass("active");
-      $("#student_qual").addClass("active");
-      $("#add_home").removeClass("show active");
-      $("#add_profilee").addClass("show active");
+      home_files_only(params);
+      if (params == "add_form") {
+        $("#student_home").removeClass("active");
+        $("#student_qual").addClass("active");
+        $("#add_home").removeClass("show active");
+        $("#add_profilee").addClass("show active");
+      }
+      if (params == "edit_form") {
+        $("#home-tab").removeClass("active");
+        $("#profile-tab").addClass("active");
+        $("#edit_home1").removeClass("show active");
+        $("#edit_profilee1").addClass("show active");
+      }
     })
     .catch(function (error) {
       console.log(error);
@@ -261,10 +270,18 @@ student_qual_ = (params) => {
     data: data,
   })
     .then((res) => {
-      $("#student_qual").removeClass("active");
-      $("#student_bank").addClass("active");
-      $("#add_profilee").removeClass("show active");
-      $("#add_bankk").addClass("show active");
+      if (params == "add_form") {
+        $("#student_qual").removeClass("active");
+        $("#student_bank").addClass("active");
+        $("#add_profilee").removeClass("show active");
+        $("#add_bankk").addClass("show active");
+      }
+      if (params == "edit_form") {
+        $("#profile-tab").removeClass("active");
+        $("#bank-tab").addClass("active");
+        $("#edit_profilee1").removeClass("show active");
+        $("#edit_bankk1").addClass("show active");
+      }
     })
     .catch((err) => {
       throw err;
@@ -279,11 +296,19 @@ student_bank_ = (params) => {
     data: data,
   })
     .then((res) => {
-      bank_files_only();
-      $("#student_bank").removeClass("active");
-      $("#student_surety").addClass("active");
-      $("#add_bankk").removeClass("show active");
-      $("#add_surety").addClass("show active");
+      bank_files_only(params);
+      if (params == "add_form") {
+        $("#student_bank").removeClass("active");
+        $("#student_surety").addClass("active");
+        $("#add_bankk").removeClass("show active");
+        $("#add_surety").addClass("show active");
+      }
+      if (params == "edit_form") {
+        $("#bank-tab").removeClass("active");
+        $("#surety-tab").addClass("active");
+        $("#edit_bankk1").removeClass("show active");
+        $("#edit_surety11").addClass("show active");
+      }
     })
     .catch((err) => {
       throw err;
@@ -298,11 +323,38 @@ student_surety_ = (params) => {
     data: data,
   })
     .then((res) => {
-      surety_files_only();
-      $("#student_surety").removeClass("active");
-      $("#student_docs").addClass("active");
-      $("#add_surety").removeClass("show active");
-      $("#add_contact").addClass("show active");
+      surety_files_only(params);
+      if (params == "add_form") {
+        $("#student_surety").removeClass("active");
+        $("#student_docs").addClass("active");
+        $("#add_surety").removeClass("show active");
+        $("#add_contact").addClass("show active");
+      }
+      if (params == "edit_form") {
+        $("#surety-tab").removeClass("active");
+        $("#contact-tab").addClass("active");
+        $("#edit_surety11").removeClass("show active");
+        $("#edit_contact1").addClass("show active");
+      }
+    })
+    .catch((err) => {
+      throw err;
+    });
+};
+student_docs_ = (params) => {
+  var user_details;
+  var form = document.getElementById(params);
+  let data = new FormData(form);
+  axios({
+    method: "post",
+    url: "/student_docs",
+    data: data,
+  })
+    .then((res) => {
+      $("#contact-tab").removeClass("active");
+      $("#relv-tab").addClass("active");
+      $("#edit_contact1").removeClass("show active");
+      $("#edit_relv1").addClass("show active");
     })
     .catch((err) => {
       throw err;
@@ -334,14 +386,72 @@ back_to_prev = (params) => {
     $("#add_contact").removeClass("show active");
   }
 };
+back_to_edit_prev = (params) => {
+  if (params == "student_home") {
+    $("#home-tab").addClass("active");
+    $("#profile-tab").removeClass("active");
+    $("#edit_home1").addClass("show active");
+    $("#edit_profilee1").removeClass("show active");
+  }
+  if (params == "student_qual") {
+    $("#profile-tab").addClass("active");
+    $("#bank-tab").removeClass("active");
+    $("#edit_profilee1").addClass("show active");
+    $("#edit_bankk1").removeClass("show active");
+  }
+  if (params == "student_bank") {
+    $("#bank-tab").addClass("active");
+    $("#surety-tab").removeClass("active");
+    $("#edit_bankk1").addClass("show active");
+    $("#edit_surety11").removeClass("show active");
+  }
+  if (params == "student_surety") {
+    $("#surety-tab").addClass("active");
+    $("#contact-tab").removeClass("active");
+    $("#edit_surety11").addClass("show active");
+    $("#edit_contact1").removeClass("show active");
+    $("#edit_contact1").removeClass("show active");
+  }
+  if (params == "student_docs") {
+    $("#contact-tab").addClass("active");
+    $("#relv-tab").removeClass("active");
+    $("#edit_contact1").addClass("show active");
+    $("#edit_relv1").removeClass("show active");
+  }
+};
 
-home_files_only = () => {
-  var cand_id = document.getElementById("add_cand_id").value;
+home_files_only = (params) => {
+  var cand_id =
+    params == "add_form"
+      ? document.getElementById("add_cand_id").value
+      : params == "edit_form"
+      ? document.getElementById("edit_cand_id").value
+      : null;
   var formData = new FormData();
-  var aadhar = document.getElementById("bank_files5");
-  var photo = document.getElementById("file");
-  var sign = document.getElementById("file2");
-  var thump = document.getElementById("file1");
+  var aadhar =
+    params == "add_form"
+      ? document.getElementById("bank_files5")
+      : params == "edit_form"
+      ? document.getElementById("bank_files4")
+      : null;
+  var photo =
+    params == "add_form"
+      ? document.getElementById("file")
+      : params == "edit_form"
+      ? document.getElementById("file01")
+      : null;
+  var sign =
+    params == "add_form"
+      ? document.getElementById("file2")
+      : params == "edit_form"
+      ? document.getElementById("file02")
+      : null;
+  var thump =
+    params == "add_form"
+      ? document.getElementById("file1")
+      : params == "edit_form"
+      ? document.getElementById("file03")
+      : null;
 
   formData.append("aadhar", aadhar.files[0]);
   formData.append("n_cand_photo", photo.files[0]);
@@ -364,12 +474,32 @@ home_files_only = () => {
 
   xhr.send(formData);
 };
-bank_files_only = () => {
-  var cand_id = document.getElementById("add_cand_id").value;
+bank_files_only = (params) => {
+  var cand_id =
+    params == "add_form"
+      ? document.getElementById("add_cand_id").value
+      : params == "edit_form"
+      ? document.getElementById("edit_cand_id").value
+      : null;
   var formData = new FormData();
-  var passbook = document.getElementById("bank_files1");
-  var challan = document.getElementById("bank_files2");
-  var sq_challan = document.getElementById("bank_files25");
+  var passbook =
+    params == "add_form"
+      ? document.getElementById("bank_files1")
+      : params == "edit_form"
+      ? document.getElementById("bank_files")
+      : null;
+  var challan =
+    params == "add_form"
+      ? document.getElementById("bank_files2")
+      : params == "edit_form"
+      ? document.getElementById("bank_files223")
+      : null;
+  var sq_challan =
+    params == "add_form"
+      ? document.getElementById("bank_files25")
+      : params == "edit_form"
+      ? document.getElementById("bank_files255")
+      : null;
 
   formData.append("passbook", passbook.files[0]);
   formData.append("challan", challan.files[0]);
@@ -391,11 +521,21 @@ bank_files_only = () => {
 
   xhr.send(formData);
 };
-surety_files_only = () => {
-  var cand_id = document.getElementById("add_cand_id").value;
+surety_files_only = (params) => {
+  var cand_id =
+    params == "add_form"
+      ? document.getElementById("add_cand_id").value
+      : params == "edit_form"
+      ? document.getElementById("edit_cand_id").value
+      : null;
   var formData = new FormData();
 
-  var surety = document.getElementById("files_mdms_surety");
+  var surety =
+    params == "add_form"
+      ? document.getElementById("files_mdms_surety")
+      : params == "edit_form"
+      ? document.getElementById("files_mdms_surety_edit")
+      : null;
   formData.append("surety", surety.files[0]);
   formData.append("cand_id", cand_id);
 
@@ -416,8 +556,14 @@ surety_files_only = () => {
 };
 
 // docs_files_upload
-docs_files_only_1 = (id, name) => {
-  var cand_id = document.getElementById("add_cand_id").value;
+docs_files_only_1 = (params, id, name) => {
+  var cand_id =
+    params == "add_form"
+      ? document.getElementById("add_cand_id").value
+      : params == "edit_form"
+      ? document.getElementById("edit_cand_id").value
+      : null;
+  console.log(params + cand_id);
   var formData = new FormData();
   var doc = document.getElementById(id);
   if (doc.files[0]) {
@@ -452,8 +598,13 @@ docs_files_only_1 = (id, name) => {
 
   xhr.send(formData);
 };
-docs_files_only_2 = (id, name) => {
-  var cand_id = document.getElementById("add_cand_id").value;
+docs_files_only_2 = (params, id, name) => {
+  var cand_id =
+    params == "add_form"
+      ? document.getElementById("add_cand_id").value
+      : params == "edit_form"
+      ? document.getElementById("edit_cand_id").value
+      : null;
   var formData = new FormData();
   var doc = document.getElementById(id);
   if (doc.files[0]) {
@@ -488,8 +639,13 @@ docs_files_only_2 = (id, name) => {
 
   xhr.send(formData);
 };
-docs_files_only_3 = (id, name) => {
-  var cand_id = document.getElementById("add_cand_id").value;
+docs_files_only_3 = (params, id, name) => {
+  var cand_id =
+    params == "add_form"
+      ? document.getElementById("add_cand_id").value
+      : params == "edit_form"
+      ? document.getElementById("edit_cand_id").value
+      : null;
   var formData = new FormData();
   var doc = document.getElementById(id);
   if (doc.files[0]) {
@@ -524,8 +680,13 @@ docs_files_only_3 = (id, name) => {
 
   xhr.send(formData);
 };
-docs_files_only_4 = (id, name) => {
-  var cand_id = document.getElementById("add_cand_id").value;
+docs_files_only_4 = (params, id, name) => {
+  var cand_id =
+    params == "add_form"
+      ? document.getElementById("add_cand_id").value
+      : params == "edit_form"
+      ? document.getElementById("edit_cand_id").value
+      : null;
   var formData = new FormData();
   var doc = document.getElementById(id);
   if (doc.files[0]) {
@@ -560,8 +721,13 @@ docs_files_only_4 = (id, name) => {
 
   xhr.send(formData);
 };
-docs_files_only_5 = (id, name) => {
-  var cand_id = document.getElementById("add_cand_id").value;
+docs_files_only_5 = (params, id, name) => {
+  var cand_id =
+    params == "add_form"
+      ? document.getElementById("add_cand_id").value
+      : params == "edit_form"
+      ? document.getElementById("edit_cand_id").value
+      : null;
   var formData = new FormData();
   var doc = document.getElementById(id);
   if (doc.files[0]) {
@@ -596,8 +762,13 @@ docs_files_only_5 = (id, name) => {
 
   xhr.send(formData);
 };
-docs_files_only_6 = (id, name) => {
-  var cand_id = document.getElementById("add_cand_id").value;
+docs_files_only_6 = (params, id, name) => {
+  var cand_id =
+    params == "add_form"
+      ? document.getElementById("add_cand_id").value
+      : params == "edit_form"
+      ? document.getElementById("edit_cand_id").value
+      : null;
   var formData = new FormData();
   var doc = document.getElementById(id);
 
@@ -632,8 +803,13 @@ docs_files_only_6 = (id, name) => {
 
   xhr.send(formData);
 };
-docs_files_only_7 = (id, name) => {
-  var cand_id = document.getElementById("add_cand_id").value;
+docs_files_only_7 = (params, id, name) => {
+  var cand_id =
+    params == "add_form"
+      ? document.getElementById("add_cand_id").value
+      : params == "edit_form"
+      ? document.getElementById("edit_cand_id").value
+      : null;
   var formData = new FormData();
   var doc = document.getElementById(id);
   if (doc.files[0]) {
@@ -667,8 +843,13 @@ docs_files_only_7 = (id, name) => {
 
   xhr.send(formData);
 };
-docs_files_only_8 = (id, name) => {
-  var cand_id = document.getElementById("add_cand_id").value;
+docs_files_only_8 = (params, id, name) => {
+  var cand_id =
+    params == "add_form"
+      ? document.getElementById("add_cand_id").value
+      : params == "edit_form"
+      ? document.getElementById("edit_cand_id").value
+      : null;
   var formData = new FormData();
   var doc = document.getElementById(id);
   if (doc.files[0]) {
@@ -702,8 +883,13 @@ docs_files_only_8 = (id, name) => {
 
   xhr.send(formData);
 };
-docs_files_only_9 = (id, name) => {
-  var cand_id = document.getElementById("add_cand_id").value;
+docs_files_only_9 = (params, id, name) => {
+  var cand_id =
+    params == "add_form"
+      ? document.getElementById("add_cand_id").value
+      : params == "edit_form"
+      ? document.getElementById("edit_cand_id").value
+      : null;
   var formData = new FormData();
   var doc = document.getElementById(id);
   if (doc.files[0]) {
@@ -737,8 +923,13 @@ docs_files_only_9 = (id, name) => {
 
   xhr.send(formData);
 };
-docs_files_only_10 = (id, name) => {
-  var cand_id = document.getElementById("add_cand_id").value;
+docs_files_only_10 = (params, id, name) => {
+  var cand_id =
+    params == "add_form"
+      ? document.getElementById("add_cand_id").value
+      : params == "edit_form"
+      ? document.getElementById("edit_cand_id").value
+      : null;
   var formData = new FormData();
   var doc = document.getElementById(id);
   if (doc.files[0]) {
@@ -772,8 +963,13 @@ docs_files_only_10 = (id, name) => {
 
   xhr.send(formData);
 };
-docs_files_only_11 = (id, name) => {
-  var cand_id = document.getElementById("add_cand_id").value;
+docs_files_only_11 = (params, id, name) => {
+  var cand_id =
+    params == "add_form"
+      ? document.getElementById("add_cand_id").value
+      : params == "edit_form"
+      ? document.getElementById("edit_cand_id").value
+      : null;
   var formData = new FormData();
   var doc = document.getElementById(id);
   if (doc.files[0]) {
@@ -807,8 +1003,13 @@ docs_files_only_11 = (id, name) => {
 
   xhr.send(formData);
 };
-docs_files_only_12 = (id, name) => {
-  var cand_id = document.getElementById("add_cand_id").value;
+docs_files_only_12 = (params, id, name) => {
+  var cand_id =
+    params == "add_form"
+      ? document.getElementById("add_cand_id").value
+      : params == "edit_form"
+      ? document.getElementById("edit_cand_id").value
+      : null;
   var formData = new FormData();
   var doc = document.getElementById(id);
   if (doc.files[0]) {
@@ -842,8 +1043,13 @@ docs_files_only_12 = (id, name) => {
 
   xhr.send(formData);
 };
-docs_files_only_13 = (id, name) => {
-  var cand_id = document.getElementById("add_cand_id").value;
+docs_files_only_13 = (params, id, name) => {
+  var cand_id =
+    params == "add_form"
+      ? document.getElementById("add_cand_id").value
+      : params == "edit_form"
+      ? document.getElementById("edit_cand_id").value
+      : null;
   var formData = new FormData();
   var doc = document.getElementById(id);
   if (doc.files[0]) {
@@ -877,8 +1083,13 @@ docs_files_only_13 = (id, name) => {
 
   xhr.send(formData);
 };
-docs_files_only_14 = (id, name) => {
-  var cand_id = document.getElementById("add_cand_id").value;
+docs_files_only_14 = (params, id, name) => {
+  var cand_id =
+    params == "add_form"
+      ? document.getElementById("add_cand_id").value
+      : params == "edit_form"
+      ? document.getElementById("edit_cand_id").value
+      : null;
   var formData = new FormData();
   var doc = document.getElementById(id);
   if (doc.files[0]) {
@@ -912,8 +1123,13 @@ docs_files_only_14 = (id, name) => {
 
   xhr.send(formData);
 };
-docs_files_only_15 = (id, name) => {
-  var cand_id = document.getElementById("add_cand_id").value;
+docs_files_only_15 = (params, id, name) => {
+  var cand_id =
+    params == "add_form"
+      ? document.getElementById("add_cand_id").value
+      : params == "edit_form"
+      ? document.getElementById("edit_cand_id").value
+      : null;
   var formData = new FormData();
   var doc = document.getElementById(id);
   if (doc.files[0]) {
@@ -947,8 +1163,13 @@ docs_files_only_15 = (id, name) => {
 
   xhr.send(formData);
 };
-docs_files_only_16 = (id, name) => {
-  var cand_id = document.getElementById("add_cand_id").value;
+docs_files_only_16 = (params, id, name) => {
+  var cand_id =
+    params == "add_form"
+      ? document.getElementById("add_cand_id").value
+      : params == "edit_form"
+      ? document.getElementById("edit_cand_id").value
+      : null;
   var formData = new FormData();
   var doc = document.getElementById(id);
   if (doc.files[0]) {
@@ -982,8 +1203,13 @@ docs_files_only_16 = (id, name) => {
 
   xhr.send(formData);
 };
-docs_files_only_17 = (id, name) => {
-  var cand_id = document.getElementById("add_cand_id").value;
+docs_files_only_17 = (params, id, name) => {
+  var cand_id =
+    params == "add_form"
+      ? document.getElementById("add_cand_id").value
+      : params == "edit_form"
+      ? document.getElementById("edit_cand_id").value
+      : null;
   var formData = new FormData();
   var doc = document.getElementById(id);
   if (doc.files[0]) {
@@ -1017,8 +1243,13 @@ docs_files_only_17 = (id, name) => {
 
   xhr.send(formData);
 };
-docs_files_only_18 = (id, name) => {
-  var cand_id = document.getElementById("add_cand_id").value;
+docs_files_only_18 = (params, id, name) => {
+  var cand_id =
+    params == "add_form"
+      ? document.getElementById("add_cand_id").value
+      : params == "edit_form"
+      ? document.getElementById("edit_cand_id").value
+      : null;
   var formData = new FormData();
   var doc = document.getElementById(id);
   if (doc.files[0]) {
@@ -1052,8 +1283,13 @@ docs_files_only_18 = (id, name) => {
 
   xhr.send(formData);
 };
-docs_files_only_19 = (id, name) => {
-  var cand_id = document.getElementById("add_cand_id").value;
+docs_files_only_19 = (params, id, name) => {
+  var cand_id =
+    params == "add_form"
+      ? document.getElementById("add_cand_id").value
+      : params == "edit_form"
+      ? document.getElementById("edit_cand_id").value
+      : null;
   var formData = new FormData();
   var doc = document.getElementById(id);
   if (doc.files[0]) {
@@ -1087,8 +1323,13 @@ docs_files_only_19 = (id, name) => {
 
   xhr.send(formData);
 };
-docs_files_only_20 = (id, name) => {
-  var cand_id = document.getElementById("add_cand_id").value;
+docs_files_only_20 = (params, id, name) => {
+  var cand_id =
+    params == "add_form"
+      ? document.getElementById("add_cand_id").value
+      : params == "edit_form"
+      ? document.getElementById("edit_cand_id").value
+      : null;
   var formData = new FormData();
   var doc = document.getElementById(id);
   if (doc.files[0]) {
@@ -1122,8 +1363,13 @@ docs_files_only_20 = (id, name) => {
 
   xhr.send(formData);
 };
-docs_files_only_21 = (id, name) => {
-  var cand_id = document.getElementById("add_cand_id").value;
+docs_files_only_21 = (params, id, name) => {
+  var cand_id =
+    params == "add_form"
+      ? document.getElementById("add_cand_id").value
+      : params == "edit_form"
+      ? document.getElementById("edit_cand_id").value
+      : null;
   var formData = new FormData();
   var doc = document.getElementById(id);
   if (doc.files[0]) {
@@ -1157,8 +1403,13 @@ docs_files_only_21 = (id, name) => {
 
   xhr.send(formData);
 };
-docs_files_only_22 = (id, name) => {
-  var cand_id = document.getElementById("add_cand_id").value;
+docs_files_only_22 = (params, id, name) => {
+  var cand_id =
+    params == "add_form"
+      ? document.getElementById("add_cand_id").value
+      : params == "edit_form"
+      ? document.getElementById("edit_cand_id").value
+      : null;
   var formData = new FormData();
   var doc = document.getElementById(id);
   if (doc.files[0]) {
@@ -1192,8 +1443,13 @@ docs_files_only_22 = (id, name) => {
 
   xhr.send(formData);
 };
-docs_files_only_23 = (id, name) => {
-  var cand_id = document.getElementById("add_cand_id").value;
+docs_files_only_23 = (params, id, name) => {
+  var cand_id =
+    params == "add_form"
+      ? document.getElementById("add_cand_id").value
+      : params == "edit_form"
+      ? document.getElementById("edit_cand_id").value
+      : null;
   var formData = new FormData();
   var doc = document.getElementById(id);
   if (doc.files[0]) {
@@ -1227,8 +1483,13 @@ docs_files_only_23 = (id, name) => {
 
   xhr.send(formData);
 };
-docs_files_only_24 = (id, name) => {
-  var cand_id = document.getElementById("add_cand_id").value;
+docs_files_only_24 = (params, id, name) => {
+  var cand_id =
+    params == "add_form"
+      ? document.getElementById("add_cand_id").value
+      : params == "edit_form"
+      ? document.getElementById("edit_cand_id").value
+      : null;
   var formData = new FormData();
   var doc = document.getElementById(id);
   if (doc.files[0]) {
@@ -1262,8 +1523,13 @@ docs_files_only_24 = (id, name) => {
 
   xhr.send(formData);
 };
-docs_files_only_25 = (id, name) => {
-  var cand_id = document.getElementById("add_cand_id").value;
+docs_files_only_25 = (params, id, name) => {
+  var cand_id =
+    params == "add_form"
+      ? document.getElementById("add_cand_id").value
+      : params == "edit_form"
+      ? document.getElementById("edit_cand_id").value
+      : null;
   var formData = new FormData();
   var doc = document.getElementById(id);
   if (doc.files[0]) {
@@ -1297,8 +1563,13 @@ docs_files_only_25 = (id, name) => {
 
   xhr.send(formData);
 };
-docs_files_only_26 = (id, name) => {
-  var cand_id = document.getElementById("add_cand_id").value;
+docs_files_only_26 = (params, id, name) => {
+  var cand_id =
+    params == "add_form"
+      ? document.getElementById("add_cand_id").value
+      : params == "edit_form"
+      ? document.getElementById("edit_cand_id").value
+      : null;
   var formData = new FormData();
   var doc = document.getElementById(id);
   if (doc.files[0]) {
@@ -1332,8 +1603,13 @@ docs_files_only_26 = (id, name) => {
 
   xhr.send(formData);
 };
-docs_files_only_27 = (id, name) => {
-  var cand_id = document.getElementById("add_cand_id").value;
+docs_files_only_27 = (params, id, name) => {
+  var cand_id =
+    params == "add_form"
+      ? document.getElementById("add_cand_id").value
+      : params == "edit_form"
+      ? document.getElementById("edit_cand_id").value
+      : null;
   var formData = new FormData();
   var doc = document.getElementById(id);
   if (doc.files[0]) {
@@ -1367,8 +1643,13 @@ docs_files_only_27 = (id, name) => {
 
   xhr.send(formData);
 };
-docs_files_only_28 = (id, name) => {
-  var cand_id = document.getElementById("add_cand_id").value;
+docs_files_only_28 = (params, id, name) => {
+  var cand_id =
+    params == "add_form"
+      ? document.getElementById("add_cand_id").value
+      : params == "edit_form"
+      ? document.getElementById("edit_cand_id").value
+      : null;
   var formData = new FormData();
   var doc = document.getElementById(id);
   if (doc.files[0]) {
@@ -1402,8 +1683,13 @@ docs_files_only_28 = (id, name) => {
 
   xhr.send(formData);
 };
-docs_files_only_29 = (id, name) => {
-  var cand_id = document.getElementById("add_cand_id").value;
+docs_files_only_29 = (params, id, name) => {
+  var cand_id =
+    params == "add_form"
+      ? document.getElementById("add_cand_id").value
+      : params == "edit_form"
+      ? document.getElementById("edit_cand_id").value
+      : null;
   var formData = new FormData();
   var doc = document.getElementById(id);
   if (doc.files[0]) {

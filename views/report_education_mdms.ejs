@@ -24,7 +24,8 @@
   <style>
           body,html,li,.margin,.text-left, #center{
   font-family: 'Berlin Sans FB', sans-serif!important;
-                                                
+    
+
 }   
 #tablecerti th{
   font-weight: 600;
@@ -147,16 +148,17 @@ body{
         </td>
         
         <td style="width: 200px;"><p>Rank</p></td>
-        <td style="width: 200px;"> <%
-           if(userData1.length!=0){
-           var i=1;
-           userData1.forEach(function(classdata1){
-           %>
-           <p>:&nbsp;<%=classdata1.rank%></p>
-           <%  i++; }) %>
-           <% } else{ %>
-           
-           <% } %>
+        <td style="width: 200px;">
+            <%
+    if(userData1.length!=0){
+    var i=1;
+    userData1.forEach(function(classdata1){
+    %>
+    <p>:&nbsp;&nbsp;<%=classdata1.rank_ %></p>
+    <%  i++; }) %>
+    <% } else{ %>
+  
+    <% } %>
         </td>
         </tr>
         <tr>
@@ -276,25 +278,25 @@ body{
             <tr>
                 <th>1</th>
                 <th>Speciality</th>
-                <td><%=classdata33.mbbs_speciality%> </td>
-                <td><%=classdata33.pg_diplamo_speciality%> </td>
-                <td><%=classdata33.mdms_speciality%> </td>
+                <td><%-classdata33.mbbs_speciality?classdata33.mbbs_speciality:''%> </td>
+                <td><%-classdata33.pg_diplamo_speciality?classdata33.pg_diplamo_speciality:''%> </td>
+                <td><%-classdata33.mdms_speciality?classdata33.mdms_speciality:''%> </td>
             </tr>
             <tr>
                 <th>2</th>
                 <th>Name of the College
                 </th>
-                <td><%=classdata33.mbbs_name%> </td>
-                <td><%=classdata33.pg_diplamo_name%> </td>
-                <td><%=classdata33.mdms_name%> </td>
+                <td><%-classdata33.mbbs_name?classdata33.mbbs_name:''%> </td>
+                <td><%-classdata33.pg_diplamo_name?classdata33.pg_diplamo_name:''%> </td>
+                <td><%-classdata33.mdms_name?classdata33.mdms_name:''%> </td>
             </tr>
             <tr>
                 <th>3</th>
                 <th>Place
                 </th>
-                <td><%=classdata33.mbbs_place%> </td>
-                <td><%=classdata33.pg_diplamo_place%> </td>
-                <td><%=classdata33.mdms_place%> </td>
+                <td><%-classdata33.mbbs_place ? classdata33.mbbs_place :''%> </td>
+                <td><%-classdata33.pg_diplamo_place ? classdata33.pg_diplamo_place:''%> </td>
+                <td><%-classdata33.mdms_place ? classdata33.mdms_place : ''%> </td>
 
 
             </tr>
@@ -302,43 +304,45 @@ body{
                 <th>4</th>
                 <th>District
                 </th>
-                <td><%=classdata33.mbbs_district%> </td>
-                <td><%=classdata33.pg_diplamo_district%> </td>
-                <td><%=classdata33.mdms_district%> </td>
+                <td><%-classdata33.mbbs_district ? classdata33.mbbs_district:''%> </td>
+                <td><%-classdata33.pg_diplamo_district ? classdata33.pg_diplamo_district:''%> </td>
+                <td><%-classdata33.mdms_district ? classdata33.mdms_district:''%> </td>
+               
             </tr>
             <tr>
                 <th>5</th>
                 <th>State
                 </th>
-                <td><%=classdata33.mbbs_state%> </td>
-                <td><%=classdata33.pg_diplamo_state%> </td>
-                <td><%=classdata33.mdms_state%> </td>
+                <td><%-classdata33.mbbs_state != 0?classdata33.mbbs_state:'' %> </td>
+                <td><%-classdata33.pg_diplamo_state !=0 ? classdata33.pg_diplamo_state:''%> </td>
+                <td><%-classdata33.mdms_state != 0 ? classdata33.mdms_state:''%> </td>
 
             </tr>
             <tr>
                 <th>6</th>
                 <th>Name of the University
                 </th>
-                <td><%=classdata33.mbbs_university%> </td>
-                <td><%=classdata33.pg_diplamo_university%> </td>
-                <td><%=classdata33.mdms_university%> </td>
+                <td><%-classdata33.mbbs_university ? classdata33.mbbs_university:''%> </td>
+                <td><%-classdata33.pg_diplamo_university ? classdata33.pg_diplamo.university:''%> </td>
+                <td><%-classdata33.mdms_university ? classdata33.mdms_university:''%> </td>
             </tr>
             <tr>
                 <th>7</th>
                 <th>Mark Sheet Register No
                 </th>
-                <td><%=classdata33.mbbs_marksheet_no%> </td>
-                <td><%=classdata33.pg_diplamo_marksheet_no%> </td>
-                <td><%=classdata33.mdms_marksheet_no%> </td>
+                <td><%-classdata33.mbbs_marksheet_no?classdata33.mbbs_marksheet_no:''%> </td>
+                <td><%-classdata33.pg_diplamo_marksheet_no?classdata33.pg_diplamo_marksheet_no:''%> </td>
+                <td><%-classdata33.mdms_marksheet_no ? classdata33.mdms_marksheet_no :''%> </td>
 
             </tr>
             <tr>
                 <th>8</th>
                 <th>Month and Year of Passing
                 </th>
-                <td><%=classdata33.mdms_passing_month%> <%=classdata33.mdms_passing_year%> </td>
-                <td><%=classdata33.pg_diplamo_passing_month%> <%=classdata33.pg_diplamo_passing_year%> </td>
-                <td><%=classdata33.mbbs_passing_month%> <%=classdata33.mbbs_passing_year%> </td>
+                <!-- <td><%=classdata33.mbbs_passing_month%> <%=classdata33.mbbs_passing_year%> </td> -->
+                <td><%- classdata33.mbbs_passing_month !=0 ? classdata33.mbbs_passing_month:''%> <%-classdata33.mbbs_passing_year !=0? classdata33.mbbs_passing_year :''%> </td>
+                <td><%- classdata33.pg_diplamo_passing_month !=0 ? classdata33.pg_diplamo_passing_month:''%> <%-classdata33.pg_diplamo_passing_year !=0 ? classdata33.pg_diplamo_passing_year :''%> </td>
+                <td><%-classdata33.mdms_passing_month !=0  ? classdata33.mdms_passing_month:''%> <%-classdata33.mdms_passing_year !=0 ? classdata33.mdms_passing_year :''%> </td>
             </tr>
             <tr>
                 <th>9</th>
@@ -363,17 +367,18 @@ body{
                 <%  i++; }) %>
                 <% } else{ %>
                 
-                <% } %>                
+                <% } %>     
+                <td>           
                 <%
                 if(userData30.length!=0){
                 var i=1;
                 userData30.forEach(function(classdata30){
                 %>
-                <td><%=classdata30.reg_no%> <%=classdata30.date%> </td>
+                <%= classdata30.reg_no %> <%=classdata30.date%> 
                 <%  i++; }) %>
                 <% } else{ %>
                 
-                <% } %>            </tr>
+                <% } %>           </td> </tr>
           
             <tr>
                 <th>10</th>
@@ -399,19 +404,20 @@ body{
                 <% } else{ %>
                 
                 <% } %>
-                <%
+               <td> <%
                 if(userData34.length!=0){
                 var i=1;
                 userData34.forEach(function(classdata34){
                 %>
-                <td><%=classdata34.reg_no%> <%=classdata34.date%> </td>
+               <%=classdata34.reg_no%> <%=classdata34.date%> 
                 <%  i++; }) %>
                 <% } else{ %>
                 
                 <% } %>
+                </td>
             </tr>
           
-            <tr>
+            <!-- <tr>
                 <th>11</th>
                 <th>Conduct Certificate No &Date
                 </th>
@@ -426,9 +432,9 @@ body{
                 
                 <% } %>
                 
-            </tr>
+            </tr> -->
             <tr>
-                <th>12</th>
+                <th>11</th>
                 <th>TC No &Date
                 </th>
                 <%
@@ -444,7 +450,7 @@ body{
                 
             </tr>
             <tr>
-                <th>13</th>
+                <th>12</th>
                 <th>Migration Certificate  No &Date
                 </th>
                 <%
@@ -460,7 +466,7 @@ body{
                 
             </tr>
             <tr>
-                <th>14</th>
+                <th>13</th>
                 <th>Eligiblity Certificate  No &Date
                 </th>
                 <%
@@ -481,14 +487,14 @@ body{
             userData1.forEach(function(classdata1){
             %>
             <tr>
-                <th>15</th>
+                <th>14</th>
                 <th>Mark in NEET Exam
                 </th>
                 <td colspan="3"><%=classdata1.neet_mark%> </td>
                 
             </tr>
             <tr>
-                <th>16</th>
+                <th>15</th>
                 <th>Willing for Further Counselling
                 </th>
                 <td colspan="3"><%=classdata1.willing_for_counciling%> </td>
@@ -546,7 +552,9 @@ UPLOADCARE_PUBLIC_KEY = 'demopublickey';
 <!-- AdminLTE for demo purposes -->
 <script src="js/demo.js"></script>
 <!-- page script -->
-
+<script>
+    var data = '<%-JSON.stringify(userData30)%>';
+</script>
 
 </body>
 

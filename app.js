@@ -216,6 +216,8 @@ app.post("/select_nursing_student", select.select_nursing);
 // update
 app.get("/update_student", upload.any(), update.edit_cand);
 app.post("/update_student", upload.any(), update.edit_cand);
+app.post("/student_docs", upload.any(), update.edit_cand);
+app.post("/updated_student", upload.any(), update.assist_update);
 
 //reports
 app.get("/get_reports", report.all_report);

@@ -11,7 +11,8 @@ exports.all_report = function (req, res) {
   var bon_acad_year = post.bon_acad_year;
   var bon_purse = post.bon_purse;
   var bon_stud_year = post.bon_stud_year;
-  var bon_purpose = post.bon_purpose;
+  var bon_purpose =
+    post.bon_purpose == "Others" ? post.bon_pur_others : post.bon_purpose;
   var bon_pur_others = post.bon_pur_others;
   var ack_date = post.ack_date;
   var cond_csp = post.cond_csp;
@@ -394,22 +395,22 @@ exports.all_report = function (req, res) {
       var sql = `SELECT * FROM admintv_ems.cand_academic_mdms INNER JOIN
                                 admintv_ems.cand_academic_mdms_1 ON admintv_ems.cand_academic_mdms.cand_id= admintv_ems.cand_academic_mdms_1.cand_id
                                 INNER JOIN
-                                  admintv_ems.cand_academic_mdms_2 ON admintv_ems.cand_academic_mdms.cand_id=  admintv_ems.cand_academic_mdms_2.cand_id
+                                  admintv_ems.cand_academic_mdms_2 ON admintv_ems.cand_academic_mdms.cand_id =  admintv_ems.cand_academic_mdms_2.cand_id
                                 where admintv_ems.cand_academic_mdms.cand_id= '${cand_id}'`;
       db.query(sql, function (err, data33) {
-        var sql = `select * from admintv_ems.certificate_details where(cand_id,all_certificate,active_flag) =('${cand_id}','Medical Council Registration (PG DIPLOMA)','Y')`;
+        var sql = `select *, DATE_FORMAT(date, '%d/%m/%Y') date from admintv_ems.certificate_details where cand_id = '${cand_id}' and (all_certificate ='Medical Council Registration (PG DIPLOMA)' or all_certificate = 'Post Diploma Registration Certificate')`;
         db.query(sql, (err, data38) => {
-          var sql = `select * from admintv_ems.certificate_details where(cand_id,all_certificate,active_flag) =('${cand_id}','Medical Council Registration (MBBS)','Y')`;
+          var sql = `select *, DATE_FORMAT(date, '%d/%m/%Y') date from admintv_ems.certificate_details where cand_id = '${cand_id}' and (all_certificate ='Medical Council Registration (MBBS)' or all_certificate = 'MBBS Registration Certificate')`;
           db.query(sql, (err, data37) => {
-            var sql = `select * from admintv_ems.certificate_details where(cand_id,all_certificate,active_flag) =('${cand_id}','Degree Certificate (PG DIPLOMA)','Y')`;
+            var sql = `select * , DATE_FORMAT(date, '%d/%m/%Y') date from admintv_ems.certificate_details where cand_id ='${cand_id}' and (all_certificate ='Degree Certificate (PG DIPLOMA)' or all_certificate = 'Post Diploma Degree Certificate')`;
             db.query(sql, (err, data36) => {
-              var sql = `select * from admintv_ems.certificate_details where(cand_id,all_certificate,active_flag) =('${cand_id}','Degree Certificate (MBBS)','Y')`;
+              var sql = `select *, DATE_FORMAT(date, '%d/%m/%Y') date from admintv_ems.certificate_details where cand_id ='${cand_id}' and (all_certificate ='Degree Certificate (MBBS)' or all_certificate = 'MBBS Degree Certificate')`;
               db.query(sql, (err, data35) => {
-                var sql = `select * from admintv_ems.certificate_details where(cand_id,all_certificate,active_flag) =('${cand_id}','Medical Council Registration (MD/MS)','Y')`;
+                var sql = `select * from admintv_ems.certificate_details where cand_id ='${cand_id}' and all_certificate ='Medical Council Registration (MD/MS)'`;
                 db.query(sql, (err, data34) => {
-                  var sql = `select * from admintv_ems.certificate_details where(cand_id,all_certificate,active_flag) =('${cand_id}','Degree Certificate (MD/MS)','Y')`;
+                  var sql = `select * from admintv_ems.certificate_details where cand_id ='${cand_id}' and all_certificate ='Degree Certificate (MD/MS)'`;
                   db.query(sql, (err, data30) => {
-                    var sql = `select * from admintv_ems.certificate_details where(cand_id,all_certificate,active_flag) =('${cand_id}','Transfer Certificate','Y')`;
+                    var sql = `select *, DATE_FORMAT(date, '%d/%m/%Y') date from admintv_ems.certificate_details where cand_id ='${cand_id}' and (all_certificate ='Transfer Certificate' or all_certificate = 'MBBS Transfer Certificate')`;
                     db.query(sql, (err, data26) => {
                       var sql = `select * , DATE_FORMAT(date, '%d/%m/%Y') date from admintv_ems.certificate_details where(cand_id,all_certificate,active_flag) =('${cand_id}','Migration Certificate','Y')`;
                       db.query(sql, (err, data24) => {
@@ -554,7 +555,7 @@ exports.all_report = function (req, res) {
               bon_purse: bon_purse,
               bon_stud_year: bon_stud_year,
               bon_purpose: bon_purpose,
-              bon_pur_others: bon_pur_others,
+              // bon_pur_others: bon_pur_others,
               today: todayy,
               course: course,
             });

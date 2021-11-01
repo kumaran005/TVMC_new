@@ -9,7 +9,7 @@ function capitalize(string) {
   );
 }
 
-exports.edit_cand = function (req, res) {
+/* exports.edit_cand = function (req, res) {
   var message = "";
 
   var post = req.body;
@@ -1511,5 +1511,200 @@ exports.edit_cand = function (req, res) {
         });
       });
     });
+  });
+};*/
+exports.edit_cand = (req, res) => {
+  var post = req.body;
+  // console.log(post.user_details);
+  var { cand_id } = post;
+  var user_details = JSON.parse(post.user_details);
+  var submit_type = post.action;
+  var submitted;
+  submit_type == "submitted"
+    ? (submitted = "Yes")
+    : submit_type == "saved"
+    ? (submitted = "No")
+    : null;
+  var dt = new Date();
+  submit_date = `${dt.getDate().toString().padStart(2, "0")}/${(
+    dt.getMonth() + 1
+  )
+    .toString()
+    .padStart(2, "0")}/${dt.getFullYear().toString().padStart(4, "0")}`;
+
+  last_modified_time = `${(dt.getMonth() + 1).toString().padStart(2, "0")}/${dt
+    .getDate()
+    .toString()
+    .padStart(2, "0")}/${dt.getFullYear().toString().padStart(4, "0")} ${dt
+    .getHours()
+    .toString()
+    .padStart(2, "0")}:${dt.getMinutes().toString().padStart(2, "0")}:${dt
+    .getSeconds()
+    .toString()
+    .padStart(2, "0")}`;
+  // console.log(post);
+  var sql = `update admintv_ems.certificate_details set  reg_no = '${post.c1_reg_no}', date = '${post.c1_date}', issue = '${post.c1_issue}', place ='${post.c1_place}', active_flag = 'Y', last_modified_time = '${last_modified_time}' where (cand_id,all_certificate) = ('${cand_id}','${post.c1}')`;
+  db.query(sql, function (err, data) {
+    var sql = `update admintv_ems.certificate_details set  reg_no = '${post.c2_reg_no}', date = '${post.c2_date}', issue = '${post.c2_issue}', place ='${post.c2_place}', active_flag = 'Y', last_modified_time = '${last_modified_time}' where (cand_id,all_certificate) = ('${cand_id}','${post.c2}')`;
+    db.query(sql, function () {
+      var sql = `update admintv_ems.certificate_details set  reg_no = '${post.c3_reg_no}', date = '${post.c3_date}', issue = '${post.c3_issue}', place ='${post.c3_place}', active_flag = 'Y', last_modified_time = '${last_modified_time}' where (cand_id,all_certificate) = ('${cand_id}','${post.c3}')`;
+      db.query(sql, function () {
+        var sql = `update admintv_ems.certificate_details set  reg_no = '${post.c4_reg_no}', date = '${post.c4_date}', issue = '${post.c4_issue}', place ='${post.c4_place}', active_flag = 'Y', last_modified_time = '${last_modified_time}' where (cand_id,all_certificate) = ('${cand_id}','${post.c4}')`;
+        db.query(sql, function () {
+          var sql = `update admintv_ems.certificate_details set  reg_no = '${post.c5_reg_no}', date = '${post.c5_date}', issue = '${post.c5_issue}', place ='${post.c5_place}', active_flag = 'Y', last_modified_time = '${last_modified_time}' where (cand_id,all_certificate) = ('${cand_id}','${post.c5}')`;
+          db.query(sql, function () {
+            var sql = `update admintv_ems.certificate_details set  reg_no = '${post.c6_reg_no}', date = '${post.c6_date}', issue = '${post.c6_issue}', place ='${post.c6_place}', active_flag = 'Y', last_modified_time = '${last_modified_time}' where (cand_id,all_certificate) = ('${cand_id}','${post.c6}')`;
+            db.query(sql, function () {
+              var sql = `update admintv_ems.certificate_details set  reg_no = '${post.c7_reg_no}', date = '${post.c7_date}', issue = '${post.c7_issue}', place ='${post.c7_place}', active_flag = 'Y', last_modified_time = '${last_modified_time}' where (cand_id,all_certificate) = ('${cand_id}','${post.c7}')`;
+              db.query(sql, function () {
+                var sql = `update admintv_ems.certificate_details set  reg_no = '${post.c8_reg_no}', date = '${post.c8_date}', issue = '${post.c8_issue}', place ='${post.c8_place}', active_flag = 'Y', last_modified_time = '${last_modified_time}' where (cand_id,all_certificate) = ('${cand_id}','${post.c8}')`;
+                db.query(sql, function () {
+                  var sql = `update admintv_ems.certificate_details set  reg_no = '${post.c9_reg_no}', date = '${post.c9_date}', issue = '${post.c9_issue}', place ='${post.c9_place}', active_flag = 'Y', last_modified_time = '${last_modified_time}' where (cand_id,all_certificate) = ('${cand_id}','${post.c9}')`;
+                  db.query(sql, function () {
+                    var sql = `update admintv_ems.certificate_details set  reg_no = '${post.c10_reg_no}', date = '${post.c10_date}', issue = '${post.c10_issue}', place ='${post.c10_place}', active_flag = 'Y', last_modified_time = '${last_modified_time}' where (cand_id,all_certificate) = ('${cand_id}','${post.c10}')`;
+                    db.query(sql, function () {
+                      var sql = `update admintv_ems.certificate_details set  reg_no = '${post.c11_reg_no}', date = '${post.c11_date}', issue = '${post.c11_issue}', place ='${post.c11_place}', active_flag = 'Y', last_modified_time = '${last_modified_time}' where (cand_id,all_certificate) = ('${cand_id}','${post.c11}')`;
+                      db.query(sql, function () {
+                        var sql = `update admintv_ems.certificate_details set  reg_no = '${post.c12_reg_no}', date = '${post.c12_date}', issue = '${post.c12_issue}', place ='${post.c12_place}', active_flag = 'Y', last_modified_time = '${last_modified_time}' where (cand_id,all_certificate) = ('${cand_id}','${post.c12}')`;
+                        db.query(sql, function () {
+                          var sql = `update admintv_ems.certificate_details set  reg_no = '${post.c13_reg_no}', date = '${post.c13_date}', issue = '${post.c13_issue}', place ='${post.c13_place}', active_flag = 'Y', last_modified_time = '${last_modified_time}' where (cand_id,all_certificate) = ('${cand_id}','${post.c13}')`;
+                          db.query(sql, function () {
+                            var sql = `update admintv_ems.certificate_details set  reg_no = '${post.c14_reg_no}', date = '${post.c14_date}', issue = '${post.c14_issue}', place ='${post.c14_place}', active_flag = 'Y', last_modified_time = '${last_modified_time}' where (cand_id,all_certificate) = ('${cand_id}','${post.c14}')`;
+                            db.query(sql, function () {
+                              var sql = `update admintv_ems.certificate_details set  reg_no = '${post.c15_reg_no}', date = '${post.c15_date}', issue = '${post.c15_issue}', place ='${post.c15_place}', active_flag = 'Y', last_modified_time = '${last_modified_time}' where (cand_id,all_certificate) = ('${cand_id}','${post.c15}')`;
+                              db.query(sql, function () {
+                                var sql = `update admintv_ems.certificate_details set  reg_no = '${post.c16_reg_no}', date = '${post.c16_date}', issue = '${post.c16_issue}', place ='${post.c16_place}', active_flag = 'Y', last_modified_time = '${last_modified_time}' where (cand_id,all_certificate) = ('${cand_id}','${post.c16}')`;
+                                db.query(sql, function () {
+                                  var sql = `update admintv_ems.certificate_details set  reg_no = '${post.c17_reg_no}', date = '${post.c17_date}', issue = '${post.c17_issue}', place ='${post.c17_place}', active_flag = 'Y', last_modified_time = '${last_modified_time}' where (cand_id,all_certificate) = ('${cand_id}','${post.c17}')`;
+                                  db.query(sql, function () {
+                                    var sql = `update admintv_ems.certificate_details set  reg_no = '${post.c18_reg_no}', date = '${post.c18_date}', issue = '${post.c18_issue}', place ='${post.c18_place}', active_flag = 'Y', last_modified_time = '${last_modified_time}' where (cand_id,all_certificate) = ('${cand_id}','${post.c18}')`;
+                                    db.query(sql, function () {
+                                      var sql = `update admintv_ems.certificate_details set  reg_no = '${post.c19_reg_no}', date = '${post.c19_date}', issue = '${post.c19_issue}', place ='${post.c19_place}', active_flag = 'Y', last_modified_time = '${last_modified_time}' where (cand_id,all_certificate) = ('${cand_id}','${post.c19}')`;
+                                      db.query(sql, function () {
+                                        var sql = `update admintv_ems.certificate_details set  reg_no = '${post.c20_reg_no}', date = '${post.c20_date}', issue = '${post.c20_issue}', place ='${post.c20_place}', active_flag = 'Y', last_modified_time = '${last_modified_time}' where (cand_id,all_certificate) = ('${cand_id}','${post.c20}')`;
+                                        db.query(sql, function () {
+                                          var sql = `update admintv_ems.certificate_details set  reg_no = '${post.c21_reg_no}', date = '${post.c21_date}', issue = '${post.c21_issue}', place ='${post.c21_place}', active_flag = 'Y', last_modified_time = '${last_modified_time}' where (cand_id,all_certificate) = ('${cand_id}','${post.c21}')`;
+                                          db.query(sql, function () {
+                                            var sql = `update admintv_ems.certificate_details set  reg_no = '${post.c22_reg_no}', date = '${post.c22_date}', issue = '${post.c22_issue}', place ='${post.c22_place}', active_flag = 'Y', last_modified_time = '${last_modified_time}' where (cand_id,all_certificate) = ('${cand_id}','${post.c22}')`;
+                                            db.query(sql, function () {
+                                              var sql = `update admintv_ems.certificate_details set  reg_no = '${post.c23_reg_no}', date = '${post.c23_date}', issue = '${post.c23_issue}', place ='${post.c23_place}', active_flag = 'Y', last_modified_time = '${last_modified_time}' where (cand_id,all_certificate) = ('${cand_id}','${post.c23}')`;
+                                              db.query(sql, function () {
+                                                var sql = `update admintv_ems.certificate_details set  reg_no = '${post.c24_reg_no}', date = '${post.c24_date}', issue = '${post.c24_issue}', place ='${post.c24_place}', active_flag = 'Y', last_modified_time = '${last_modified_time}' where (cand_id,all_certificate) = ('${cand_id}','${post.c24}')`;
+                                                db.query(sql, function () {
+                                                  var sql = `update admintv_ems.certificate_details set  reg_no = '${post.c25_reg_no}', date = '${post.c25_date}', issue = '${post.c25_issue}', place ='${post.c25_place}', active_flag = 'Y', last_modified_time = '${last_modified_time}' where (cand_id,all_certificate) = ('${cand_id}','${post.c25}')`;
+                                                  db.query(sql, function () {
+                                                    var sql = `update admintv_ems.certificate_details set  reg_no = '${post.c26_reg_no}', date = '${post.c26_date}', issue = '${post.c26_issue}', place ='${post.c26_place}', active_flag = 'Y', last_modified_time = '${last_modified_time}' where (cand_id,all_certificate) = ('${cand_id}','${post.c26}')`;
+                                                    db.query(sql, function () {
+                                                      var sql = `update admintv_ems.certificate_details set  reg_no = '${post.c27_reg_no}', date = '${post.c27_date}', issue = '${post.c27_issue}', place ='${post.c27_place}', active_flag = 'Y', last_modified_time = '${last_modified_time}' where (cand_id,all_certificate) = ('${cand_id}','${post.c27}')`;
+                                                      db.query(
+                                                        sql,
+                                                        function () {
+                                                          if (
+                                                            user_details.user_type ==
+                                                              "Public" &&
+                                                            submitted == "Yes"
+                                                          ) {
+                                                            var sql1 = `update admintv_ems.cand_admission_details set submitted = 'Yes', submit_date = '${submit_date}' where cand_id = '${cand_id}'`;
+                                                            db.query(
+                                                              sql1,
+                                                              () => {
+                                                                var sql = `select cand_id,course from admintv_ems.user_details where user_name = '${user_details.user_name}' and password = '${user_details.password}'`;
+                                                                db.query(
+                                                                  sql,
+                                                                  (
+                                                                    err,
+                                                                    cand_id
+                                                                  ) => {
+                                                                    var sql_1 = `SELECT admintv_ems.cand_admission_details.cand_id,cand_name,course,name_of_bank,amount_paid,transaction_id,mobile_phone,submit_date FROM admintv_ems.cand_admission_details
+                                                          inner join admintv_ems.cand_relieving_details on admintv_ems.cand_admission_details.cand_id = admintv_ems.cand_relieving_details.cand_id
+                                                          inner join admintv_ems.cand_bank_details on admintv_ems.cand_admission_details.cand_id = admintv_ems.cand_bank_details.cand_id
+                                                          inner join admintv_ems.cand_contact_details on admintv_ems.cand_admission_details.cand_id = admintv_ems.cand_contact_details.cand_id
+                                                          where (course_title,active_status,relieved ,admintv_ems.cand_admission_details.cand_id) = ('${cand_id[0].course}','Yes','No','${cand_id[0].cand_id}')`;
+
+                                                                    db.query(
+                                                                      sql_1,
+                                                                      function (
+                                                                        err,
+                                                                        data
+                                                                      ) {
+                                                                        res.render(
+                                                                          "receipt.ejs",
+                                                                          {
+                                                                            userData:
+                                                                              data,
+                                                                          }
+                                                                        );
+                                                                      }
+                                                                    );
+                                                                  }
+                                                                );
+                                                              }
+                                                            );
+                                                          } else if (
+                                                            user_details.user_type ==
+                                                            "Assistant"
+                                                          ) {
+                                                            res.send({
+                                                              cand_id: cand_id,
+                                                            });
+                                                          } else {
+                                                            user.all_boards(
+                                                              req,
+                                                              res
+                                                            );
+                                                          }
+                                                        }
+                                                      );
+                                                    });
+                                                  });
+                                                });
+                                              });
+                                            });
+                                          });
+                                        });
+                                      });
+                                    });
+                                  });
+                                });
+                              });
+                            });
+                          });
+                        });
+                      });
+                    });
+                  });
+                });
+              });
+            });
+          });
+        });
+      });
+    });
+  });
+};
+
+exports.assist_update = (req, res) => {
+  var post = req.body;
+  var cand_id = post.cand_id;
+  var relieved = post.relieved;
+  var amount_refunded = post.amount_refunded;
+  var date_of_relieving = post.date_of_relieving;
+  var date_of_reallotment = post.date_of_reallotment;
+  var college_name = post.college_name;
+  var dt = new Date();
+  last_modified_time = `${(dt.getMonth() + 1).toString().padStart(2, "0")}/${dt
+    .getDate()
+    .toString()
+    .padStart(2, "0")}/${dt.getFullYear().toString().padStart(4, "0")} ${dt
+    .getHours()
+    .toString()
+    .padStart(2, "0")}:${dt.getMinutes().toString().padStart(2, "0")}:${dt
+    .getSeconds()
+    .toString()
+    .padStart(2, "0")}`;
+
+  var sql = `UPDATE admintv_ems.cand_relieving_details SET relieved = '${relieved}',amount_refunded = '${amount_refunded}',date_of_relieving = '${date_of_relieving}',date_of_reallotment = '${date_of_reallotment}',college_name = '${college_name}',last_modified_time='${last_modified_time}' WHERE (cand_id = '${cand_id}')`;
+  db.query(sql, function () {
+    user.all_boards(req, res);
   });
 };

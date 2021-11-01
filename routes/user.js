@@ -387,6 +387,7 @@ exports.all_boards = (req, res) => {
                             var sql1 = `SELECT *, DATE_FORMAT(date_of_admission, '%d/%m/%Y') date_of_admission FROM admintv_ems.cand_relieving_details inner join admintv_ems.cand_admission_details on admintv_ems.cand_admission_details.cand_id = admintv_ems.cand_relieving_details.cand_id
                           where (course_title,submitted,active_status,relieved) = ('${course}','Yes','Yes','No') order by student_code`;
                             db.query(sql1, function (err, data) {
+                              console.log(data);
                               res.render(page, {
                                 message: message,
                                 userData: data,
