@@ -1,5 +1,10 @@
 const user = require("./user");
 
+function reformatDate(dateStr) {
+  if (!dateStr) return "";
+  dArr = dateStr.split("-");
+  return dateStr && dArr[2] + "/" + dArr[1] + "/" + dArr[0];
+}
 exports.all_report = function (req, res) {
   var post = req.body;
   var cand_id = post.check;
@@ -18,8 +23,10 @@ exports.all_report = function (req, res) {
   var cond_csp = post.cond_csp;
   var cond_cep = post.cond_cep;
   var cond_mbbs = post.cond_mbbs;
-  var cond_tsp = post.cond_tsp;
-  var cond_tep = post.cond_tep;
+  var cond_tsp = reformatDate(post.cond_tsp);
+  var cond_tep = reformatDate(post.cond_tep);
+  console.log(cond_tsp);
+  console.log(cond_tep);
   var cond_char = post.cond_char;
   var tc_reldate = post.tc_reldate;
   var tc_reas = post.tc_reas;
@@ -70,20 +77,29 @@ exports.all_report = function (req, res) {
             year: "numeric",
           })
           .replace(/ /g, "-");
-  var cond_tsp = new Date(cond_tsp)
-    .toLocaleDateString("en-US", {
-      day: "numeric",
-      month: "numeric",
-      year: "numeric",
-    })
+  // var cond_tsp = new Date(cond_tsp)
+  //   .toLocaleDateString("en-US", {
+  //     day: "numeric",
+  //     month: "numeric",
+  //     year: "numeric",
+  //   })
 
-    .replace(/ /g, "-");
+  //   .replace(/ /g, "-");
 
-  var cond_tep = new Date(cond_tep).toLocaleString("en-GB", {
-    day: "2-digit",
-    month: "numeric",
-    year: "numeric",
-  });
+  // var cond_tsp = new Date(cond_tsp)
+  //   .toLocaleString("en-GB", {
+  //     day: "2-digit",
+  //     month: "numeric",
+  //     year: "numeric",
+  //   })
+  //   .replace(/ /g, "-");
+  // var cond_tep = new Date(cond_tep)
+  //   .toLocaleString("en-GB", {
+  //     day: "2-digit",
+  //     month: "numeric",
+  //     year: "numeric",
+  //   })
+  //   .replace(/ /g, "-");
   var dt = new Date();
   var last_modified_time = `${(dt.getMonth() + 1)
     .toString()
@@ -175,13 +191,13 @@ exports.all_report = function (req, res) {
       });
       break;
     case "Admission Details":
-      var sql = `SELECT * , DATE_FORMAT(date_of_admission, '%d/%m/%Y') date_of_admission FROM admintv_ems.cand_admission_details INNER JOIN
+      var sql = `SELECT * , DATE_FORMAT(date_of_admission, '%d/%m/%Y') date_of_admission, DATE_FORMAT(date_of_birth, '%d/%m/%Y') date_of_birth FROM admintv_ems.cand_admission_details INNER JOIN
                                 admintv_ems.cand_profile_details ON admintv_ems.cand_admission_details.cand_id= admintv_ems.cand_profile_details.cand_id
                                 INNER JOIN
                                   admintv_ems.cand_institute_details_mdms ON admintv_ems.cand_profile_details.cand_id=  admintv_ems.cand_institute_details_mdms.cand_id
                                 where admintv_ems.cand_profile_details.cand_id= '${cand_id}'`;
       db.query(sql, function (err, data32) {
-        var sql = `select * from admintv_ems.certificate_details where(cand_id,all_certificate,active_flag) =('${cand_id}','Community Certificate','Y')`;
+        var sql = `select *,DATE_FORMAT(date, '%d/%m/%Y') date from admintv_ems.certificate_details where(cand_id,all_certificate,active_flag) =('${cand_id}','Community Certificate','Y')`;
         db.query(sql, (err, data25) => {
           var sql = `SELECT * from admintv_ems.cand_contact_details where cand_id ='${cand_id}' `;
           db.query(sql, (err, data12) => {
@@ -354,13 +370,13 @@ exports.all_report = function (req, res) {
       });
       break;
     case "Education Details":
-      var sql = `select * from admintv_ems.certificate_details where(cand_id,all_certificate,active_flag) =('${cand_id}','Transfer Certificate','Y')`;
+      var sql = `select *, DATE_FORMAT(date, '%d/%m/%Y') date from admintv_ems.certificate_details where(cand_id,all_certificate,active_flag) =('${cand_id}','Transfer Certificate','Y')`;
       db.query(sql, (err, data26) => {
         var sql = `select * , DATE_FORMAT(date, '%d/%m/%Y') date from admintv_ems.certificate_details where(cand_id,all_certificate,active_flag) =('${cand_id}','Migration Certificate','Y')`;
         db.query(sql, (err, data24) => {
           var sql = `select * ,DATE_FORMAT(date, '%d/%m/%Y') date from admintv_ems.certificate_details where(cand_id,all_certificate,active_flag) =('${cand_id}','Eligibility Certificate','Y')`;
           db.query(sql, (err, data23) => {
-            var sql = `SELECT * from admintv_ems.cand_institute_details where cand_id ='${cand_id}' `;
+            var sql = `SELECT *, DATE_FORMAT(relieving_date,'%d/%m/%Y') relieving_date from admintv_ems.cand_institute_details where cand_id ='${cand_id}' `;
             db.query(sql, (err, data9) => {
               var sql = `SELECT * from admintv_ems.cand_marks_details where cand_id ='${cand_id}' `;
               db.query(sql, (err, data8) => {

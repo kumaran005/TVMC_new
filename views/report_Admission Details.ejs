@@ -42,6 +42,7 @@ body{
     }
   
 </style>
+
 </head>
 <body class="hold-transition sidebar-mini">
     <div class="toolbar no-print">
@@ -118,16 +119,17 @@ body{
     </td>
     
     <td style="width: 200px;"><p>Rank</p></td>
-    <td style="width: 200px;"> <%
-       if(userData1.length!=0){
-       var i=1;
-       userData1.forEach(function(classdata1){
-       %>
-       <p>:&nbsp;<%=classdata1.rank_%></p>
-       <%  i++; }) %>
-       <% } else{ %>
-       
-       <% } %>
+    <td style="width: 200px;"> 
+      <%
+         if(userData1.length!=0){
+         var i=1;
+         userData1.forEach(function(classdata1){
+         %>
+         <p>:&nbsp;&nbsp;<%=classdata1.rank_ %></p>
+         <%  i++; }) %>
+         <% } else{ %>
+         
+         <% } %>
     </td>
     </tr>
     <tr>
@@ -176,7 +178,7 @@ body{
           
           <% } %>
        </td>
-       <td style="width: 200px;"><p>Select Category</p></td>
+       <td style="width: 200px;"><p>Selected Category</p></td>
        <td style="width: 200px;">
           <%
           if(userData1.length!=0){
@@ -487,7 +489,7 @@ body{
               </tr>
             
               <tr>
-                <th >AIR No.
+                <th >AR No.
 
 
                     
@@ -504,7 +506,16 @@ body{
                 </th>
                 
                 
-                <td><%=classdata32.selected_category %></td>
+                <td> <%
+          if(userData.length!=0){
+          var i=1;
+          userData.forEach(function(classdata){
+          %>
+         <%=classdata.community%>
+          <%  i++; }) %>
+          <% } else{ %>
+          
+          <% } %></td>
               </tr>
               <tr>
                 <th >Allotted Category

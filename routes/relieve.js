@@ -230,11 +230,11 @@ exports.reli_check = function (req, res, next) {
 
 exports.filter_relieve = (req, res) => {
   console.log(req.body);
-  var { quota, date } = req.body;
+  var { quota, date, course } = req.body;
 
   var sql = `SELECT admintv_ems.cand_admission_details.cand_id ,cand_name,admission_type,reg_no,DATE_FORMAT(date_of_admission, '%d/%m/%Y') date_of_admission from cand_admission_details
    inner join cand_relieving_details on cand_admission_details.cand_id = cand_relieving_details.cand_id 
-   where date_of_relieving ='${date}' and admission_quota = '${quota}'`;
+   where date_of_relieving ='${date}' and admission_quota = '${quota}' and course_title = '${course}'`;
   db.query(sql, (err, data) => {
     res.send(data);
   });

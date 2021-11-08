@@ -64,7 +64,7 @@ table {
   <div class="col-md-12"><h4 class="other-font"style="font-family:"><u>TIRUNELVELI MEDICAL COLLEGE, TIRUNELVELI-11. </u>
 </h4>
      </div>
-         <h4><b> <u style="font-family:">CHECK SLIP FOR VERIFICATION OF ADMISSION DOCUMENTS
+         <h4><b> <u >CHECK SLIP FOR VERIFICATION OF ADMISSION DOCUMENTS
         </u>
 </b></h4><br>
 
@@ -94,7 +94,7 @@ userData.forEach(function(classdata){
 <% } else{ %>
 
 <% } %>
-<div class="row justify-content-center mt-5"id="rowfont">
+<div class="row justify-content-center mt-5"id="rowfont" style="padding-bottom: 50px;">
   <div class="col-md-3">
     <p><b><i>A.R.No. </i></b></p>
         <p><b><i>Neet Mark </i></b></p>
@@ -203,7 +203,7 @@ userData1.forEach(function(classdata1){
 </div>
 
 </div>
-<div class="table-responsive text-left mt-2"id="tabres1">
+<div class="table-responsive text-left mt-2"id="tabres1" style="padding-bottom: 50px;">
     <table class="table table-bordered "id="tablereport1">
   <thead class="th">
     <tr>
@@ -338,6 +338,49 @@ userData1.forEach(function(classdata1){
   </tbody>
   </table>
   </div>
+
+
+  <div class="row justify-content-center mt-5"id="rowfont">
+  <div class="col-md-3">
+
+    <p><b><i>Name </i></b></p>
+
+</div>
+  <div class="col-md-3"id="rowfont1">
+         <%
+        if(userData.length!=0){
+        var i=1;
+        userData.forEach(function(classdata){
+        %>
+        <p><b><i>:&nbsp;&nbsp;<%=classdata.name %></i></b></p>
+
+        <%  i++; }) %>
+        <% } else{ %>
+      
+        <% } %>
+     
+</div>
+  <div class="col-md-3">
+
+    <p class=""><b><i>Date of Admission  </i></b></p>
+
+</div>
+   <div class="col-md-3"id="rowfont1">
+      <%
+        if(userData1.length!=0){
+        var i=1;
+        userData1.forEach(function(classdata1){
+        %>
+        <p class=""><b><i>:&nbsp;&nbsp;<%=classdata1.date_of_admission %></i></b></p>
+        <%  i++; }) %>
+        <% } else{ %>
+      
+        <% } %>
+
+        
+</div>
+
+</div>
   <div class="table-responsive text-left mt-1"id="tabres1">
       <table class="table table-bordered "style="page-break-before:always"id="tablereport1">
         <thead class="th">
@@ -446,7 +489,7 @@ userData1.forEach(function(classdata1){
 
   </div>
   <div class="row justify-content-center  text-dark"style="font-size: 20px;top:30px;position:relative;font-style:italic"id="gap">
-    <div class="col-md-3"id="rowfont1">
+    <!-- <div class="col-md-3"id="rowfont1">
       <p><b><i style="font-size: 20px;">Name :</i></b></p>
     </div>
     <div class="col-md-3"id="rowfont1">
@@ -479,7 +522,7 @@ userData1.forEach(function(classdata1){
       <% } else{ %>
     
       <% } %>
-    </div>
+    </div> -->
     <div class="col-md-12">
     <p id="rowfont1"><b><i style="font-size: 20px;">Verified all the above Original Documents:-</i></b></p>
     </div>

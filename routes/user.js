@@ -360,9 +360,10 @@ exports.all_boards = (req, res) => {
     db.query(sql, function (err, data31) {
       var sql = `SELECT * FROM admintv_ems.check_slip_status`;
       db.query(sql, function (err, data30) {
-        var sql = `SELECT *,DATE_FORMAT(date_of_admission, '%d/%m/%Y') date_of_admission  FROM admintv_ems.cand_admission_details INNER JOIN
+        var sql = `SELECT admintv_ems.cand_admission_details.cand_id,student_code,cand_name,reg_no,admission_type, DATE_FORMAT(date_of_admission, '%d/%m/%Y') date_of_admission,admission_quota,date_of_relieving
+          FROM admintv_ems.cand_admission_details INNER JOIN
   admintv_ems.cand_relieving_details ON admintv_ems.cand_admission_details.cand_id= admintv_ems.cand_relieving_details.cand_id
-   where (admintv_ems.cand_relieving_details.relieved,admintv_ems.cand_admission_details.active_status,admintv_ems.cand_admission_details.course_title)= ('Yes','Yes','${course}')`;
+   where (admintv_ems.cand_relieving_details.relieved,admintv_ems.cand_admission_details.active_status,admintv_ems.cand_admission_details.course_title)= ('Yes','Yes','${course}') order by cand_name`;
         db.query(sql, function (err, data27) {
           var sql = `SELECT * FROM admintv_ems.state_details`;
           db.query(sql, function (err, data10) {
@@ -384,16 +385,22 @@ exports.all_boards = (req, res) => {
                             user_details.user_type == "Assistant" ||
                             user_details.user_type == "Admin"
                           ) {
-                            var sql1 = `SELECT *, DATE_FORMAT(date_of_admission, '%d/%m/%Y') date_of_admission FROM admintv_ems.cand_relieving_details inner join admintv_ems.cand_admission_details on admintv_ems.cand_admission_details.cand_id = admintv_ems.cand_relieving_details.cand_id
+                            var sql1 = `SELECT admintv_ems.cand_admission_details.cand_id,student_code,cand_name,reg_no,admission_type, DATE_FORMAT(date_of_admission, '%d/%m/%Y') date_of_admission
+                             FROM admintv_ems.cand_relieving_details inner join admintv_ems.cand_admission_details on admintv_ems.cand_admission_details.cand_id = admintv_ems.cand_relieving_details.cand_id
                           where (course_title,submitted,active_status,relieved) = ('${course}','Yes','Yes','No') order by student_code`;
                             db.query(sql1, function (err, data) {
-                              console.log(data);
                               res.render(page, {
                                 message: message,
                                 userData: data,
-                                userData3: data3,
-                                userData4: data4,
-                                userData5: data5,
+                                userData3: data3.filter(
+                                  (e) => e.blood_group != false
+                                ),
+                                userData4: data4.filter(
+                                  (e) => e.religion != false
+                                ),
+                                userData5: data5.filter(
+                                  (e) => e.nationality != false
+                                ),
                                 userData6: data6,
                                 userData7: data7,
                                 userData8: data8,
@@ -416,9 +423,15 @@ exports.all_boards = (req, res) => {
                                 res.render(page, {
                                   message: message,
                                   userData: data,
-                                  userData3: data3,
-                                  userData4: data4,
-                                  userData5: data5,
+                                  userData3: data3.filter(
+                                    (e) => e.blood_group != false
+                                  ),
+                                  userData4: data4.filter(
+                                    (e) => e.religion != false
+                                  ),
+                                  userData5: data5.filter(
+                                    (e) => e.nationality != false
+                                  ),
                                   userData6: data6,
                                   userData7: data7,
                                   userData8: data8,

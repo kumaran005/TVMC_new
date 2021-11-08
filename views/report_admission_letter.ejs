@@ -77,13 +77,12 @@ Recognized by the National Medical Council , New Delhi.
 Letter of Admission
 </h5>
 <br />
-<%
-if(userData.length!=0){
-var i=1;
-userData.forEach(function(classdata){
-%>
+<script>
+ 
+</script>
       <ul class="text-left">
         <div class="row"id="margint">
+  
           <div class="col-md-3">
         <li><h5>Name: </h5></li>
         <li><h5>Father Name:</h5> </li>
@@ -93,21 +92,23 @@ userData.forEach(function(classdata){
         <li><h5>Nationality:</h5></li><br>
       </div>
       <div class="col-md-6"id="ackadd">
-        <li><h5><%=classdata.name %></h5></li>
-        <li><h5><%=classdata.father_name %></h5></li>
-        <li><h5><%=classdata.mother_name %></h5></li>
-        <li><h5><%=classdata.date_of_birth %></h5></li>
-        <li><h5> <%=classdata.gender %></h5></li>
-        <li><h5><%=classdata.nationality %></h5></li>
+ 
+        <li><h5><%=userData[0].name %></h5></li>
+        <li><h5><%=userData[0].father_name   %></h5></li>
+        <li><h5><%=userData[0].mother_name %></h5></li>
+        <li><h5><%=userData[0].date_of_birth %></h5></li>
+        <li><h5> <%=userData[0].gender =='undefined'?'':userData[0].gender %></h5></li>
+        <li><h5><%=userData[0].nationality %></h5></li>
 
-      </div>
-    
+       
+        </div>
+      
       <div class="col-md-3"id="img">
       
         <p style="border: 1px slid;width: 150px;background: transparent;height: 160px; 
         ">
         
-        <% if(userData12[0].Filename !=null, userData12[0].Filename != ''){ %>
+        <% if(userData12[0].Filename !=null && userData12[0].Filename != ''){ %>
           <img src="data:image/png;base64,<%=userData12[0].Filename %>" width='150px'style="height:160px" />
           <% } else { %>
             <img src="data:image/png;base64,<%=userData12.Filename %>" width='150px'style="height:160px" hidden />
@@ -118,7 +119,7 @@ userData.forEach(function(classdata){
 
           <p style="border: 1px sold ;width: 150px;background: transparent;height: 160px;">
 
-            <% if(userData13[0].Filename !=null, userData13[0].Filename != ''){ %>
+            <% if(userData13[0].Filename !=null && userData13[0].Filename != ''){ %>
               <img src="data:image/png;base64,<%=userData13[0].Filename %>" width='150px'height= '160px'/>
 <%}else{ %>
   <img src="data:image/png;base64,<%=userData13.Filename %>" width='150px'height= '160px' hidden/>
@@ -132,13 +133,10 @@ userData.forEach(function(classdata){
     </div>
         <li id="margint"class="lineht"> <p style="font-size: 25px;margin-top: -32px;">
           <span>Dear ,</span><br>
-          We are happy to inform that you stand admitted to this institute. We wish you an enriching  academic  journey  through  your  course  work  starting   this   academic  year <%=classdata.academic_year %>                     . 
+          We are happy to inform that you stand admitted to this institute. We wish you an enriching  academic  journey  through  your  course  work  starting   this   academic  year <%=userData[0].academic_year %>                     . 
 
 </p></li>
-<%  i++; }) %>
-<% } else{ %>
 
-<% } %>
 <%
 if(userData1.length!=0){
 var i=1;
@@ -194,7 +192,7 @@ Year of Admission
     <p style="border: 1px soid ;width: 150px;background: transparent;height: 130px;">
       
       
-    <% if(userData14[0].Filename !=null , userData14[0].Filename != ''){ %>
+    <% if(userData14[0].Filename !=null && userData14[0].Filename != ''){ %>
         <img src="data:image/png;base64,<%=userData14[0].Filename %>" width='150px' height="150px"  />
             
         <% } else { %>

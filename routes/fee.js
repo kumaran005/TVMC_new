@@ -48,26 +48,7 @@ exports.collect_fees = function (req, res) {
 
   var sql = `UPDATE admintv_ems.cand_fees SET  tution_fee ='${tution_fee}', special_fee='${special_fee}', medical_fee='${medical_fee}', caution_fee='${caution_fee}', lib_fee='${lib_fee}', univ_fee='${univ_fee}', lic_fee='${lic_fee}', red_fee='${red_fee}', mis_fee='${mis_fee}', flag_fee='${flag_fee}', total_fee='${total_fee}', last_modified_time='${last_modified_time}' WHERE (cand_id ='${cand_id}')`;
   db.query(sql, function () {
-    switch (course) {
-      case "MBBS":
-        user.mbbs_board(req, res);
-        break;
-      case "MDMS":
-        user.mdms_board(req, res);
-        break;
-      case "BSC":
-        user.bsc_board(req, res);
-        break;
-      case "AISSC":
-        user.aissc_board(req, res);
-        break;
-      case "DIPLOMA IN NURSING":
-        user.nursing_board(req, res);
-        break;
-      default:
-        null;
-        break;
-    }
+    user.all_boards(req, res);
     // res.send("Fees Updated");
   });
 };

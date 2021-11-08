@@ -225,3 +225,24 @@ console.log(capitalize(_case));
 console.log(capitalize(_case_));
 console.log(capitalize(cs));
 console.log(capitalize(csq));
+
+function round(num) {
+  return +(Math.round(num + "e+2") + "e-2");
+}
+console.log(round(95.234234));
+console.log(round(23.4523));
+
+bg = [
+  { blood_group: "A+" },
+  { blood_group: "A-" },
+  { blood_group: "AB+" },
+  { blood_group: "AB-" },
+  { blood_group: "B+" },
+  { blood_group: "B-" },
+  { blood_group: "O+" },
+  { blood_group: "O-" },
+  { blood_group: " " },
+];
+
+data = bg.filter((e) => e.blood_group != false);
+console.log(data);

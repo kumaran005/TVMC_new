@@ -1,3 +1,12 @@
+//modal close
+modalclose = (params) => {
+  $(`#${params}`).modal("hide");
+  $(".modal-backdrop").remove();
+};
+$("#myModal").on("hidden.bs.modal", function () {
+  $(".modal-body p").text("");
+});
+
 // date formatter
 function reformatDate(dateStr) {
   if (!dateStr) return "";
@@ -5,12 +14,13 @@ function reformatDate(dateStr) {
   return dateStr && dArr[2] + "-" + dArr[1] + "-" + dArr[0];
 }
 // relieve-filter
-filter_relieve = () => {
+filter_relieve = (params) => {
   var quota = $("#choice").val();
   var rdate = $("#reldate").val();
   data = {
     quota: quota,
     date: rdate,
+    course: params,
   };
   axios({
     method: "post",
@@ -159,11 +169,19 @@ student_home = (params) => {
       var { cand_id } = response.data;
       // console.log(cand_id);
       document.getElementById("add_cand_id").value = cand_id;
-      home_files_only();
-      $("#student_home").removeClass("active");
-      $("#student_qual").addClass("active");
-      $("#add_home").removeClass("show active");
-      $("#add_profilee").addClass("show active");
+      home_files_only(params);
+      if (params == "add_form") {
+        $("#student_home").removeClass("active");
+        $("#student_qual").addClass("active");
+        $("#add_home").removeClass("show active");
+        $("#add_profilee").addClass("show active");
+      }
+      if (params == "edit_form") {
+        $("#edit_home-tab").removeClass("active");
+        $("#edit_profile-tab").addClass("active");
+        $("#edit_home").removeClass("show active");
+        $("#edit_profilee").addClass("show active");
+      }
     })
     .catch(function (error) {
       console.log(error);
@@ -178,11 +196,18 @@ student_qual = (params) => {
     data: data,
   })
     .then((res) => {
-      console.log(res);
-      $("#student_qual").removeClass("active");
-      $("#student_bank").addClass("active");
-      $("#add_profilee").removeClass("show active");
-      $("#add_bankk").addClass("show active");
+      if (params == "add_form") {
+        $("#student_qual").removeClass("active");
+        $("#student_bank").addClass("active");
+        $("#add_profilee").removeClass("show active");
+        $("#add_bankk").addClass("show active");
+      }
+      if (params == "edit_form") {
+        $("#edit_profile-tab").removeClass("active");
+        $("#edit_bank-tab").addClass("active");
+        $("#edit_profilee").removeClass("show active");
+        $("#edit_bankk").addClass("show active");
+      }
     })
     .catch((err) => {
       throw err;
@@ -197,18 +222,42 @@ student_bank = (params) => {
     data: data,
   })
     .then((res) => {
-      console.log(res);
-      bank_files_only();
-      $("#student_bank").removeClass("active");
-      $("#student_docs").addClass("active");
-      $("#add_bankk").removeClass("show active");
-      $("#add_contact").addClass("show active");
+      bank_files_only(params);
+      if (params == "add_form") {
+        $("#student_bank").removeClass("active");
+        $("#student_docs").addClass("active");
+        $("#add_bankk").removeClass("show active");
+        $("#add_contact").addClass("show active");
+      }
+      if (params == "edit_form") {
+        $("#edit_bank-tab").removeClass("active");
+        $("#edit_contact-tab").addClass("active");
+        $("#edit_bankk").removeClass("show active");
+        $("#edit_contact").addClass("show active");
+      }
     })
     .catch((err) => {
       throw err;
     });
 };
-
+student_docs = (params) => {
+  var form = document.getElementById(params);
+  let data = new FormData(form);
+  axios({
+    method: "post",
+    url: "/student_docs",
+    data: data,
+  })
+    .then((res) => {
+      $("#edit_contact-tab").removeClass("active");
+      $("#edit_relv-tab").addClass("active");
+      $("#edit_contact").removeClass("show active");
+      $("#edit_relv").addClass("show active");
+    })
+    .catch((err) => {
+      throw err;
+    });
+};
 back_to_pre = (params) => {
   if (params == "student_home") {
     $("#student_home").addClass("active");
@@ -251,8 +300,8 @@ student_home_ = (params) => {
         $("#add_profilee").addClass("show active");
       }
       if (params == "edit_form") {
-        $("#home-tab").removeClass("active");
-        $("#profile-tab").addClass("active");
+        $("#edit_home-tab").removeClass("active");
+        $("#edit_profile-tab").addClass("active");
         $("#edit_home1").removeClass("show active");
         $("#edit_profilee1").addClass("show active");
       }
@@ -277,8 +326,8 @@ student_qual_ = (params) => {
         $("#add_bankk").addClass("show active");
       }
       if (params == "edit_form") {
-        $("#profile-tab").removeClass("active");
-        $("#bank-tab").addClass("active");
+        $("#edit_profile-tab").removeClass("active");
+        $("#edit_bank-tab").addClass("active");
         $("#edit_profilee1").removeClass("show active");
         $("#edit_bankk1").addClass("show active");
       }
@@ -304,8 +353,8 @@ student_bank_ = (params) => {
         $("#add_surety").addClass("show active");
       }
       if (params == "edit_form") {
-        $("#bank-tab").removeClass("active");
-        $("#surety-tab").addClass("active");
+        $("#edit_bank-tab").removeClass("active");
+        $("#edit_surety-tab").addClass("active");
         $("#edit_bankk1").removeClass("show active");
         $("#edit_surety11").addClass("show active");
       }
@@ -331,8 +380,8 @@ student_surety_ = (params) => {
         $("#add_contact").addClass("show active");
       }
       if (params == "edit_form") {
-        $("#surety-tab").removeClass("active");
-        $("#contact-tab").addClass("active");
+        $("#edit_surety-tab").removeClass("active");
+        $("#edit_contact-tab").addClass("active");
         $("#edit_surety11").removeClass("show active");
         $("#edit_contact1").addClass("show active");
       }
@@ -351,8 +400,8 @@ student_docs_ = (params) => {
     data: data,
   })
     .then((res) => {
-      $("#contact-tab").removeClass("active");
-      $("#relv-tab").addClass("active");
+      $("#edit_contact-tab").removeClass("active");
+      $("#edit_relv-tab").addClass("active");
       $("#edit_contact1").removeClass("show active");
       $("#edit_relv1").addClass("show active");
     })
@@ -384,39 +433,6 @@ back_to_prev = (params) => {
     $("#student_docs").removeClass("active");
     $("#add_surety").addClass("show active");
     $("#add_contact").removeClass("show active");
-  }
-};
-back_to_edit_prev = (params) => {
-  if (params == "student_home") {
-    $("#home-tab").addClass("active");
-    $("#profile-tab").removeClass("active");
-    $("#edit_home1").addClass("show active");
-    $("#edit_profilee1").removeClass("show active");
-  }
-  if (params == "student_qual") {
-    $("#profile-tab").addClass("active");
-    $("#bank-tab").removeClass("active");
-    $("#edit_profilee1").addClass("show active");
-    $("#edit_bankk1").removeClass("show active");
-  }
-  if (params == "student_bank") {
-    $("#bank-tab").addClass("active");
-    $("#surety-tab").removeClass("active");
-    $("#edit_bankk1").addClass("show active");
-    $("#edit_surety11").removeClass("show active");
-  }
-  if (params == "student_surety") {
-    $("#surety-tab").addClass("active");
-    $("#contact-tab").removeClass("active");
-    $("#edit_surety11").addClass("show active");
-    $("#edit_contact1").removeClass("show active");
-    $("#edit_contact1").removeClass("show active");
-  }
-  if (params == "student_docs") {
-    $("#contact-tab").addClass("active");
-    $("#relv-tab").removeClass("active");
-    $("#edit_contact1").addClass("show active");
-    $("#edit_relv1").removeClass("show active");
   }
 };
 
@@ -1723,180 +1739,238 @@ docs_files_only_29 = (params, id, name) => {
 
   xhr.send(formData);
 };
+/*------for add--------*/
+$(`#add_lang_theory,#add_lang_practical,#add_lang_internal,
+#add_eng_theory,#add_eng_practical,#add_eng_internal,
+#add_mat_theory,#add_mat_practical,#add_mat_internal,
+#add_phy_theory,#add_phy_practical,#add_phy_internal,
+#add_chem_theory,#add_chem_practical,#add_chem_internal,
+#add_bio_theory,#add_bio_practical,#add_bio_internal,
+#add_bot_theory,#add_bot_practical,#add_bot_internal,
+#add_zoo_theory,#add_zoo_practical,#add_zoo_internal`).on("keyup", () => {
+  /*--language--*/
+  var lang_theory = Number($("#add_lang_theory").val());
+  var lang_practical = Number($("#add_lang_practical").val());
+  var lang_internal = Number($("#add_lang_internal").val());
+  lang_total = lang_theory + lang_internal + lang_practical;
+  $("#add_lang_total").val(lang_total ? lang_total : "");
 
-function reSume111() {
-  var num1 = Number(document.getElementById("add_lang_theory").value);
-  var num2 = Number(document.getElementById("add_lang_practical").value);
-  var num3 = Number(document.getElementById("add_lang_internal").value);
-  document.getElementById("add_lang_total").value = num1 + num2 + num3;
+  /*------english--- */
+  var eng_theory = Number($("#add_eng_theory").val());
+  var eng_practical = Number($("#add_eng_practical").val());
+  var eng_internal = Number($("#add_eng_internal").val());
+  eng_total = eng_theory + eng_internal + eng_practical;
+  $("#add_eng_total").val(eng_total ? eng_total : "");
+
+  /*------mathematics--- */
+  var mat_theory = Number($("#add_mat_theory").val());
+  var mat_internal = Number($("#add_mat_practical").val());
+  var mat_practical = Number($("#add_mat_internal").val());
+  mat_total = mat_theory + mat_internal + mat_practical;
+  $("#add_mat_total").val(mat_total ? mat_total : "");
+
+  /*------physics--- */
+  var phy_theory = Number($("#add_phy_theory").val());
+  var phy_internal = Number($("#add_phy_practical").val());
+  var phy_practical = Number($("#add_phy_internal").val());
+  phy_total = phy_theory + phy_internal + phy_practical;
+  $("#add_phy_total").val(phy_total ? phy_total : "");
+
+  /*------chemistry--- */
+  var chy_theory = Number($("#add_chem_theory").val());
+  var chy_internal = Number($("#add_chem_practical").val());
+  var chy_practical = Number($("#add_chem_internal").val());
+  chy_total = chy_theory + chy_internal + chy_practical;
+  $("#add_chem_total").val(chy_total ? chy_total : "");
+
+  /*------biology--- */
+  var bio_theory = Number($("#add_bio_theory").val());
+  var bio_internal = Number($("#add_bio_practical").val());
+  var bio_practical = Number($("#add_bio_internal").val());
+  bio_total = bio_theory + bio_internal + bio_practical;
+  $("#add_bio_total").val(bio_total ? bio_total : "");
+
+  /*------botony--- */
+  var bot_theory = Number($("#add_bot_theory").val());
+  var bot_internal = Number($("#add_bot_practical").val());
+  var bot_practical = Number($("#add_bot_internal").val());
+  bot_total = bot_theory + bot_internal + bot_practical;
+  $("#add_bot_total").val(bot_total ? bot_total : "");
+
+  /*------zoology--- */
+  var zoo_theory = Number($("#add_zoo_theory").val());
+  var zoo_internal = Number($("#add_zoo_practical").val());
+  var zoo_practical = Number($("#add_zoo_internal").val());
+  zoo_total = zoo_theory + zoo_internal + zoo_practical;
+  $("#add_zoo_total").val(zoo_total ? zoo_total : "");
+
+  /*----- all_total----*/
+  all_total_mark =
+    lang_total +
+    eng_total +
+    mat_total +
+    phy_total +
+    chy_total +
+    bio_total +
+    bot_total +
+    zoo_total;
+  $("#add_total_mark1").val(all_total_mark ? all_total_mark : "");
+
+  /*---percentage--*/
+  var total = Number(all_total_mark ? all_total_mark : "");
+  var maxim = Number($("#add_max_mark").val());
+  percentage = (total / maxim) * 100;
+
+  $("#add_percentage").val(!isFinite(percentage) ? "" : round(percentage));
+});
+
+/*-----max & percentage--------*/
+$(`#add_lang_max,#add_eng_max,#add_mat_max,#add_phy_max,
+#add_chem_max,#add_bio_max,#add_bot_max,#add_zoo_max`).on("keyup", () => {
+  var lang_max = Number($("#add_lang_max").val());
+  var eng_max = Number($("#add_eng_max").val());
+  var mat_max = Number($("#add_mat_max").val());
+  var phy_max = Number($("#add_phy_max").val());
+  var chem_max = Number($("#add_chem_max").val());
+  var bio_max = Number($("#add_bio_max").val());
+  var bot_max = Number($("#add_bot_max").val());
+  var zoo_max = Number($("#add_zoo_max").val());
+  max_max =
+    lang_max +
+    eng_max +
+    mat_max +
+    phy_max +
+    chem_max +
+    bio_max +
+    bot_max +
+    zoo_max;
+  $("#add_max_mark").val(max_max ? max_max : "");
+
+  /*---- percentage ----*/
+  var total = Number($("#add_total_mark1").val());
+  var maxim = Number(max_max ? max_max : "");
+  percentage = (total / maxim) * 100;
+
+  $("#add_percentage").val(!isFinite(percentage) ? "" : round(percentage));
+});
+/*------ for edit  -----*/
+$(`#edit_lang_theory,#edit_lang_practical,#edit_lang_internal,
+#edit_eng_theory,#edit_eng_practical,#edit_eng_internal,
+#edit_mat_theory,#edit_mat_practical,#edit_mat_internal,
+#edit_phy_theory,#edit_phy_practical,#edit_phy_internal,
+#edit_chem_theory,#edit_chem_practical,#edit_chem_internal,
+#edit_bio_theory,#edit_bio_practical,#edit_bio_internal,
+#edit_bot_theory,#edit_bot_practical,#edit_bot_internal,
+#edit_zoo_theory,#edit_zoo_practical,#edit_zoo_internal`).on("keyup", () => {
+  /*--language--*/
+  var lang_theory = Number($("#edit_lang_theory").val());
+  var lang_practical = Number($("#edit_lang_practical").val());
+  var lang_internal = Number($("#edit_lang_internal").val());
+  lang_total = lang_theory + lang_internal + lang_practical;
+  $("#edit_lang_total").val(lang_total ? lang_total : "");
+
+  /*------english--- */
+  var eng_theory = Number($("#edit_eng_theory").val());
+  var eng_practical = Number($("#edit_eng_practical").val());
+  var eng_internal = Number($("#edit_eng_internal").val());
+  eng_total = eng_theory + eng_internal + eng_practical;
+  $("#edit_eng_total").val(eng_total ? eng_total : "");
+
+  /*------mathematics--- */
+  var mat_theory = Number($("#edit_mat_theory").val());
+  var mat_internal = Number($("#edit_mat_practical").val());
+  var mat_practical = Number($("#edit_mat_internal").val());
+  mat_total = mat_theory + mat_internal + mat_practical;
+  $("#edit_mat_total").val(mat_total ? mat_total : "");
+
+  /*------physics--- */
+  var phy_theory = Number($("#edit_phy_theory").val());
+  var phy_internal = Number($("#edit_phy_practical").val());
+  var phy_practical = Number($("#edit_phy_internal").val());
+  phy_total = phy_theory + phy_internal + phy_practical;
+  $("#edit_phy_total").val(phy_total ? phy_total : "");
+
+  /*------chemistry--- */
+  var chy_theory = Number($("#edit_chem_theory").val());
+  var chy_internal = Number($("#edit_chem_practical").val());
+  var chy_practical = Number($("#edit_chem_internal").val());
+  chy_total = chy_theory + chy_internal + chy_practical;
+  $("#edit_chem_total").val(chy_total ? chy_total : "");
+
+  /*------biology--- */
+  var bio_theory = Number($("#edit_bio_theory").val());
+  var bio_internal = Number($("#edit_bio_practical").val());
+  var bio_practical = Number($("#edit_bio_internal").val());
+  bio_total = bio_theory + bio_internal + bio_practical;
+  $("#edit_bio_total").val(bio_total ? bio_total : "");
+
+  /*------botony--- */
+  var bot_theory = Number($("#edit_bot_theory").val());
+  var bot_internal = Number($("#edit_bot_practical").val());
+  var bot_practical = Number($("#edit_bot_internal").val());
+  bot_total = bot_theory + bot_internal + bot_practical;
+  $("#edit_bot_total").val(bot_total ? bot_total : "");
+
+  /*------zoology--- */
+  var zoo_theory = Number($("#edit_zoo_theory").val());
+  var zoo_internal = Number($("#edit_zoo_practical").val());
+  var zoo_practical = Number($("#edit_zoo_internal").val());
+  zoo_total = zoo_theory + zoo_internal + zoo_practical;
+  $("#edit_zoo_total").val(zoo_total ? zoo_total : "");
+
+  /*----- all_total----*/
+  all_total_mark =
+    lang_total +
+    eng_total +
+    mat_total +
+    phy_total +
+    chy_total +
+    bio_total +
+    bot_total +
+    zoo_total;
+  $("#edit_total_mark1").val(all_total_mark ? all_total_mark : "");
+
+  /*---percentage--*/
+  var total = Number(all_total_mark ? all_total_mark : "");
+  var maxim = Number($("#edit_max_mark").val());
+  percentage = (total / maxim) * 100;
+
+  $("#edit_percentage").val(!isFinite(percentage) ? "" : round(percentage));
+});
+
+/*-----max & percentage--------*/
+$(`#edit_lang_max,#edit_eng_max,#edit_mat_max,#edit_phy_max,
+#edit_chem_max,#edit_bio_max,#edit_bot_max,#edit_zoo_max`).on("keyup", () => {
+  var lang_max = Number($("#edit_lang_max").val());
+  var eng_max = Number($("#edit_eng_max").val());
+  var mat_max = Number($("#edit_mat_max").val());
+  var phy_max = Number($("#edit_phy_max").val());
+  var chem_max = Number($("#edit_chem_max").val());
+  var bio_max = Number($("#edit_bio_max").val());
+  var bot_max = Number($("#edit_bot_max").val());
+  var zoo_max = Number($("#edit_zoo_max").val());
+  max_max =
+    lang_max +
+    eng_max +
+    mat_max +
+    phy_max +
+    chem_max +
+    bio_max +
+    bot_max +
+    zoo_max;
+  $("#edit_max_mark").val(max_max ? max_max : "");
+
+  /*---- percentage ----*/
+  var total = Number($("#edit_total_mark1").val());
+  var maxim = Number(max_max ? max_max : "");
+  percentage = (total / maxim) * 100;
+
+  $("#edit_percentage").val(!isFinite(percentage) ? "" : round(percentage));
+});
+function round(num) {
+  return +(Math.round(num + "e+2") + "e-2");
 }
-function reSume211() {
-  var num1 = Number(document.getElementById("add_eng_theory").value);
-  var num2 = Number(document.getElementById("add_eng_practical").value);
-  var num3 = Number(document.getElementById("add_eng_internal").value);
 
-  document.getElementById("add_eng_total").value = num1 + num2 + num3;
-}
-function reSume311() {
-  var num1 = Number(document.getElementById("add_mat_theory").value);
-  var num2 = Number(document.getElementById("add_mat_practical").value);
-  var num3 = Number(document.getElementById("add_mat_internal").value);
-
-  document.getElementById("add_mat_total").value = num1 + num2 + num3;
-}
-function reSume411() {
-  var num1 = Number(document.getElementById("add_phy_theory").value);
-  var num2 = Number(document.getElementById("add_phy_practical").value);
-  var num3 = Number(document.getElementById("add_phy_internal").value);
-
-  document.getElementById("add_phy_total").value = num1 + num2 + num3;
-}
-function reSume511() {
-  var num1 = Number(document.getElementById("add_chem_theory").value);
-  var num2 = Number(document.getElementById("add_chem_practical").value);
-  var num3 = Number(document.getElementById("add_chem_internal").value);
-
-  document.getElementById("add_chem_total").value = num1 + num2 + num3;
-}
-function reSume611() {
-  var num1 = Number(document.getElementById("add_bio_theory").value);
-  var num2 = Number(document.getElementById("add_bio_practical").value);
-  var num3 = Number(document.getElementById("add_bio_internal").value);
-
-  document.getElementById("add_bio_total").value = num1 + num2;
-}
-function reSume20() {
-  var num1 = Number(document.getElementById("add_lang_total").value);
-
-  var num2 = Number(document.getElementById("add_eng_total").value);
-  var num3 = Number(document.getElementById("add_mat_total").value);
-  var num4 = Number(document.getElementById("add_phy_total").value);
-  var num5 = Number(document.getElementById("add_chem_total").value);
-  var num6 = Number(document.getElementById("add_bio_total").value);
-  document.getElementById("add_total_mark1").value =
-    num1 + num2 + num3 + num4 + num5 + num6;
-}
-function reSum20() {
-  var num1 = Number(document.getElementById("edit_bio_total").value);
-
-  var num2 = Number(document.getElementById("edit_chem_total").value);
-  var num3 = Number(document.getElementById("edit_phy_total").value);
-  var num4 = Number(document.getElementById("edit_mat_total").value);
-  var num5 = Number(document.getElementById("edit_lang_total").value);
-  var num6 = Number(document.getElementById("edit_eng_total").value);
-  document.getElementById("edit_total_mark1").value =
-    num1 + num2 + num3 + num4 + num5 + num6;
-}
-function reSum19() {
-  var num1 = Number(document.getElementById("edit_bio_max").value);
-
-  var num2 = Number(document.getElementById("edit_chem_max").value);
-  var num3 = Number(document.getElementById("edit_phy_max").value);
-  var num4 = Number(document.getElementById("edit_mat_max").value);
-  var num5 = Number(document.getElementById("edit_lang_max").value);
-  var num6 = Number(document.getElementById("edit_eng_max").value);
-  document.getElementById("edit_max_mark").value =
-    num1 + num2 + num3 + num4 + num5 + num6;
-}
-function reSum191() {
-  var num1 = Number(document.getElementById("add_bio_max").value);
-
-  var num2 = Number(document.getElementById("add_chem_max").value);
-  var num3 = Number(document.getElementById("add_phy_max").value);
-  var num4 = Number(document.getElementById("add_mat_max").value);
-  var num5 = Number(document.getElementById("add_lang_max").value);
-  var num6 = Number(document.getElementById("add_eng_max").value);
-  document.getElementById("add_max_mark").value =
-    num1 + num2 + num3 + num4 + num5 + num6;
-}
-function reSum17() {
-  var num1 = Number(document.getElementById("Summax1").value);
-
-  var num2 = Number(document.getElementById("Summax2").value);
-  var num3 = Number(document.getElementById("Summax3").value);
-  var num4 = Number(document.getElementById("Summax4").value);
-  var num5 = Number(document.getElementById("Summax5").value);
-  var num6 = Number(document.getElementById("Summax6").value);
-  document.getElementById("Sum17").value =
-    num1 + num2 + num3 + num4 + num5 + num6;
-}
-function reSum18() {
-  var num1 = Number(document.getElementById("Sum16").value);
-
-  var num2 = Number(document.getElementById("Sum17").value);
-
-  document.getElementById("Sum18").value = (num1 / num2) * 100;
-}
-function reSum21() {
-  var num1 = Number(document.getElementById("edit_total_mark1").value);
-
-  var num2 = Number(document.getElementById("edit_max_mark").value);
-
-  document.getElementById("edit_percentage").value = (num1 / num2) * 100;
-}
-function reSum121() {
-  var num1 = Number(document.getElementById("add_total_mark1").value);
-
-  var num2 = Number(document.getElementById("add_max_mark").value);
-
-  document.getElementById("add_percentage").value = (num1 / num2) * 100;
-}
-function reSume1() {
-  var num1 = Number(document.getElementById("edit_lang_theory").value);
-
-  var num2 = Number(document.getElementById("edit_lang_practical").value);
-  var num3 = Number(document.getElementById("edit_lang_internal").value);
-
-  document.getElementById("edit_lang_total").value = num1 + num2 + num3;
-}
-function reSume2() {
-  var num1 = Number(document.getElementById("edit_eng_theory").value);
-
-  var num2 = Number(document.getElementById("edit_eng_practical").value);
-  var num3 = Number(document.getElementById("edit_eng_internal").value);
-
-  document.getElementById("edit_eng_total").value = num1 + num2 + num3;
-}
-function reSume3() {
-  var num1 = Number(document.getElementById("edit_mat_theory").value);
-
-  var num2 = Number(document.getElementById("edit_mat_practical").value);
-  var num3 = Number(document.getElementById("edit_mat_internal").value);
-
-  document.getElementById("edit_mat_total").value = num1 + num2 + num3;
-}
-function reSume3() {
-  var num1 = Number(document.getElementById("edit_mat_theory").value);
-
-  var num2 = Number(document.getElementById("edit_mat_practical").value);
-  var num3 = Number(document.getElementById("edit_mat_internal").value);
-
-  document.getElementById("edit_mat_total").value = num1 + num2 + num3;
-}
-function reSume4() {
-  var num1 = Number(document.getElementById("edit_phy_theory").value);
-
-  var num2 = Number(document.getElementById("edit_phy_practical").value);
-  var num3 = Number(document.getElementById("edit_phy_internal").value);
-
-  document.getElementById("edit_phy_total").value = num1 + num2 + num3;
-}
-function reSume5() {
-  var num1 = Number(document.getElementById("edit_chem_theory").value);
-
-  var num2 = Number(document.getElementById("edit_chem_practical").value);
-  var num3 = Number(document.getElementById("edit_chem_internal").value);
-
-  document.getElementById("edit_chem_total").value = num1 + num2 + num3;
-}
-function reSume6() {
-  var num1 = Number(document.getElementById("edit_bio_theory").value);
-
-  var num2 = Number(document.getElementById("edit_bio_practical").value);
-  var num3 = Number(document.getElementById("edit_bio_internal").value);
-
-  document.getElementById("edit_bio_total").value = num1 + num2 + num3;
-}
 $(document).ready(function () {
   $("#exampleModalLong ,#loading").modal({
     backdrop: "static",
