@@ -298,34 +298,46 @@ body{
                 
                 <td><%=classdata.community%> & <%=classdata.caste%></td>
               </tr>
-              <%
-              if(userData25.length!=0){
-              var i=1;
-              userData25.forEach(function(classdata25){
-              %>
               <tr>
                 <th class="text-center">10</th>
                 <th >Community Certificate No & Date
-                    
+                  
                 </th>
                 
-                
-                <td> <%=classdata25.reg_no%>, <%=classdata25.date%></td>
+                <td>
+                <%
+                if(userData25.length!=0){
+                var i=1;
+                userData25.forEach(function(classdata25){
+                %>
+                 <%=classdata25.reg_no%>, <%=classdata25.date%>
+                <%  i++; }) %>
+              <% } else{ %>
+              
+              <% } %>
+                </td>
               </tr>
             
               <tr>
                 <th class="text-center">11</th>
-                <th >Community Issuing Authority
+                <th>Community Issuing Authority
                     
                 </th>
                 
                 
-                <td><%=classdata25.issue%></td>
-              </tr>
-              <%  i++; }) %>
+                <td>
+                   <%
+                if(userData25.length!=0){
+                var i=1;
+                userData25.forEach(function(classdata25){
+                %>
+                  <%=classdata25.issue%>
+                <%  i++; }) %>
               <% } else{ %>
               
-              <% } %>
+              <% } %></td>
+              </tr>
+              
               <%
               if(userData2.length!=0){
               var i=1;

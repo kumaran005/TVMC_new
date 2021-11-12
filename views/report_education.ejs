@@ -472,6 +472,7 @@ body{
 <div class="row neetcerti mt-5">
     <div class="col-md-6">
         <div class="table table-responsive">
+          <h3 style="font-size: larger;color: black;">Plus Two Marks</h3>
             <table class="table table-bordered">
                 <thead id="borderhead" class="text-center">
                     <tr>
@@ -540,12 +541,32 @@ body{
                 <td><%=classdata5.zoo_total%> </td>
                 <td><i><%=classdata5.zoo_max%> </i> </td>
             </tr>
+
+            
             <!-- <tr>
                 <th>Aggregate
                 </th>
                 <td><%=classdata5.total_mark%> </td>
                 <td><i><%=classdata5.max_mark%>  </i> </td>
             </tr> -->
+        </tbody>
+        <tbody class="bordercerti">
+          <tr>
+              <th>Total</th>
+              <td><%=classdata5.total_mark%></td>
+              <td><%=classdata5.max_mark%></td>
+            </tr>
+           
+        </tbody>
+        
+        <tbody class='bordercerti'>
+           <tr>
+              <th>percentage</th>
+             <td></td>
+              <td><%=classdata5.percentage%></td>
+              
+            </tr>
+          
         </tbody>
         <%  i++; }) %>
         <% } else{ %>
@@ -556,12 +577,13 @@ body{
     </div>
     <div class="col-md-6">
         <div class="table table-responsive"id="neetcerti">
+          <h3 style="font-size: larger;color: black;">Neet Marks</h3>
             <table class="table table-bordered">
                 <thead id="borderhead" class="text-center">
             <tr>
                 <th>Subject</th>
-                <th style="width: 120px;">Percentile
-                    Obtained NEET</th>
+                <th>Marks</th>
+                <th style="width: 100px;">Percentile</th>
                     <!-- <th>Maximum Marks</th> -->
             </tr>
           
@@ -574,22 +596,27 @@ body{
         <tbody class="bordercerti"id="tbody">
             <tr>
                 <th>Physics</th>
+
                 <td><%=classdata6.phy_mark %></td>
+                <td><%=classdata6.phy_max_mark %></td>
                 <!-- <td><%=classdata6.phy_max_mark %></td> -->
             </tr>
             <tr>
                 <th>Chemistry</th>
                 <td><%=classdata6.chem_mark %></td>
+                <td><%=classdata6.chem_max_mark %></td>
                 <!-- <td><%=classdata6.chem_max_mark %></td> -->
             </tr>
             <tr>
                 <th>Biology</th>
                 <td><%=classdata6.bio_mark %></td>
+                <td><%=classdata6.bio_max_mark %></td>
                 <!-- <td><%=classdata6.bio_max_mark %></td> -->
             </tr>
             <tr>
                 <th>Aggregate</th>
                 <td><%=classdata6.agg_mark %></td>
+                <td><%=classdata6.agg_max_mark %></td>
                 <!-- <td><%=classdata6.agg_max_mark %></td> -->
             </tr>
         </tbody>

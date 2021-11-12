@@ -28,8 +28,9 @@ exports.all_report = function (req, res) {
   console.log(cond_tsp);
   console.log(cond_tep);
   var cond_char = post.cond_char;
-  var tc_reldate = post.tc_reldate;
+  var tc_reldate = reformatDate(post.tc_reldate);
   var tc_reas = post.tc_reas;
+  var tc_reas2 = post.tc_reas2;
   var tc_mark = post.tc_mark;
   var tc_high = post.tc_high;
   //change
@@ -345,7 +346,7 @@ exports.all_report = function (req, res) {
       });
       break;
     case "Student Details":
-      var sql = `select * from admintv_ems.certificate_details where(cand_id,all_certificate,active_flag) =('${cand_id}','Community Certificate','Y')`;
+      var sql = `select *,DATE_FORMAT(date, '%d/%m/%Y') date from admintv_ems.certificate_details where(cand_id,all_certificate,active_flag) =('${cand_id}','Community Certificate','Y')`;
       db.query(sql, (err, data25) => {
         var sql = `SELECT * from admintv_ems.cand_contact_details where cand_id ='${cand_id}' `;
         db.query(sql, (err, data12) => {
@@ -686,37 +687,54 @@ exports.all_report = function (req, res) {
                               admintv_ems.cand_academic_mdms_2 ON admintv_ems.cand_academic_mdms.cand_id=  admintv_ems.cand_academic_mdms_2.cand_id
                             where admintv_ems.cand_academic_mdms.cand_id= '${cand_id}'`;
       db.query(sql, function (err, data33) {
-        var sql = `select * from admintv_ems.certificate_details where(cand_id,all_certificate,active_flag) =('${cand_id}','Community Certificate','Y')`;
-        db.query(sql, (err, data25) => {
-          var sql = `select * , DATE_FORMAT(date, '%d/%m/%Y') date from admintv_ems.certificate_details where(cand_id,all_certificate,active_flag) =('${cand_id}','Eligibility Certificate','Y')`;
-          db.query(sql, (err, data24) => {
-            var sql = `SELECT * from admintv_ems.biometric_details where (cand_id,category,active_flag) =('${cand_id}','Photo','Y') `;
-            db.query(sql, (err, data17) => {
-              var sql = `SELECT * from admintv_ems.cand_contact_details where cand_id ='${cand_id}' `;
-              db.query(sql, (err, data12) => {
-                var sql = `SELECT * from admintv_ems.cand_institute_details where cand_id ='${cand_id}' `;
-                db.query(sql, (err, data9) => {
-                  var sql = `SELECT * from admintv_ems.cand_marks_details where cand_id ='${cand_id}' `;
-                  db.query(sql, (err, data8) => {
-                    var sql = `SELECT * from admintv_ems.cand_address_details where cand_id ='${cand_id}' `;
-                    db.query(sql, (err, data2) => {
-                      var sql = `SELECT *, DATE_FORMAT(date_of_birth, '%d/%m/%Y') date_of_birth FROM admintv_ems.cand_profile_details WHERE cand_id='${cand_id}'`;
-                      db.query(sql, (err, data1) => {
-                        var sql = `SELECT * , DATE_FORMAT(date_of_admission, '%d/%m/%Y') date_of_admission  FROM admintv_ems.cand_admission_details WHERE cand_id='${cand_id}'`;
-                        db.query(sql, (err, data) => {
-                          res.render("report_univ_form_mdms.ejs", {
-                            userData: data1,
-                            userData1: data,
-                            userData2: data2,
-                            userData4: data9,
-                            userData5: data8,
-                            userData8: data12,
+        var sql = `SELECT *, DATE_FORMAT(date, '%d/%m/%Y') date FROM admintv_ems.certificate_details where cand_id = '${cand_id}' and all_certificate in ('Post Diploma Degree Certificate','MBBS Degree Certificate') order by all_certificate desc`;
+        db.query(sql, (err, data26) => {
+          var data27 = new Array();
+          if (
+            data26[0].reg_no &&
+            data26[0].date &&
+            data26[0].issue &&
+            data26[0].place
+          ) {
+            data27.push(data26[0]);
+          } else {
+            data27.push(data26[1]);
+          }
+          console.log(data27);
+          var sql = `select * from admintv_ems.certificate_details where(cand_id,all_certificate,active_flag) =('${cand_id}','Migration Certificate','Y')`;
+          db.query(sql, (err, data25) => {
+            var sql = `select * , DATE_FORMAT(date, '%d/%m/%Y') date from admintv_ems.certificate_details where(cand_id,all_certificate,active_flag) =('${cand_id}','Eligibility Certificate','Y')`;
+            db.query(sql, (err, data24) => {
+              var sql = `SELECT * from admintv_ems.biometric_details where (cand_id,category,active_flag) =('${cand_id}','Photo','Y') `;
+              db.query(sql, (err, data17) => {
+                var sql = `SELECT * from admintv_ems.cand_contact_details where cand_id ='${cand_id}' `;
+                db.query(sql, (err, data12) => {
+                  var sql = `SELECT * from admintv_ems.cand_institute_details where cand_id ='${cand_id}' `;
+                  db.query(sql, (err, data9) => {
+                    var sql = `SELECT * from admintv_ems.cand_marks_details where cand_id ='${cand_id}' `;
+                    db.query(sql, (err, data8) => {
+                      var sql = `SELECT * from admintv_ems.cand_address_details where cand_id ='${cand_id}' `;
+                      db.query(sql, (err, data2) => {
+                        var sql = `SELECT *, DATE_FORMAT(date_of_birth, '%d/%m/%Y') date_of_birth FROM admintv_ems.cand_profile_details WHERE cand_id='${cand_id}'`;
+                        db.query(sql, (err, data1) => {
+                          var sql = `SELECT * , DATE_FORMAT(date_of_admission, '%d/%m/%Y') date_of_admission  FROM admintv_ems.cand_admission_details WHERE cand_id='${cand_id}'`;
+                          db.query(sql, (err, data) => {
+                            res.render("report_univ_form_mdms.ejs", {
+                              userData: data1,
+                              userData1: data,
+                              userData2: data2,
+                              userData4: data9,
+                              userData5: data8,
+                              userData8: data12,
 
-                            userData24: data24,
-                            userData25: data25,
-                            userData12: data17,
-                            userData33: data33,
-                            course: course,
+                              userData24: data24,
+                              userData25: data25,
+                              userData12: data17,
+                              userData26: data27,
+                              userData27: data26,
+                              userData33: data33,
+                              course: course,
+                            });
                           });
                         });
                       });
@@ -828,6 +846,7 @@ exports.all_report = function (req, res) {
               // userData13: "",
               tc_reldate: tc_reldate,
               tc_reas: tc_reas,
+              tc_reas2: tc_reas2,
               tc_mark: tc_mark,
               tc_high: tc_high,
               course: course,

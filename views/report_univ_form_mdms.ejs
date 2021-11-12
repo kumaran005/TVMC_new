@@ -414,7 +414,7 @@ userData12.forEach(function(classdata12){
                 var i=1;
                 userData33.forEach(function(classdata33){
                 %> 
-                <td><%=classdata33.mdms_passing_month %> <%=classdata33.mdms_passing_year %></td>
+                <td><%=classdata33.mdms_passing_month %> <%=classdata33.mdms_passing_year %> <%=classdata33.mdms_marksheet_no %></td>
                
                  
                 <td></td>
@@ -422,14 +422,14 @@ userData12.forEach(function(classdata12){
             <tr>
                 <td>(b) P.G Diploma (Specify the Speciality)
                     </td>
-                    <td><%=classdata33.pg_diplamo_passing_month %> <%=classdata33.pg_diplamo_passing_year %> </td>
-                    <td></td>
+                    <td><%=classdata33.pg_diplamo_passing_month %> <%=classdata33.pg_diplamo_passing_year %> <%=classdata33.pg_diplamo_marksheet_no %> </td>
+                    <td><%=userData27[0].date %></td>
                 </tr>
                 <tr>
                     <td>(C) M.B.B.S
                         </td>
-                        <td><%=classdata33.mbbs_passing_month %> <%=classdata33.mbbs_passing_year %> </td>
-                        <td></td>
+                        <td><%=classdata33.mbbs_passing_month %> <%=classdata33.mbbs_passing_year %> <%=classdata33.mbbs_marksheet_no %> </td>
+                        <td><%=userData27[1].date %></td>
                     </tr>
                     <%  i++; }) %>
                     <% } else{ %>
@@ -461,7 +461,7 @@ userData12.forEach(function(classdata12){
               var i=1;
               userData33.forEach(function(classdata33){
               %> 
-              <td id="capital">:&nbsp; &nbsp;<%= classdata33.mdms_name %>/<%= classdata33.pg_diplamo_name %> /<%= classdata33.mbbs_name %></td>  
+              <td id="capital">:&nbsp; &nbsp;<%= classdata33.mdms_name? classdata33.mdms_name +'-MDMS /':'' %> <%= classdata33.pg_diplamo_name?classdata33.pg_diplamo_name +'-PG DIPLOMA /':'' %> <%= classdata33.mbbs_name ? classdata33.mbbs_name +'-MBBS':'' %></td>  
                 <%  i++; }) %>
             <% } else{ %>
             
@@ -501,7 +501,7 @@ userData12.forEach(function(classdata12){
               var i=1;
               userData33.forEach(function(classdata33){
               %> 
-              <td id="capital">:&nbsp; &nbsp; <%= classdata33.mdms_university %> <%= classdata33.pg_diplamo_university %> <%= classdata33.mbbs_university %></td>  
+              <td id="capital">:&nbsp; &nbsp; <%= classdata33.mdms_university ? classdata33.mdms_university +'/':'' %> <%= classdata33.pg_diplamo_university ? classdata33.pg_diplamo_university +'/':'' %> <%= classdata33.mbbs_university ? classdata33.mbbs_university :'' %></td>  
                 <%  i++; }) %>
             <% } else{ %>
             
@@ -517,7 +517,7 @@ userData12.forEach(function(classdata12){
               var i=1;
               userData33.forEach(function(classdata33){
               %> 
-              <td id="capital">:&nbsp; &nbsp; <%= classdata33.mdms_state %> <%= classdata33.pg_diplamo_state %> <%= classdata33.mbbs_state %></td>  
+              <td id="capital">:&nbsp; &nbsp; <%= classdata33.mdms_state ? classdata33.mdms_state +'/':'' %> <%= classdata33.pg_diplamo_state ? classdata33.pg_diplamo_state +'/':'' %> <%= classdata33.mbbs_state ? classdata33.mbbs_state :'' %></td>  
                 <%  i++; }) %>
             <% } else{ %>
             
@@ -584,11 +584,11 @@ userData12.forEach(function(classdata12){
                                     
                                     
                                            <%
-                if(userData25.length!=0){
+                if(userData26.length!=0){
                 var i=1;
-                userData25.forEach(function(classdata25){
+                userData26.forEach(function(classdata26){
                 %> 
-                <td id="capital">:&nbsp; &nbsp; </td>  
+                <td id="capital">:&nbsp; &nbsp;<%=classdata26? 'YES':'' %> </td>  
                   <%  i++; }) %>
               <% } else{ %>
               
@@ -601,11 +601,11 @@ userData12.forEach(function(classdata12){
                                       
                                       
                                              <%
-                  if(userData25.length!=0){
+                  if(userData26.length!=0){
                   var i=1;
-                  userData25.forEach(function(classdata25){
+                  userData26.forEach(function(classdata26){
                   %> 
-                  <td id="capital">:&nbsp; &nbsp;</td>  
+                  <td id="capital">:&nbsp; &nbsp;<%=classdata26.issue %> <%=classdata26.place %> </td>  
                     <%  i++; }) %>
                 <% } else{ %>
                 
@@ -618,11 +618,11 @@ userData12.forEach(function(classdata12){
                                         
                                         
                                                <%
-                    if(userData1.length!=0){
+                    if(userData26.length!=0){
                     var i=1;
-                    userData1.forEach(function(classdata1){
+                    userData26.forEach(function(classdata26){
                     %> 
-                    <td id="capital">:&nbsp; &nbsp; </td>  
+                    <td id="capital">:&nbsp; &nbsp; <%=classdata26.reg_no ? classdata26.reg_no +' &':'' %> <%=classdata26.date%> </td>  
                       <%  i++; }) %>
                   <% } else{ %>
                   

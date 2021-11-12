@@ -246,3 +246,6 @@ bg = [
 
 data = bg.filter((e) => e.blood_group != false);
 console.log(data);
+
+var c = "wehfjy";
+console.log(c);
