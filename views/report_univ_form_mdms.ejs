@@ -423,13 +423,17 @@ userData12.forEach(function(classdata12){
                 <td>(b) P.G Diploma (Specify the Speciality)
                     </td>
                     <td><%=classdata33.pg_diplamo_passing_month %> <%=classdata33.pg_diplamo_passing_year %> <%=classdata33.pg_diplamo_marksheet_no %> </td>
-                    <td><%=userData27[0].date %></td>
+                    <td><%if(userData27.length !=0){%>
+                      <%=userData27[0].date %>
+                    <%}else{}%></td>
                 </tr>
                 <tr>
                     <td>(C) M.B.B.S
                         </td>
                         <td><%=classdata33.mbbs_passing_month %> <%=classdata33.mbbs_passing_year %> <%=classdata33.mbbs_marksheet_no %> </td>
-                        <td><%=userData27[1].date %></td>
+                        <td><%if(userData27.length !=0){%>
+                          <%=userData27[1].date %>
+                        <%}else{}%></td>
                     </tr>
                     <%  i++; }) %>
                     <% } else{ %>
@@ -450,7 +454,7 @@ userData12.forEach(function(classdata12){
                    
                                            
                     <tr>
-                      <td>10.</td>
+                      <td style="width: 35px;">10.</td>
                       <td style="width: 400px;">College or Institution from where the applicant qualified for M.D/M.S Degree / P.G
                         Diploma/ M.B.B.S
                       </td>
@@ -501,7 +505,11 @@ userData12.forEach(function(classdata12){
               var i=1;
               userData33.forEach(function(classdata33){
               %> 
-              <td id="capital">:&nbsp; &nbsp; <%= classdata33.mdms_university ? classdata33.mdms_university +'/':'' %> <%= classdata33.pg_diplamo_university ? classdata33.pg_diplamo_university +'/':'' %> <%= classdata33.mbbs_university ? classdata33.mbbs_university :'' %></td>  
+              <td id="capital">
+               
+                :&nbsp; &nbsp; <%= classdata33.mdms_state !== 'Tamil Nadu'? classdata33.mdms_university ? classdata33.mdms_university +'/':'':'' %>
+                 <%= classdata33.pg_diplamo_state !== 'Tamil Nadu'? classdata33.pg_diplamo_university ? classdata33.pg_diplamo_university +'/':'':'' %> 
+                 <%= classdata33.mbbs_state !== 'Tamil Nadu'? classdata33.mbbs_university ? classdata33.mbbs_university :'':'' %></td>  
                 <%  i++; }) %>
             <% } else{ %>
             
@@ -517,7 +525,10 @@ userData12.forEach(function(classdata12){
               var i=1;
               userData33.forEach(function(classdata33){
               %> 
-              <td id="capital">:&nbsp; &nbsp; <%= classdata33.mdms_state ? classdata33.mdms_state +'/':'' %> <%= classdata33.pg_diplamo_state ? classdata33.pg_diplamo_state +'/':'' %> <%= classdata33.mbbs_state ? classdata33.mbbs_state :'' %></td>  
+              <td id="capital">:&nbsp; &nbsp;
+                 <%=  classdata33.mdms_state && classdata33.mdms_state !=='Tamil Nadu' ? classdata33.mdms_state +'/':'' %>
+                  <%= classdata33.pg_diplamo_state && classdata33.pg_diplamo_state !=='Tamil Nadu' ? classdata33.pg_diplamo_state +'/':'' %>
+                   <%= classdata33.mbbs_state && classdata33.mbbs_state !== 'Tamil Nadu' ? classdata33.mbbs_state :'' %></td>  
                 <%  i++; }) %>
             <% } else{ %>
             
@@ -684,20 +695,24 @@ userData12.forEach(function(classdata12){
                         
                         <% } %>                                                                                                             
                                               </tr>
-                                              <tr>
-                                                <td>16.</td>
-                                                <td colspan="2" >
-                                                  The following documents should be produced in original along with the prescribed fees
-                                                </td>
-                                              </tr>
+                                             
                                            
                                               
                                               
 
           </tbody>
         </table>
-        <ol style=" page-break-before: always;
-        " class="mt-5">
+        <table style=" page-break-before: always;">
+          <tbody>
+             <tr>
+                                                <td style="padding-left:0px;padding-right: 0px;">16.</td>
+                                                <td colspan="2" >
+                                                  The following documents should be produced in original along with the prescribed fees
+                                                </td>
+                                              </tr>
+          </tbody>
+        </table>
+        <ol class="mt-5">
           <li><p>Degree Certificate</p></li>
           <li><p>Transfer Certificate</p></li>
           <li><p>Community Certificate</p></li>

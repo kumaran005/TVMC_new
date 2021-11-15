@@ -427,7 +427,7 @@ exports.student_home = (req, res) => {
     var cand_id = cand_first + num;
     console.log("candid:" + cand_id);
 
-    course_title == "MBBS"
+    course_title == "MBBS" || course_title == "BSC"
       ? initial_files.initial_files(cand_id, name, last_modified_time)
       : course_title == "MDMS"
       ? initial_files.initial_files_(cand_id, name, last_modified_time)
@@ -458,7 +458,7 @@ exports.student_home = (req, res) => {
             db.query(sql, function (err, data) {
               var sql = `INSERT INTO admintv_ems.cand_relieving_details  (cand_id, relieved, amount_refunded, date_of_relieving, date_of_reallotment, college_name,last_modified_time) values('${cand_id}', '${relieved}','','','','','${last_modified_time}')`;
               db.query(sql, function (err, data) {
-                if (course_title == "MBBS") {
+                if (course_title == "MBBS" || course_title == "BSC") {
                   var sql_ins = `INSERT INTO admintv_ems.cand_institute_details(cand_id,institute_name,place,district,state,relieving_date,duration,exam_passed,register_no,month_of_passing,year_of_passing,board,last_modified_time) VALUES ('${cand_id}','${institute_name.replace(
                     "'",
                     "''"

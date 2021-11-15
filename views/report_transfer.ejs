@@ -48,7 +48,7 @@
  }
  #tablecerti th, #tablecerti td, #tablecerti thead,#tablecerti tbody {
    border: none!important;
-   font-size: 20px;
+   font-size: 19px;
    background: transparent!important;
  }
  body,html,li,.margin,.text-left, #center{
@@ -115,68 +115,74 @@ userData.forEach(function(classdata){
           <tbody>
             <tr>
               
-              <th >
+              <th style="width: 500px;">
                 NAME OF THE STUDENT
               </th>
-
-              <th id="capital" style="width: 450px;">:&nbsp; &nbsp;<%=classdata.name %></th>  
+              <th>:&nbsp; &nbsp;</th>
+              <th id="capital" style="width: 400px;"><%=classdata.name %></th>  
 
             </tr>
             <tr>
               
-              <th >
+              <th style="width: 500px;">
                 SEX
               </th>
-
-              <th id="capital">:&nbsp; &nbsp;<%=classdata.gender %></th>  
+              <th>:&nbsp; &nbsp;</th>
+              <th id="capital" style="width: 400px;"><%=classdata.gender %></th>  
 
             </tr>
             <tr>
               
-              <th >
+              <th style="width: 500px;">
                 FATHER'S NAME
               </th>
-
-              <th id="capital">:&nbsp; &nbsp; <%=classdata.father_name %></th>  
+              <th>:&nbsp; &nbsp;</th>
+              <th id="capital" style="width: 400px;"><%=classdata.father_name %></th>  
 
             </tr>
             <tr>
               
-              <th >
+              <th style="width: 500px;">
                 NATIONALITY, RELIGION
               </th>
-
-              <th id="capital">:&nbsp; &nbsp; <%=classdata.nationality %> / <%=classdata.religion %></th>  
+              <th>:&nbsp; &nbsp;</th>
+              <th id="capital" style="width: 400px;"> <%=classdata.nationality %> / <%=classdata.religion %></th>  
 
             </tr>
             <tr>
               
-              <th >
+              <th style="width: 500px;">
                 COMMUNITY
               </th>
-
-              <th id="capital">:&nbsp; &nbsp; <%=classdata.community %></th>  
+              <th>:&nbsp; &nbsp;</th>
+              <th id="capital" style="width: 400px;"> <%=classdata.community %></th>  
 
             </tr>
           
             <tr>
               
-              <th >
+              <th style="width: 500px;">
                 DATE OF BIRTH
               </th>
-
-              <th id="capital">:&nbsp; &nbsp; <%=classdata.date_of_birth %></th>  
+              <th>:&nbsp; &nbsp;</th>
+              <th id="capital" style="width: 400px;"> <%=classdata.date_of_birth %></th>  
 
             </tr>
             <tr>
               
-              <th >
-                PERSONAL MARKS OF <br> IDENTIFICATION
+              <th style="width: 500px;">
+                PERSONAL MARKS OF IDENTIFICATION
 
               </th>
-
-              <th id="capital">:&nbsp; &nbsp; <%=tc_mark %></th>  
-
+              <th>:&nbsp; &nbsp;</th>
+              <th id="capital" style="width: 400px;"><%=tc_reas %> </th> 
+                
+              </tr>
+              <tr>
+                <th style="width: 500px;"></th>
+                <th>&nbsp; &nbsp;</th>
+              <th id="capital" style="width: 400px;"> <%=tc_reas2 %> </th>  
+              
             </tr>
             <%
             if(userData1.length!=0){
@@ -185,55 +191,48 @@ userData.forEach(function(classdata){
             %>
             <tr>
               
-              <th class="pt-5 mt-5">
+              <th class="" style="width: 500px;">
                 COURSE
               </th>
-
-              <th id="capital"class="pt-5 mt-5">:&nbsp; &nbsp; <%=classdata1.course %></th>  
+              <th>:&nbsp; &nbsp;</th>
+              <th id="capital"class="" style="width: 400px;"> <%=classdata1.course %></th>  
 
             </tr>
             <tr>
               
-              <th >
+              <th style="width: 500px;">
                 DATE OF ADMISSION
               </th>
-
-              <th id="capital">:&nbsp; &nbsp;  <%=classdata1.date_of_admission %></th>  
+              <th>:&nbsp; &nbsp;</th>
+              <th id="capital" style="width: 400px;"> <%=classdata1.date_of_admission %></th>  
 
             </tr>
             <tr>
               
-              <th >
+              <th style="width: 500px;">
                 DATE OF RELIEVING
               </th>
-
-              <th id="capital">:&nbsp; &nbsp; <%=tc_reldate %> </th>  
+              <th>:&nbsp; &nbsp;</th>
+              <th id="capital" style="width: 400px;"><%=tc_reldate %> </th>  
 
             </tr>
             <tr>
               
-              <th >
+              <th style="width: 500px;" >
                 REASON FOR HIS/HER LEAVING
 
               </th>
-
-              <th id="capital">:&nbsp; &nbsp;
-                <%=tc_reas %> </th> <br>
-                
-              </tr>
-              <tr>
-                <th></th>
-              <th id="capital"> &nbsp; &nbsp; &nbsp;<%=tc_reas2 %> </th>  
-              
+              <th>:&nbsp; &nbsp;</th>
+              <th id="capital" style="width: 400px;"> <%=tc_mark %></th>  
             </tr>
             <tr>
               
-              <th style="width: 400px;padding-top: 120px;"class="">
-                WHETHER QUALIFIED<br> FOR PROMOTION<br> HIGHER STUDIES
+              <th style="width: 500px;"class="">
+                WHETHER QUALIFIED FOR PROMOTION HIGHER STUDIES
 
               </th>
-
-              <th id="capital"class=""style="padding-top: 120px;">:&nbsp; &nbsp; <%=tc_high %></th>  
+              <th>:&nbsp; &nbsp;</th>
+              <th id="capital"class="" style="width: 400px;"><%=tc_high %></th>  
 
             </tr>
             <%  i++; }) %>
@@ -276,7 +275,7 @@ userData1.forEach(function(classdata){
        </div> 
 </div>
 <ul>
-  <li><div class="row" style="margin-top: 80px;">
+  <li><div class="row" style="margin-top: 20px;">
   <div class="col-md-8">
     <div class="row">
       <div class="col-md-12 "hidden>

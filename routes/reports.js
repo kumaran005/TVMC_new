@@ -687,20 +687,24 @@ exports.all_report = function (req, res) {
                               admintv_ems.cand_academic_mdms_2 ON admintv_ems.cand_academic_mdms.cand_id=  admintv_ems.cand_academic_mdms_2.cand_id
                             where admintv_ems.cand_academic_mdms.cand_id= '${cand_id}'`;
       db.query(sql, function (err, data33) {
-        var sql = `SELECT *, DATE_FORMAT(date, '%d/%m/%Y') date FROM admintv_ems.certificate_details where cand_id = '${cand_id}' and all_certificate in ('Post Diploma Degree Certificate','MBBS Degree Certificate') order by all_certificate desc`;
+        var sql = `SELECT *, DATE_FORMAT(date, '%d/%m/%Y') date FROM admintv_ems.certificate_details where cand_id = '${cand_id}' and all_certificate in ('Post Diploma Registration Certificate','MBBS Registration Certificate') order by all_certificate desc`;
         db.query(sql, (err, data26) => {
           var data27 = new Array();
-          if (
-            data26[0].reg_no &&
-            data26[0].date &&
-            data26[0].issue &&
-            data26[0].place
-          ) {
-            data27.push(data26[0]);
+          if (data26.length !== 0) {
+            if (
+              data26[0].reg_no &&
+              data26[0].date &&
+              data26[0].issue &&
+              data26[0].place
+            ) {
+              data27.push(data26[0]);
+            } else {
+              data27.push(data26[1]);
+            }
           } else {
-            data27.push(data26[1]);
+            data26 = [];
+            data27 = [];
           }
-          console.log(data27);
           var sql = `select * from admintv_ems.certificate_details where(cand_id,all_certificate,active_flag) =('${cand_id}','Migration Certificate','Y')`;
           db.query(sql, (err, data25) => {
             var sql = `select * , DATE_FORMAT(date, '%d/%m/%Y') date from admintv_ems.certificate_details where(cand_id,all_certificate,active_flag) =('${cand_id}','Eligibility Certificate','Y')`;

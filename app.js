@@ -280,9 +280,16 @@ app.post("/surety_file_aissc", (req, res) => {
 });
 
 app.post("/fees_file", (req, res) => {
-  console.log(req.body);
   var { cand_id } = req.body;
   var sql = `SELECT * FROM admintv_ems.fees_file where idfees_file ='${cand_id}'`;
+  db.query(sql, (err, data) => {
+    res.send(data);
+  });
+});
+
+app.post("/user_manual", (req, res) => {
+  var { cand_id } = req.body;
+  var sql = `SELECT * FROM admintv_ems.user_manual where iduser_manual ='${cand_id}'`;
   db.query(sql, (err, data) => {
     res.send(data);
   });
